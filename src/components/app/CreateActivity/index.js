@@ -6,7 +6,7 @@ function CreateActivity() {
     const options = [
         { key: 'ft', text: 'Footing', value:'footing'},
         { key: 'vl', text: 'Vélo', value:'velo'},
-        { key: 'ft', text: 'Escalade', value:'escalade'},
+        { key: 'es', text: 'Escalade', value:'escalade'},
     ];
 
         return (
@@ -21,6 +21,7 @@ function CreateActivity() {
                         fluid
                         label="Sport"
                         options={options}
+                        placeholder="Sport"
                     />
                     <label>Cette activité peut-elle se faire en famille ? </label>
                     <Form.Radio
