@@ -12,7 +12,7 @@ function Header() {
         <button class="ui primary button">
   SignIn
 </button>
-<button class="ui primary button">
+<button className="ui primary button">
  LogIn
 </button>
 </div>

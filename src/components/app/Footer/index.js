@@ -14,7 +14,7 @@ function Footer() {
         <button class="ui primary button">
   À propos
 </button>
-<button class="ui primary button">
+<button className="ui primary button">
  Contact
 </button>
 </div>

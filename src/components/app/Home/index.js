@@ -1,4 +1,4 @@
-
+import './style.scss';
 import Header from '../../app/Header';
 import Footer from '../../app/Footer';
 
