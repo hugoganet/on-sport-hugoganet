@@ -1,14 +1,14 @@
-import Logo from '../../../assets/Logo_ON.png'
+import Logo from '../../../assets/OnSport_logo.png'
 
 function Header() {
     
   
     return (
         <div className="header">
-         <img src={Logo} alt="logo" />
          
          <div className="ui small image">
-</div>
+            <img src={Logo} alt="logo" />
+        </div> 
          <div className="ui animated button" tabindex="0">
   <div className="visible content">Next</div>
   <div className="hidden content">
