@@ -1,11 +1,17 @@
 import React from 'react';
 
+import ProfilDetails from './ProfilDetails/ProfilDetails';
+import ProfilHeader from './ProfilHeader/ProfilHeader';
+import ActivitiesList from './ActivitiesList/ActivitiesList';
+
 import './style.scss';
 
 function ProfilPage() {
   return (
     <div className="ProfilPage">
-      <h1>Hello World !</h1>
+      <ProfilHeader />
+      <ProfilDetails />
+      <ActivitiesList />
     </div>
   );
 }

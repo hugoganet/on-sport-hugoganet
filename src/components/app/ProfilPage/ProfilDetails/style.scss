@@ -1,0 +1,42 @@
+@use 'src/styles/_vars.scss' as v;
+
+.ProfilDetails{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__location ,
+  &__age{
+    font-size: 0.9rem;
+    font-weight: 200;
+    margin: 0.2rem;
+  }
+
+  &__bio--title{
+    margin: 0.5rem;
+  }
+
+  &__bio--description{
+    padding: 1rem;
+    border: 4px solid;
+    border-radius: 2rem;
+    min-height: 9rem;
+    width: 80%;
+  }
+
+  &__practiceSports--title{
+    margin: 0.5rem;
+  }
+
+  &__practiceSports--img--div{
+   display: flex;
+   flex-direction: row;
+  }
+
+  &__practiceSports--img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0.5rem;
+  }
+}
