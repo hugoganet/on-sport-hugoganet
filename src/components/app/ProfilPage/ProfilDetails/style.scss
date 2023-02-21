@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
 
   &__location ,
   &__age{
@@ -24,19 +25,44 @@
     width: 80%;
   }
 
-  &__practiceSports--title{
+  &__practiceSports__div{
+    // border: 2px solid purple;
+  }
+  &__practiceSports__div--title{
     margin: 0.5rem;
+    text-align: center;
   }
 
-  &__practiceSports--img--div{
+  &__practiceSports__div--div{
    display: flex;
-   flex-direction: row;
   }
 
-  &__practiceSports--img{
+  &__practiceSports__div--img{
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
     margin: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .ProfilDetails{
+
+    &__bioAndPracticeSports{
+      margin-top: 30px;
+      display: flex;
+      flex-direction: row-reverse;
+      // justify-content: space-around;
+      width: 95%;
+
+      &__practiceSports__div{
+        width: 50%;
+      }
+
+      &__bio--div{
+        width: 50%;
+      }
+
+    }
   }
 }
