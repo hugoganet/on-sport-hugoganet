@@ -1,5 +1,7 @@
 import React from 'react';
 
+// import Card from '../../FilteredActivities/card/card';
+
 import './style.scss';
 
 function ActivitiesList() {
@@ -9,6 +11,7 @@ function ActivitiesList() {
       <button type="button" className="ActivitiesList__button">
         🖊 créer une nouvelle activité
       </button>
+      {/* <Card /> */}
     </div>
   );
 }

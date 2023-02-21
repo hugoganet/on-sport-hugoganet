@@ -8,13 +8,13 @@ function Footer() {
   return (
     <div className="footer">
 
-      <div className="ui small image">
-        <img src={Logo} alt="logo" />
+      <div className="footer__img--div">
+        <img className="footer__img" src={Logo} alt="logo" />
       </div>
-      <button type="button" className="ui primary button">
+      <button type="button" className="footer__button">
         À propos
       </button>
-      <button type="button" className="ui primary button">
+      <button type="button" className="footer__button">
         Contact
       </button>
     </div>
