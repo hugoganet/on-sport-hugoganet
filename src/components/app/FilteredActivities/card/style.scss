@@ -10,8 +10,7 @@
 }
 */
 
-/* BEGIN CARD DESIGN */
-.hero {
+.card {
   display: inline-block;
   position: relative;
   width: 400px;
@@ -23,11 +22,11 @@
   margin: 30px;
 }
 
-.hero-profile-img {
+.card-bg {
   height: 70%;
 }
 
-.hero-description-bk {
+.card-bk {
   background-color: v.$color-grey-dark;
   border-radius: 30px;
   position: absolute;
@@ -38,11 +37,8 @@
   transform: skew(19deg, -9deg);
 }
 
-.second .hero-description-bk {
-  background-color: v.$color-grey-dark;
-}
 
-.hero-logo {
+.card-logo {
   height: 80px;
   width: 80px;
   border-radius: 20px;
@@ -54,11 +50,11 @@
   box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
 }
 
-.hero-logo img {
+.card-logo img {
   height: 100%;
 }
 
-.hero-description {
+.card-description {
   position: absolute;
   color: #fff;
   font-weight: 900;
@@ -66,7 +62,7 @@
   bottom: 26%;
 }
 
-.hero-btn {
+.card-btn {
   position: absolute;
   color: #fff;
   right: 30px;
@@ -75,11 +71,11 @@
   border: 1px solid #fff;
 }
 
-.hero-btn a {
+.card-btn a {
   color: #fff;
 }
 
-.hero-date {
+.card-location {
   position: absolute;
   color: #fff;
   left: 30px;
@@ -92,15 +88,4 @@ body {
   margin: 0;
   background-color: #eee;
   min-height: 100vh;
-}
-.btn i:before {
-  width: 14px;
-  height: 14px;
-  position: fixed;
-  color: #fff;
-  background: #0077B5;
-  padding: 10px;
-  border-radius: 50%;
-  top:5px;
-  right:5px;
 }

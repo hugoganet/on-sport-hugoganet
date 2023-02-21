@@ -1,51 +1,64 @@
+
 export default [
     {
         name: 'Escalade',
-        logo: 'src/assets/escalade.png',
+        logo: '/img/escalade.png',
+        bg : '/img/escalade_bg.jpg',
     },
     {
         name: 'Running',
-        logo: 'src/assets/running.png',
+        logo: '/img/running.png',
+        bg : '/img/running_bg.jpg',
     },
     {
         name: 'Cyclisme',
-        logo: 'src/assets/cyclisme.png',
+        logo: '/img/cyclisme.png',
+        bg : '/img/velo_bg.jpg',
     },
     {
         name: 'Sports de glisse - MER',
-        logo: 'src/assets/glisse_mer.png',
+        logo: '/img/glisse_mer.png',
+        bg : '/img/glisse_mer_bg.jpg',
     }, 
     {
         name: 'Sports de glisse - MONTAGNE',
-        logo: 'src/assets/glisse_montagne.png',
+        logo: '/img/natation.png',
+        bg : '/img/glisse_montagne_bg.jpg',
     },
     {
         name: 'Sports de glisse - URBAIN',
-        logo: 'src/assets/glisse_urbain.png',
+        logo: '/img/glisse_urbain.png',
+        bg : '/img/glisse_urbain_bg.jpg',
     },
     {
         name: 'Randonnée',
-        logo: 'src/assets/rando.png',
+        logo: '/img/rando.png',
+        bg : '/img/rando_bg.jpg',
     },
     {
         name: 'VTT',
-        logo: 'src/assets/vtt.png',
+        logo: '/img/vtt.png',
+        bg : '/img/vtt_bg.jpg',
     },
     {
         name: 'Fitness',
-        logo: 'src/assets/fitness.png',
+        logo: '/img/fitness.png',
+        bg : '/img/fitness_bg.jpg',
     },
     {
         name: 'Natation',
-        logo: 'src/assets/natation.png',
+        logo: '/img/natation.png',
+        bg : '/img/natation_bg.jpg',
     },
     {
         name: 'Yoga',
-        logo: 'src/assets/yoga.png',
+        logo: '/img/yoga.png',
+        bg : '/img/yoga_bg.jpg',
     },
     {
         name: 'Autre sport',
-        logo: 'src/assets/autre.png',
+        logo: '/img/autre.png',
+        bg : '/img/autre_bg.jpg',
     },
     
   ];

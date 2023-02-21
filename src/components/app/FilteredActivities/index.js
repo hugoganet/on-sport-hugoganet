@@ -1,21 +1,18 @@
 import './style.scss';
 import Card from '../FilteredActivities/card/card';
+import React from 'react';
+
+import sports from '../../../datas/sport';
 
 function Filtered() {
 
 
     return (
         <div className="cards">
-
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+ {
+        sports.map((sport) => <Card {...sport} />)
+      }
+       
 </div>
     );
   }

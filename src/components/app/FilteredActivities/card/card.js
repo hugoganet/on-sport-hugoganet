@@ -1,26 +1,25 @@
 import './style.scss';
-import Running_icon from '../../../../assets/running.png';
-import Mountain from '../../../../assets/mountain.jpg';
+import React from 'react';
 
-function Card() {
-    
+function Card(sport) {
+    console.log(sport.logo)
   
     return (
 
       <>
-      <div class="second hero">
-        <img class="hero-profile-img" src={`${Mountain}`} alt="" />
-        <div class="hero-description-bk"></div>
-        <div class="hero-logo">
-          <img src={`${Running_icon}`} alt="" />
+      <div class="card">
+        <img class="card-bg" src={`${sport.bg}`} alt="" />
+        <div class="card-bk"></div>
+        <div class="card-logo">
+          <img src={`${sport.logo}`} alt="" />
         </div>
-        <div class="hero-description">
+        <div class="card-description">
           <p>Randonnée soleil levant en montagne</p>
         </div>
-        <div  class="hero-date">
+        <div  class="card-location">
           <p>Alpes d'Huez</p>
-        </div>
-        <div class="hero-btn">
+         </div>
+        <div class="card-btn">
           <a href="#">En savoir +</a>
         </div>
       </div>
