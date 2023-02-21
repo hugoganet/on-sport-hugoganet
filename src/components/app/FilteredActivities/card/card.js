@@ -9,9 +9,9 @@ function Card(sport) {
       <>
       <div class="card">
         <img class="card-bg" src={`${sport.bg}`} alt="" />
-        <div class="card-bk"></div>
+        <div class="card-bk" style={{background:`${sport.color}88`}}></div>
         <div class="card-logo">
-          <img src={`${sport.logo}`} alt="" />
+          <img src={`${sport.logo_color}`} alt="" />
         </div>
         <div class="card-description">
           <p>Randonnée soleil levant en montagne</p>
