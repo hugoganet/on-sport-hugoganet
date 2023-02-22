@@ -1,6 +1,7 @@
 
 export default [
     {
+        id:1,
         name: 'Escalade',
         logo: '/img/escalade.png',
         logo_color: '/img/escalade_color.png',
@@ -8,6 +9,7 @@ export default [
         color: '#ff8f3f',
     },
     {
+        id:2,
         name: 'Running',
         logo: '/img/running.png',
         logo_color: '/img/running_color.png',
@@ -15,6 +17,7 @@ export default [
         color: '#6B184E',
     },
     {
+        id:3,
         name: 'Cyclisme',
         logo: '/img/cyclisme.png',
         logo_color: '/img/cyclisme_color.png',
@@ -22,6 +25,7 @@ export default [
         color: '#aabb22',
     },
     {
+        id:4,
         name: 'Sports de glisse - MER',
         logo: '/img/glisse_mer.png',
         logo_color: '/img/glisse_mer_color.png',
@@ -29,6 +33,7 @@ export default [
         color: '#0D8BBB',
     }, 
     {
+        id:5,
         name: 'Sports de glisse - MONTAGNE',
         logo: '/img/glisse_montagne.png',
         logo_color: '/img/glisse_montagne_color.png',
@@ -36,6 +41,7 @@ export default [
         color: '#ff8f3f',
     },
     {
+        id:6,
         name: 'Sports de glisse - URBAIN',
         logo: '/img/glisse_urbain.png',
         logo_color: '/img/glisse_urbain_color.png',
@@ -43,6 +49,7 @@ export default [
         color: '#6B184E',
     },
     {
+        id:7,
         name: 'Randonnée',
         logo: '/img/rando.png',
         logo_color: '/img/rando_color.png',
@@ -50,6 +57,7 @@ export default [
         color: '#aabb22',
     },
     {
+        id:8,
         name: 'VTT',
         logo: '/img/vtt.png',
         logo_color: '/img/vtt_color.png',
@@ -57,6 +65,7 @@ export default [
         color: '#ff8f3f',
     },
     {
+        id:9,
         name: 'Fitness',
         logo: '/img/fitness.png',
         logo_color: '/img/fitness_color.png',
@@ -64,6 +73,7 @@ export default [
         color: '#6B184E',
     },
     {
+        id:10,
         name: 'Natation',
         logo: '/img/natation.png',
         logo_color: '/img/natation_color.png',
@@ -71,6 +81,7 @@ export default [
         color: '#0D8BBB',
     },
     {
+        id:11,
         name: 'Yoga',
         logo: '/img/yoga.png',
         logo_color: '/img/yoga_color.png',
@@ -78,12 +89,13 @@ export default [
         color: '#6B184E',
     },
     {
+        id:12,
         name: 'Autre sport',
         logo: '/img/autre.png',
         logo_color: '/img/autre_color.png',
         bg : '/img/autre_bg.jpg',
         color: '#CF2B6B',
-    },
+    }
     
   ];
   
