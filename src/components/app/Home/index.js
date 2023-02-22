@@ -9,8 +9,42 @@ import 'animate.css';
 import { Form, Select } from 'semantic-ui-react'
 import sports from '../../../datas/sportselect';
 
+import sportList from '../../../datas/sport';
+
 function Home() {
-  
+  const getValue = value => (typeof value === 'string' ? value.toUpperCase() : value);
+  const [sportItems, setsports] = React.useState(sportList)
+
+  function filterPlainArray(array, filters) {
+    const filterKeys = Object.keys(filters);
+    return array.filter(item => {
+      // validates all filter criteria
+      return filterKeys.every(key => {
+        // ignores an empty filter
+        if (!filters[key].length) return true;
+        return filters[key].find(filter => getValue(filter) === getValue(item[key]));
+      });
+    });
+  }
+
+
+
+  const handleChange = (e, {value}) => {
+    const filters = {
+      name: value,
+    };
+
+    const filtered = filterPlainArray(sportList, filters);
+    console.log(filtered)
+
+    // console.log(value)
+    // // setsports(sportList.filter(elem => elem.name.includes(value)))
+
+    // const found = sportList.find(x => value.includes(x))
+    setsports(filtered)
+
+  } 
+
   return (
   
     
@@ -32,6 +66,7 @@ placeholder='Sélectionner un ou plusieurs sports'
 fluid
 multiple
 options={sports}
+onChange={handleChange.bind(this)}
 
 />
 <Form.Select
@@ -48,7 +83,8 @@ options={sports}
 />
 </Form.Group>
 </Form>  
-      <Filtered />
+
+      <Filtered sports={sportItems} />
       <Footer />
 
     </div>
