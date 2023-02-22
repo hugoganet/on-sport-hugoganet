@@ -1,21 +1,51 @@
+@use '../../../styles/vars' as v;
+
 .carousel {
-    background-color: #f0f;
+    background-color: v.$color-first;
+    border-radius: 1rem;
     display: flex;
     flex-direction:column;
     width: 70%;
-    height: 30rem;
+    height: 40rem;
     text-align: center;
-    margin-top: 5rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     margin-left: auto;
     margin-right: auto;
 
 }
 
+.carousel__buttons {
+    padding-top: 1rem;
+}
+
 .avatar {
     display: flex;
-    justify-content: end;
+    justify-content: center;
     margin-bottom: 1rem;
-    margin-right: 12rem;
+    margin-right: auto;
 }
+
+.image {
+    border-radius: 1rem;
+}
+
+.activity__description {
+    display: flex;
+    position: relative;
+    width: 70%;
+    height: 30rem;
+    border: 1px solid v.$color-grey-dark;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
 

@@ -16,11 +16,11 @@ function Carousel() {
                     <Slide index={0}><Image src="/img/fitness_bg.jpg" /></Slide>
                     <Slide index={0}><Image src="/img/glisse_montagne_bg.jpg" /></Slide>
                 </Slider>
+                <DotGroup />
                 <div className="carousel__buttons">
-                <ButtonBack className="button__back">Back</ButtonBack>
+                <ButtonBack>Back</ButtonBack>
                 <ButtonNext>Next</ButtonNext>
                 </div>
-                <DotGroup />
             </CarouselProvider>
     );
 }
