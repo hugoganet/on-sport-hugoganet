@@ -1,0 +1,30 @@
+@use 'src/styles/_vars' as v;
+
+p:first-child {
+  margin-top: 8px; /* override the margin-top property */
+}
+
+.About{
+  display: flex;
+  align-items: center;
+
+  &__projectPresentation {
+    padding: .5rem;
+    width: 90%;
+    border: 2px solid v.$color-grey-light;
+    border-radius: .3rem;
+  }
+
+  &__teamPresentation {
+    padding: .5rem;
+    width: 90%;
+    border: 2px solid v.$color-grey-light;
+    border-radius: .3rem;
+  }  
+
+  &__teamMembers{
+    width: 90%;
+    border: 1px solid blue;
+  }
+
+}

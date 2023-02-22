@@ -1,0 +1,39 @@
+@use 'src/styles/_vars.scss' as v;
+
+.TeamMemberCard{
+  display: flex;
+  border: 2px solid v.$color-grey-light;
+  border-radius: .3rem;
+  width: 100%;
+  padding: 8px;
+  margin-top: 12px;
+
+  &__div--img{
+    width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border-radius: 50%;
+  border: 2px solid v.$color-grey-dark;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  position: relative;
+  }
+  &__img{
+    margin: 8px;
+    margin-bottom: 2px;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 2px solid v.$color-grey-dark;
+    background-color: #f5f5f5;
+    align-self: center;
+
+    &--div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+
+}
