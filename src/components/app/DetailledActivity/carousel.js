@@ -1,7 +1,7 @@
-import { Dot } from "pure-react-carousel";
 import { DotGroup } from "pure-react-carousel";
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-react-carousel";
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import { Image } from 'semantic-ui-react'
 
 
 function Carousel() {
@@ -12,9 +12,9 @@ function Carousel() {
             totalSlides={3}
             >   
                 <Slider>
-                    <Slide index={0}> First Slide</Slide>
-                    <Slide index={1}> Second Slide</Slide>
-                    <Slide index={3}> Third Slide</Slide> 
+                    <Slide index={0}><Image src="/img/autre_bg.jpg" /></Slide>
+                    <Slide index={0}><Image src="/img/fitness_bg.jpg" /></Slide>
+                    <Slide index={0}><Image src="/img/glisse_montagne_bg.jpg" /></Slide>
                 </Slider>
                 <div className="carousel__buttons">
                 <ButtonBack className="button__back">Back</ButtonBack>
