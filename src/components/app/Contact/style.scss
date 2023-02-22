@@ -1,0 +1,50 @@
+@use 'src/styles/_vars.scss' as v;
+
+.Contact{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  margin-top: 2rem;
+
+  &__input{
+    // display: flex;
+    // justify-items: center;
+    width: 90%;
+    border: 1px solid v.$color-grey-light;
+    margin: .5rem 0rem;
+    
+    &--message{
+      display: flex;
+      height: 10rem;
+    }
+
+  }
+  &__button {
+    font-size: 1rem;
+    height: 1.8rem;
+    // width: 100px;
+    border: none;
+    border-radius: .3rem;
+    background-color: v.$color-third;
+    color: v.$color-white;
+    margin: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    align-self: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .Contact{
+    width: 50%;
+    margin: 0 auto;
+    border: 2px solid green;
+
+    &__input{
+      width: 50%;
+      margin: 1rem 0rem;
+    }
+  }
+}
