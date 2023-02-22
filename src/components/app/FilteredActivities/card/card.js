@@ -2,24 +2,24 @@ import './style.scss';
 import React from 'react';
 
 function Card(sport) {
-    console.log(sport.logo)
+
   
     return (
 
       <>
-      <div class="card">
-        <img class="card-bg" src={`${sport.bg}`} alt="" />
-        <div class="card-bk" style={{background:`${sport.color}88`}}></div>
-        <div class="card-logo">
+      <div className="card">
+        <img className="card-bg" src={`${sport.bg}`} alt="" />
+        <div className="card-bk" style={{background:`${sport.color}88`}}></div>
+        <div className="card-logo">
           <img src={`${sport.logo_color}`} alt="" />
         </div>
-        <div class="card-description">
+        <div className="card-description">
           <p>Randonnée soleil levant en montagne</p>
         </div>
-        <div  class="card-location">
+        <div  className="card-location">
           <p>Alpes d'Huez</p>
          </div>
-        <div class="card-btn">
+        <div className="card-btn">
           <a href="#">En savoir +</a>
         </div>
       </div>

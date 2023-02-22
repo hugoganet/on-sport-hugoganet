@@ -9,7 +9,7 @@ function Header() {
          <div className="ui small image">
             <img src={Logo} alt="logo" />
         </div> 
-        <button class="ui primary button">
+        <button className="ui primary button">
   SignIn
 </button>
 <button className="ui primary button">

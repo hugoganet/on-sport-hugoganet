@@ -4,6 +4,8 @@ import { Form } from "semantic-ui-react";
 import Footer from "../Footer";
 import Header from "../Header";
 
+import sport from "../../../datas/sport";
+
 import './style.scss';
 
 function CreateActivity() {
@@ -12,6 +14,7 @@ function CreateActivity() {
         { key: 'vl', text: 'Vélo', value:'velo'},
         { key: 'es', text: 'Escalade', value:'escalade'},
     ];
+
 
         return (
         <>
@@ -31,7 +34,6 @@ function CreateActivity() {
                     <Form.Radio
                     label="Oui"
                     value="oui"
-                    // checked={value === 'oui'}
                     />
                     <Form.Radio
                     label="Non"

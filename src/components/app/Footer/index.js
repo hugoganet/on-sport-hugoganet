@@ -11,7 +11,7 @@ function Footer() {
          <div className="ui small image">
             <img src={Logo} alt="logo" />
         </div> 
-        <button class="ui primary button">
+        <button className="ui primary button">
   À propos
 </button>
 <button className="ui primary button">
