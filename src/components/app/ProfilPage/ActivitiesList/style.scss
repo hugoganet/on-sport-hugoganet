@@ -7,12 +7,35 @@
 
   &__title{
     margin: 0.5rem;
+    // border: 1px solid red;
   }
 
   &__button{
     border: none;
     background-color: v.$color-white;
     color: v.$color-grey-dark;
+    // border: 1px solid green;
+
   }
 
+}
+
+@media screen and (min-width: 768px) {
+  .ActivitiesList{
+    &__div--titleAndButton{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &__title{
+      flex-grow: 4;
+      text-align: center;
+    }
+
+    &__button{
+      flex-grow: 1;
+    }
+  }
 }
