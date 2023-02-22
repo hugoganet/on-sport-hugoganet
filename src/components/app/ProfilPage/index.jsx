@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ProfilDetails from './ProfilDetails/ProfilDetails';
-import ProfilHeader from './ProfilHeader/ProfilHeader';
-import ActivitiesList from './ActivitiesList/ActivitiesList';
+import ProfilDetails from './ProfilDetails';
+import ProfilHeader from './ProfilHeader';
+import ActivitiesList from './ActivitiesList';
 
 import './style.scss';
 
