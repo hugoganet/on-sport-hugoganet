@@ -19,7 +19,7 @@ function CreateActivity() {
         return (
         <>
             <Header />
-            <Form>
+            <Form className="create__activity__form">
             <h1 className="">Ajouter une activité</h1>
                 <Form.Input  width={12} fluid label="Entrer le titre de l'activité" placeholder="Titre de l'activité" />
                 <Form.Input width={12} fluid label="Entrer la localisation" placeholder="Localisation" />

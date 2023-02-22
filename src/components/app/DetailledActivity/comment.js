@@ -1,3 +1,5 @@
+import { Form } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import { Rating } from "semantic-ui-react";
 import { Comment, Header, Icon } from "semantic-ui-react";
 
@@ -30,6 +32,10 @@ function Comments() {
                         <Comment.Text>Je recommande cette activité</Comment.Text>
                     </Comment.Content>
                 </Comment>
+                <Form reply className="activity__add__comment">
+                    <Form.TextArea placeholder="Ajouter un commentaire"/>
+                    <Button content="Commenter" labelPosition="right" icon="send" />
+                </Form>
             </Comment.Group>
             </div>
     );
