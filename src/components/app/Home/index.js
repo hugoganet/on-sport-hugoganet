@@ -24,34 +24,35 @@ function Home() {
       <p className="bg-title2">Tu es veux partager tes expériences sportives à la communauté de OnSporters ?</p>
       </div>
 
-            
+      <Form>
+      <h1 className="">Rechercher des activités</h1>
+ <Form.Group widths='equal'>
+<Form.Select
+placeholder='Sélectionner un ou plusieurs sports'
+fluid
+multiple
+options={sports}
+
+/>
+<Form.Select
+placeholder='Sélectionne un département'
+fluid
+options={sports}
+
+/>
+<Form.Select
+placeholder='Sélectionner une ville'
+fluid
+options={sports}
+
+/>
+</Form.Group>
+</Form>  
       <Filtered />
       <Footer />
 
     </div>
-  <Form>
- 
-        <Form.Group widths='equal'>
-    <Form.Select
-    placeholder='Sélectionner un sport'
-    fluid
-    options={sports}
-    control={Select}
-  />
-  <Form.Select
-    placeholder='Sélectionner un département'
-    fluid
-    options={sports}
-    control={Select}
-  />
-  <Form.Select
-    placeholder='Sélectionner une ville'
-    fluid
-    options={sports}
-    control={Select}
-  />
-   </Form.Group>
-  </Form>
+  
   </>
   );
 }
