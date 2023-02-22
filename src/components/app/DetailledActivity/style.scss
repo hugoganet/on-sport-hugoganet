@@ -6,9 +6,16 @@
     height: 30rem;
     text-align: center;
     margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     margin-left: auto;
     margin-right: auto;
 
+}
+
+.avatar {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 2rem;
+    margin-right: 10rem;
 }
 
