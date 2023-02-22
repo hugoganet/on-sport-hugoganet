@@ -3,5 +3,18 @@
 
 
 .header{
+    width:100vw;
     background-color: v.$color-third;
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between;
+    
+}
+
+
+.header-buttons{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:5vh;
 }

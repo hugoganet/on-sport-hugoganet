@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button, Form, Modal, Icon } from 'semantic-ui-react'
+import { Button,Icon, Form, Modal } from 'semantic-ui-react'
 
-function ModaleLogin({isLogged, setLogin}) {
+function ModaleSignin({isLogged, setLogin}) {
   const [open, setOpen] = React.useState(false)
   
 
@@ -19,14 +19,18 @@ let handleSubmit = () => {
     onOpen={() => setOpen(true)}
     open={open}
     isLogged={isLogged}
-    trigger={<Button icon labelPosition='left' > <Icon name='user secret' color='blue'/>Se connecter</Button>}
+    trigger={<Button icon labelPosition='left'> <Icon name='pencil alternate' color='blue' />Créer un compte</Button>}
   >
-    <Modal.Header>Se connecter</Modal.Header>
+    <Modal.Header>Créer mon compte</Modal.Header>
     <Modal.Content image>
      
       <Modal.Description>
-    
+      <Form.Group widths='equal'>
+      <Form.Input fluid name="firstname" label="Prénom" placeholder="Prénom" />
+      <Form.Input fluid name="lastname" label="Nom" placeholder="Nom" />
+      </Form.Group>
         
+          <Form.Input fluid name="mail" label="E-mail" placeholder="Mail" />
           <Form.Input fluid name="identifiant" label="Identifiant" placeholder="Veuillez choisir un identifiant" />
           <Form.Input fluid name="password" label="Mot de passe" placeholder="Veuillez choisir un mot de passe" />
           <Form.Input fluid name="passwordConfirm" label="Confirmation Mot de passe" placeholder="Confirmer votre mot de passe" />
@@ -50,4 +54,4 @@ let handleSubmit = () => {
   )
 }
 
-export default ModaleLogin
+export default ModaleSignin

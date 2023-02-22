@@ -1,51 +1,34 @@
 import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
+import { Button, Icon} from 'semantic-ui-react'
 
 import React from 'react';
+import ModaleSignin from "../../app/modales/modale_signin";
 import ModaleLogin from "../../app/modales/modale_login";
 
-import { Button, Header as H, Image, Modal, Form } from 'semantic-ui-react'
 function Header() {
     
+  const [isLogged, setLogin] = React.useState(false)
+
 return (
-        <div className="header">
-         
+       <div className="header">
          <div className="ui small image">
             <img src={Logo} alt="logo" />
         </div> 
-        <button class="ui primary button" >
-  SignIn
-</button>
-<button className="ui primary button" onClick={() => {
-           return(
-<ModaleLogin />
+        <div className="header-buttons">
+    <Button.Group>
+        <Button color='orange' animated='vertical'>
+      <Button.Content hidden color='orange'>Accueil</Button.Content>
+      <Button.Content visible>
+        <Icon name='home' />
+      </Button.Content>
+    </Button>
+{isLogged ? <Button onClick={() => alert('IRA SUR LA PAGE PROFIL')}>Mon profil</Button> : <ModaleSignin isLogged={isLogged} setLogin={setLogin} /> }
 
-  )}} >
- LogIn
-</button>
-
-<>
-      <Modal as={Form} trigger={<Button>Basic Modal</Button>} size="small">
-        <H content="Form Modal" />
-        <Modal.Content>
-          <Form.Input fluid name="title" label="Title" placeholder="Title" />
-          <Form.Input fluid name="author" label="Author" placeholder="Author" />
-        </Modal.Content>
-        <Modal.Actions>
-          <Button basic color="red">
-            No
-          </Button>
-          <Button type="submit" color="green">
-            Yes
-          </Button>
-        </Modal.Actions>
-      </Modal>
-   </>
-
-
+{isLogged ? <Button>Se déconnecter</Button> : <ModaleLogin isLogged={isLogged} setLogin={setLogin} /> }
+</Button.Group>
 </div>
-
-
+</div>
 
     );
   }
