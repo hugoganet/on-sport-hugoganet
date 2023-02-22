@@ -7,6 +7,7 @@ p:first-child {
 .About{
   display: flex;
   align-items: center;
+  margin-top: 3rem;
 
   &__projectPresentation {
     padding: .5rem;
@@ -24,7 +25,36 @@ p:first-child {
 
   &__teamMembers{
     width: 90%;
-    border: 1px solid blue;
   }
-
 }
+
+@media screen and (min-width: 768px) {
+  .About{
+    &__teamMembers{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      // align-items: center;
+      justify-content: space-evenly;
+      padding-bottom: 8px;
+      margin-top: 3rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  .About{
+    &__teamMembers{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      padding-bottom: 8px;
+      margin-top: 3rem;
+    }
+  }
+}
+  
+  
