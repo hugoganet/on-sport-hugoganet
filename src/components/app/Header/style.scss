@@ -2,12 +2,10 @@
 @use '../../../styles/vars' as v;
 
 
-.header{
+.header-header{
     width:100vw;
     background-color: v.$color-third;
-    display:flex;
-    flex-direction: row;
-    justify-content:space-between;
+    
     
 }
 
