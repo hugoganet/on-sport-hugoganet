@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import './style.scss';
 import React from 'react';
 import Card from './card/card';

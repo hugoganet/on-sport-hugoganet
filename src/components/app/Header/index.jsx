@@ -22,9 +22,12 @@ function Header() {
             <Icon name="home" />
           </Button.Content>
         </Button>
-        {isLogged ? <Button onClick={() => alert('IRA SUR LA PAGE PROFIL')}>Mon profil</Button> : <ModaleSignin isLogged={isLogged} setLogin={setLogin} /> }
-
-        {isLogged ? <Button>Se déconnecter</Button> : <ModaleLogin isLogged={isLogged} setLogin={setLogin} /> }
+        {isLogged
+          ? <Button onClick={() => alert('IRA SUR LA PAGE PROFIL')}>Mon profil</Button>
+          : <ModaleSignin isLogged={isLogged} setLogin={setLogin} /> }
+        {isLogged
+          ? <Button>Se déconnecter</Button>
+          : <ModaleLogin isLogged={isLogged} setLogin={setLogin} /> }
       </Button.Group>
     </div>
 
