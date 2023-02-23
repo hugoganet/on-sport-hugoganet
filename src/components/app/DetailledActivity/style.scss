@@ -1,0 +1,76 @@
+@use '../../../styles/vars' as v;
+
+.carousel {
+    background-color: v.$color-first;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction:column;
+    width: 70%;
+    height: 40rem;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.carousel__buttons {
+    padding-top: 1rem;
+}
+
+.activity__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.activity__author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.image {
+    border-radius: 1rem;
+}
+
+.activity__description {
+    display: flex;
+    position: relative;
+    width: 70%;
+    height: 30rem;
+    border: 1px solid v.$color-grey-dark;
+    padding: 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.activity__comments {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    max-width: 100%;
+}
+
+.filteredActivities__title {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
