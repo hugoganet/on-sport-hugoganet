@@ -11,11 +11,11 @@ function Header() {
   const [isLogged, setLogin] = React.useState(false)
 
 return (
-       <div className="header">
+       <div className="header-header">
          <div className="ui small image">
             <img src={Logo} alt="logo" />
         </div> 
-        <div className="header-buttons">
+       
     <Button.Group>
         <Button color='orange' animated='vertical'>
       <Button.Content hidden color='orange'>Accueil</Button.Content>
@@ -28,7 +28,7 @@ return (
 {isLogged ? <Button>Se déconnecter</Button> : <ModaleLogin isLogged={isLogged} setLogin={setLogin} /> }
 </Button.Group>
 </div>
-</div>
+
 
     );
   }
