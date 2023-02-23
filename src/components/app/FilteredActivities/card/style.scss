@@ -1,0 +1,82 @@
+@use '../../../../styles/vars' as v;
+
+
+.card {
+  display: inline-block;
+  position: relative;
+  width: 400px;
+  min-width: 400px;
+  height: 400px;
+  border-radius: 30px;
+  overflow:hidden;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+  margin: 30px;
+}
+
+.card-bg {
+  height: 70%;
+}
+
+.card-bk {
+  background-color: v.$color-white;
+  border-radius: 30px;
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  height: 75%;
+  width: 108%;
+  transform: skew(19deg, -9deg);
+}
+
+
+.card-logo {
+  height: 80px;
+  width: 80px;
+  border-radius: 20px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 30%;
+  left: 30px;
+  overflow:hidden;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
+}
+
+.card-logo img {
+  height: 100%;
+}
+
+.card-description {
+  position: absolute;
+  color: #fff;
+  font-weight: 900;
+  left: 150px;
+  bottom: 26%;
+}
+
+.card-btn {
+  position: absolute;
+  color: #fff;
+  right: 30px;
+  bottom: 10%;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+}
+
+.card-btn a {
+  color: #fff;
+}
+
+.card-location {
+  position: absolute;
+  color: #fff;
+  left: 30px;
+  bottom: 10%;
+}
+/* END CARD DESIGN */
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  background-color: #eee;
+  min-height: 100vh;
+}

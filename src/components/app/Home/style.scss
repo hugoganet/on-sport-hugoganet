@@ -1,6 +1,65 @@
+@use '../../../styles/vars' as v;
+
 .Home{
     height:100vh;
+}
 
-    // enable the scroll
-    overflow-y: none;
+.bg{
+    position: relative;
+}
+
+.bg img{
+width:100vw;
+//position:absolute;
+z-index:1;
+
+
+}
+
+.bg-title1{
+    color: v.$color-first;
+    position:absolute;
+    font-size: 4rem;
+    z-index:2;
+    top:150px;
+    left:200px;
+    width:30vw;
+    border-radius:50px;
+    
+    
+}
+.bg-title1::after{
+    content: 'développeur';
+    animation: change-text 5s infinite;
+}
+
+
+@keyframes change-text {
+    from   { content: 'développeur'; }
+    25%  { content: 'enthousiaste'; }
+    50%  { content: 'curieux'; }
+    75%  { content: 'passionné'; }
+    to { content: 'développeur'; }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+span {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 4em;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transform: translate(-50%,-50%);
+  background-image: linear-gradient(v.$color-first, v.$color-first);
+  background-size: 100% 10px;
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+   transition: background-size .7s, background-position .5s ease-in-out;
+}
+
+span:hover {
+  background-size: 100% 100%;
+  background-position: 0% 100%;
+  transition: background-position .7s, background-size .5s ease-in-out;
 }
