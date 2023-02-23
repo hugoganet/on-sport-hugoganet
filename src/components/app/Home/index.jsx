@@ -6,7 +6,6 @@ import Footer from '../Footer';
 
 import Filtered from '../../app/FilteredActivities';
 
-import React from 'react';
 import bg from '../../../assets/home_bg.jpg';
 import 'animate.css';
 import { Form, Select } from 'semantic-ui-react'

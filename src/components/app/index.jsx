@@ -1,22 +1,20 @@
-import React from 'react';
-
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
 
-// import ProfilPage from './ProfilPage';
-import Footer from './Footer';
-// import About from './About';
+
+import Home from './Home';
+import ProfilPage from './ProfilPage';
+import CreateActivity from './CreateActivity';
+import DetailledActivity from './DetailledActivity';
 import Contact from './Contact';
-import Header from './Header';
+
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Contact />
-      {/* <About /> */}
-      {/* <ProfilPage /> */}
-      <Footer />
+      <Home />
+     
+
     </div>
   );
 }
