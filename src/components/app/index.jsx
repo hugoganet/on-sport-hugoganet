@@ -5,19 +5,20 @@ import { Route, Routes } from 'react-router-dom';
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
 
-import Home from './Home';
+// import Home from './Home';
 import ProfilPage from './ProfilPage';
 import CreateActivity from './CreateActivity';
 import DetailledActivity from './DetailledActivity';
 import Contact from './Contact';
 import About from './About';
+import Header from './Header';
 
 function App() {
   return (
     <div className="App">
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Header />} />
         <Route path="/profile" element={<ProfilPage />} />
         <Route path="/activity" element={<CreateActivity />} />
         <Route path="/activity/:id" element={<DetailledActivity />} />
