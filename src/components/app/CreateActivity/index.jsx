@@ -51,9 +51,8 @@ function CreateActivity() {
           <Image src="/default-image.png" />
           <Image src="/default-image.png" />
         </Image.Group>
-        <Form.Button>Valider</Form.Button>
+        <Form.Field control={Button}>Valider</Form.Field>
       </Form>
-
       <Footer />
     </>
   );
