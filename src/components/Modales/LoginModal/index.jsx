@@ -33,10 +33,11 @@ function LoginModal(props) {
     // Vérifier les informations de connexion ici
     onLogin();
     onClose();
-    console.log(event.target);
+    // console.log(event.target[0].value);
 
-    const login = event.target.form[0].value;
-    // const password = event.target.form[1].value;
+    const login = event.target[0].value;
+    // eslint-disable-next-line no-shadow
+    const password = event.target[1].value;
 
     const headers = {
       'Content-Type': 'application/json',
