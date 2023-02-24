@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import Proptypes from 'prop-types';
+import axios from 'axios';
 
 import {
   Button, Form, Modal, Icon,
@@ -9,15 +10,40 @@ import {
 function ModaleLogin({ isLogged, setLogin }) {
   const [open, setOpen] = React.useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     setOpen(false);
     setLogin(true);
+
+    const login = event.target.form[0].value;
+    const password = event.target.form[1].value;
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    };
+
+    const response = await axios({
+      method: 'post',
+      url: 'http://ronaldfk-server.eddi.cloud:8080/api/auth/signin',
+      headers: {
+        headers,
+      },
+      data: {
+        login,
+        password,
+      },
+
+    });
+    console.log(response.data);
   };
 
   return (
 
     <Modal
       as={Form}
+      onSubmit={(e) => handleSubmit(e)}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
@@ -48,8 +74,8 @@ function ModaleLogin({ isLogged, setLogin }) {
           content="Valider"
           labelPosition="right"
           icon="checkmark"
-          onClick={handleSubmit}
           positive
+          onClick={handleSubmit}
         />
       </Modal.Actions>
     </Modal>
