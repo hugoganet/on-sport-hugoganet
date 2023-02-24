@@ -1,58 +1,68 @@
-/* eslint-disable max-len */
 import React, { useState } from 'react';
-import Modal from './Modal';
+// import Modales from './Modales';
+import LoginModal from './Modales/LoginModal';
+import SignupModal from './Modales/SignupModal';
+import ConfirmModal from './Modales/ConfirmModal';
+
+import './style.scss';
 
 function Header() {
-  const [showModal, setShowModal] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
 
-  const handleModalToggle = () => {
-    setShowModal(!showModal);
+  const handleLogout = () => {
+    setShowConfirmModal(true);
+  };
+
+  const handleConfirm = () => {
+    setShowConfirmModal(false);
+    setIsLogged(false);
+  };
+
+  const handleCancel = () => {
+    setShowConfirmModal(false);
+  };
+
+  const handleLogin = () => {
+    setShowLoginModal(true);
+  };
+
+  const handleSignup = () => {
+    setShowSignupModal(true);
+  };
+
+  const handleLoginClose = () => {
+    setShowLoginModal(false);
+  };
+
+  const handleSignupClose = () => {
+    setShowSignupModal(false);
   };
 
   return (
     <div>
-      <button type="button" onClick={handleModalToggle}>Se connecter</button>
-      {showModal && (
-        <Modal onClose={handleModalToggle}>
-          {/* contenu de la modal */}
-        </Modal>
+      {isLogged ? (
+        <>
+          <button className="header__button" type="button">Mon profil</button>
+          <button className="header__button" type="button" onClick={handleLogout}>Déconnexion</button>
+        </>
+      ) : (
+        <>
+          <button className="header__button" type="button" onClick={handleLogin}>Connexion</button>
+          <button className="header__button" type="button" onClick={handleSignup}>Créer un compte</button>
+        </>
       )}
+      {showConfirmModal && (
+        <ConfirmModal onConfirm={handleConfirm} onCancel={handleCancel} />
+      )}
+      {showLoginModal && (
+        <LoginModal onClose={handleLoginClose} onLogin={() => setIsLogged(true)} />
+      )}
+      {showSignupModal && <SignupModal onClose={handleSignupClose} />}
     </div>
   );
 }
 
 export default Header;
-
-// import React from 'react';
-
-// import Modal from './Modal';
-
-// import Logo from '../../../assets/OnSport_logo.png';
-// import './style.scss';
-
-// function Header() {
-
-//   return (
-//     <div className="header">
-//       <div>
-//         <img className="header__img" src={Logo} alt="logo" />
-//       </div>
-//       <button className="header__button header__button--home" type="button">
-//         Accueil
-//         {/* todo: voir pour ajouter une icone */}
-//       </button>
-
-//       {isLogged
-//       // eslint-disable-next-line no-alert
-//         ? <button type="button" className="header__button header__button--profil" onClick={() => alert('IRA SUR LA PAGE PROFIL')}>Mon profil</button>
-//         // : <ModaleSignin isLogged={isLogged} setLogin={setLogin} /> }
-//         : <button type="button" className="header__button header__button--signIn" onClick={console.log('OUVRIR LA MODAL')}>Connexion</button>}
-//       {isLogged
-//         ? <button type="button" className="header__button header__button--signOut">Se déconnecter</button>
-//         // : <ModaleLogin isLogged={isLogged} setLogin={setLogin} /> }
-//         : <button type="button" className="header__button header__button--signIn" onClick={console.log('OUVRIR LA MODAL')}>Créer un compte</button>}
-//     </div>
-//   );
-// }
-
-// export default Header;
