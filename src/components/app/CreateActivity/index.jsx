@@ -1,20 +1,15 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
 import { Button, Image, Form } from 'semantic-ui-react';
 import Footer from '../Footer';
 import Header from '../Header';
 
-// import sport from '../../../datas/sport';
+import sport from '../../../datas/sportselect';
 
 import './style.scss';
 
 function CreateActivity() {
-  const options = [
-    { key: 'ft', text: 'Footing', value: 'footing' },
-    { key: 'vl', text: 'Vélo', value: 'velo' },
-    { key: 'es', text: 'Escalade', value: 'escalade' },
-  ];
-
   return (
     <>
       <Header />
@@ -26,19 +21,23 @@ function CreateActivity() {
           <Form.Select
             fluid
             label="Sport"
-            options={options}
+            options={sport}
             placeholder="Sport"
           />
           <label>
             Cette activité peut-elle se faire en famille ?
           </label>
-          <Form.Radio
+          <Form.Field
             label="Oui"
-            value="oui"
+            control="input"
+            type="radio"
+            name="family"
           />
-          <Form.Radio
+          <Form.Field
             label="Non"
-            value="non"
+            control="input"
+            type="radio"
+            name="family"
           />
         </Form.Group>
         <Form.TextArea width={12} label="Description de l'activité" placeholder="Ajouter une description de l'activité" />
