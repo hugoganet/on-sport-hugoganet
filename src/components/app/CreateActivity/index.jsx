@@ -5,7 +5,7 @@ import { Button, Image, Form } from 'semantic-ui-react';
 import Footer from '../Footer';
 import Header from '../Header';
 
-import sport from '../../../datas/sportselect';
+import sport from '../../../datas/sports';
 
 import './style.scss';
 

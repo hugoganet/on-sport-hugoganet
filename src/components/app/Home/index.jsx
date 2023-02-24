@@ -10,33 +10,18 @@ import Filtered from '../FilteredActivities';
 
 import bg from '../../../assets/home_bg.jpg';
 import 'animate.css';
-import sports from '../../../datas/sportselect';
-
-import sportList from '../../../datas/sport';
+import sportsList from '../../../datas/sports';
+import filterActivities from '../../../utils';
 
 function Home() {
-  const getValue = (value) => (typeof value === 'string' ? value.toUpperCase() : value);
-  const [sportItems, setsports] = React.useState(sportList);
-
-  function filterPlainArray(array, filters) {
-    const filterKeys = Object.keys(filters);
-    return array.filter((item) => (
-      // validates all filter criteria
-      filterKeys.every((key) => {
-        // ignores an empty filter
-        if (!filters[key].length) return true;
-        return filters[key].find((filter) => getValue(filter) === getValue(item[key]));
-      })));
-  }
+  const [sportItems, setsports] = React.useState(sportsList);
 
   const handleChange = (e, { value }) => {
     const filters = {
       name: value,
     };
 
-    const filtered = filterPlainArray(sportList, filters);
-    // eslint-disable-next-line
-    console.log(filtered);
+    const filtered = filterActivities(sportsList, filters);
 
     // console.log(value)
     // // setsports(sportList.filter(elem => elem.name.includes(value)))
@@ -65,19 +50,19 @@ function Home() {
             placeholder="Sélectionner un ou plusieurs sports"
             fluid
             multiple
-            options={sports}
+            options={sportsList}
             // eslint-disable-next-line react/jsx-no-bind
             onChange={handleChange.bind(this)}
           />
           <Form.Select
             placeholder="Sélectionne un département"
             fluid
-            options={sports}
+            options={sportsList}
           />
           <Form.Select
             placeholder="Sélectionner une ville"
             fluid
-            options={sports}
+            options={sportsList}
           />
         </Form.Group>
       </Form>

@@ -3,7 +3,7 @@ import './style.scss';
 import React from 'react';
 import Card from './card/card';
 
-import sports from '../../../datas/sport';
+import sports from '../../../datas/sports';
 
 function Filtered() {
   return (
