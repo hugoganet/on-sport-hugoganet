@@ -18,8 +18,8 @@ function LoginModal(props) {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="LoginModal">
+      <div className="LoginModal__content">
         <span className="close" onClick={onClose}>
           &times;
         </span>

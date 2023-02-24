@@ -4,6 +4,7 @@ import LoginModal from './Modales/LoginModal';
 import SignupModal from './Modales/SignupModal';
 import ConfirmModal from './Modales/ConfirmModal';
 
+import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
 
 function Header() {
@@ -42,7 +43,8 @@ function Header() {
   };
 
   return (
-    <div>
+    <div className="header">
+      <img className="header__logo" src={Logo} alt="logo" />
       {isLogged ? (
         <>
           <button className="header__button" type="button">Mon profil</button>

@@ -20,8 +20,8 @@ function SignupModal(props) {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="SignupModal">
+      <div className="SignupModal__content">
         <span className="close" onClick={onClose}>
           &times;
         </span>
