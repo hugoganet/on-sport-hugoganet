@@ -52,8 +52,10 @@ function Home() {
       <Header />
       <div className="bg">
         <img src={bg} alt="background" />
-        <p className="bg-title1 animate__animated animate__backInRight">Tu es sportif et tu veux continuer à t&apos;entrainer quand tu pars en vacances ?</p>
-        <p className="bg-title2">Tu es veux partager tes expériences sportives à la communauté de OnSporters ?</p>
+        {/* <p className="bg-title1 animate__animated animate__backInRight" >
+      Tu es sportif et tu veux continuer à t'entrainer quand tu pars en vacances ?</p>
+      <p className="bg-title2">Tu es veux partager tes expériences
+       sportives à la communauté de OnSporters ?</p> */}
       </div>
 
       <Form>
