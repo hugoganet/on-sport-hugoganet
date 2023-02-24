@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Form } from 'semantic-ui-react';
+import axios from 'axios';
 
 import './style.scss';
 import Header from '../Header';
@@ -14,20 +15,27 @@ import sportsList from '../../../datas/sports';
 import filterActivities from '../../../utils';
 
 function Home() {
-  const [sportItems, setsports] = React.useState(sportsList);
+  const [ListActivities, setListActivities] = React.useState(null);
+
+  React.useEffect(() => {
+    axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    }).then((response) => {
+      setListActivities(response.data[0]);
+    }).catch((error) => { console(error); });
+  }, []);
 
   const handleChange = (e, { value }) => {
     const filters = {
       name: value,
     };
 
-    const filtered = filterActivities(sportsList, filters);
+    const filtered = filterActivities(ListActivities, filters);
 
-    // console.log(value)
-    // // setsports(sportList.filter(elem => elem.name.includes(value)))
-
-    // const found = sportList.find(x => value.includes(x))
-    setsports(filtered);
+    setListActivities(filtered);
   };
 
   return (
@@ -55,19 +63,23 @@ function Home() {
             onChange={handleChange.bind(this)}
           />
           <Form.Select
-            placeholder="Sélectionne un département"
+            placeholder="Sélectionner un ou plusieurs sports"
             fluid
             options={sportsList}
+            // eslint-disable-next-line react/jsx-no-bind
+            onChange={handleChange.bind(this)}
           />
           <Form.Select
-            placeholder="Sélectionner une ville"
+            placeholder="Sélectionner un ou plusieurs sports"
             fluid
             options={sportsList}
+            // eslint-disable-next-line react/jsx-no-bind
+            onChange={handleChange.bind(this)}
           />
         </Form.Group>
       </Form>
 
-      <Filtered sports={sportItems} />
+      <Filtered />
       <Footer />
     </div>
   );
