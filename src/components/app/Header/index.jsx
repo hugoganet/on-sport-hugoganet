@@ -25,8 +25,7 @@ function Header() {
         {isLogged
           ? <Button onClick={() => alert('IRA SUR LA PAGE PROFIL')}>Mon profil</Button>
           : <ModaleSignin isLogged={isLogged} setLogin={setLogin} /> }
-        {
-         <ModaleLogin isLogged={isLogged} setLogin={setLogin} /> }
+        <ModaleLogin isLogged={isLogged} setLogin={setLogin} />
       </Button.Group>
     </div>
 
