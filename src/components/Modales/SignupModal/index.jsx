@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
@@ -12,6 +12,7 @@ function SignupModal(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const modalRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,14 +20,24 @@ function SignupModal(props) {
     onClose();
   };
 
+  const handleOutsideClick = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      window.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [handleOutsideClick]);
+
   return (
     <div className="SignupModal">
-      <div className="SignupModal__content">
-        <span className="close" onClick={onClose}>
-          &times;
-        </span>
-        <h2>Créer un compte</h2>
-        <form onSubmit={handleSubmit}>
+      <div className="SignupModal__content" ref={modalRef}>
+        <h2 className="SignupModal__title">Créer un compte</h2>
+        <form className="SignupModal__form" onSubmit={handleSubmit}>
           <label htmlFor="username">Nom d&apos;utilisateur:</label>
           <input
             type="text"

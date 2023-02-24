@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 // import Modales from './Modales';
-import LoginModal from './Modales/LoginModal';
-import SignupModal from './Modales/SignupModal';
-import ConfirmModal from './Modales/ConfirmModal';
+import LoginModal from '../../Modales/LoginModal';
+import SignupModal from '../../Modales/SignupModal';
+import ConfirmModal from '../../Modales/ConfirmModal';
 
 import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
