@@ -1,45 +1,20 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Form } from 'semantic-ui-react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import './style.scss';
 import Header from '../Header';
 import Footer from '../Footer';
 
-import Filtered from '../FilteredActivities';
+// import Filtered from '../FilteredActivities';
 
 import bg from '../../../assets/home_bg.jpg';
 import 'animate.css';
 import sportsList from '../../../datas/sports';
 import filterActivities from '../../../utils';
 
-function Home() {
-  const [ListActivities, setListActivities] = React.useState({
-  });
-  const fetchDataCall = async () => {
-    const listReturn = await axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-    }).then((response) => response.data).catch((error) => {
-      console(error);
-    });
-    return listReturn;
-  };
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetchDataCall();
-      console.log(response);
-      setListActivities(response);
-    };
-
-    fetchData();
-  }, []);
-
-  console.log(ListActivities);
+function Home({ ListActivities, setListActivities }) {
   const handleChange = (e, { value }) => {
     const filters = {
       name: value,
@@ -91,10 +66,31 @@ function Home() {
         </Form.Group>
       </Form>
 
-      <Filtered ListActivities={sportsList} />
+      {/* <Filtered {ListActivities} /> */}
       <Footer />
     </div>
   );
 }
+
+Home.propTypes = {
+  ListActivities: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      note: PropTypes.number,
+      description: PropTypes.string,
+      family_tag: PropTypes.bool,
+      sport_id: PropTypes.number,
+      user_id: PropTypes.number,
+      location_id: PropTypes.number,
+      Sport: PropTypes.objectOf(PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        icon: PropTypes.string,
+      })),
+    }).isRequired,
+  ).isRequired,
+  setListActivities: PropTypes.func.isRequired,
+};
 
 export default Home;

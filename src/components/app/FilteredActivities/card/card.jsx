@@ -3,8 +3,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import './style.scss';
 import React from 'react';
-
 import Proptypes from 'prop-types';
+import family_tag from '../../../../assets/family_tag.png';
 
 function Card({
   bg, color, image_color,
@@ -17,8 +17,11 @@ function Card({
       <div className="card-logo">
         <img src={`${image_color}`} alt="" />
       </div>
-      <div className="family_tag1" style={{ color: `${color}` }}>SORTIE</div>
-      <div className="family_tag2" style={{ color: `${color}` }}>FAMILLE</div>
+      <div className="card-family">
+        <img src={family_tag} alt="" />
+      </div>
+      {/* <div className="family_tag1" style={{ color: `${color}` }}>SORTIE</div>
+      <div className="family_tag2" style={{ color: `${color}` }}>FAMILLE</div> */}
       <div className="card-description">
         <p>Randonnée soleil levant en montagne, avec en prime des chèvres qui me suivent</p>
       </div>
