@@ -14,32 +14,21 @@ width:100vw;
 z-index:1;
 
 
+
 }
 
-.bg-title1{
-    color: v.$color-first;
-    position:absolute;
-    font-size: 4rem;
-    z-index:2;
-    top:150px;
-    left:200px;
-    width:30vw;
-    border-radius:50px;
-    
-    
-}
-.bg-title1::after{
-    content: 'développeur';
-    animation: change-text 5s infinite;
+.steps{
+display:flex;
+width:70vw;
+justify-content: center;
+padding-top:40px;
+padding-bottom:40px;
+margin-left:auto;
+margin-right:auto;
 }
 
-
-@keyframes change-text {
-    from   { content: 'développeur'; }
-    25%  { content: 'enthousiaste'; }
-    50%  { content: 'curieux'; }
-    75%  { content: 'passionné'; }
-    to { content: 'développeur'; }
+.steps_container{
+    // background-color:  v.$color-third;
+    width:100vw;
+    margin-bottom:40px;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');

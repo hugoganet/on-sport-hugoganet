@@ -8,7 +8,7 @@ import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
 
 function Header() {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
