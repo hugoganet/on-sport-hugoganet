@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Card from './card/card';
 
 function Filtered({ ListActivities }) {
-  console.log(ListActivities);
   return (
     <div className="cards">
       {
@@ -30,11 +29,11 @@ Filtered.propTypes = {
       sport_id: PropTypes.number,
       user_id: PropTypes.number,
       location_id: PropTypes.number,
-      Sport: PropTypes.objectOf(PropTypes.shape({
+      Sport: PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,
         icon: PropTypes.string,
-      })),
+    }),
     }).isRequired,
   ).isRequired,
 };
