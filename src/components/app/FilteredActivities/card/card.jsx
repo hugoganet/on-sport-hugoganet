@@ -43,7 +43,7 @@ function Card({
 Card.propTypes = {
   title: Proptypes.string.isRequired,
   sport_id: Proptypes.number.isRequired,
-  family_tag: Proptypes.string.isRequired,
+  family_tag: Proptypes.bool.isRequired,
 };
 
 export default Card;
