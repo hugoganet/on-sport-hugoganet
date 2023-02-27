@@ -21,11 +21,8 @@ function Card({
         <img src={`${selectedSport.image_color}`} alt="" />
       </div>
       <div className="card-family">
-        if (
-        {family_tag}
-        ===true)
-        {' '}
-        <img src={tag_image} alt="" />
+        {family_tag === 'true' ? <img src={tag_image} alt="" />
+          : ''}
       </div>
       {/* <div className="family_tag1" style={{ color: `${color}` }}>SORTIE</div>
       <div className="family_tag2" style={{ color: `${color}` }}>FAMILLE</div> */}
