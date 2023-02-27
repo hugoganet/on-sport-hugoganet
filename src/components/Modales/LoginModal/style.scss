@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 
   &__content{
     max-width: 95%;  
@@ -17,11 +18,13 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
+    z-index: 10;
   }
 
   &__title{
     // border: 1px solid red;
     text-align: center;
+    z-index: 10;
   }
 
   &__form{
@@ -30,6 +33,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 10;
   }
 
 }

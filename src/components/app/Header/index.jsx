@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 // import Modales from './Modales';
+import { NavLink } from 'react-router-dom';
 import LoginModal from '../../Modales/LoginModal';
 import SignupModal from '../../Modales/SignupModal';
 import ConfirmModal from '../../Modales/ConfirmModal';
@@ -47,7 +48,10 @@ function Header() {
       <img className="header__logo" src={Logo} alt="logo" />
       {isLogged ? (
         <>
-          <button className="header__button" type="button">Mon profil</button>
+          <button className="header__button" type="button">
+            {' '}
+            <NavLink to="/profile" className="menu-link">Mon profil</NavLink>
+          </button>
           <button className="header__button" type="button" onClick={handleLogout}>Déconnexion</button>
         </>
       ) : (
@@ -57,10 +61,10 @@ function Header() {
         </>
       )}
       {showConfirmModal && (
-        <ConfirmModal onConfirm={handleConfirm} onCancel={handleCancel} />
+      <ConfirmModal onConfirm={handleConfirm} onCancel={handleCancel} />
       )}
       {showLoginModal && (
-        <LoginModal onClose={handleLoginClose} onLogin={() => setIsLogged(true)} />
+      <LoginModal onClose={handleLoginClose} onLogin={() => setIsLogged(true)} />
       )}
       {showSignupModal && <SignupModal onClose={handleSignupClose} />}
     </div>
