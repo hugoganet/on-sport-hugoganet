@@ -1,5 +1,6 @@
 export default [
   {
+    id: 1,
     key: 'es',
     text: 'Escalade',
     value: 'Escalade',
@@ -9,6 +10,7 @@ export default [
     color: '#ff8f3f',
   },
   {
+    id: 2,
     key: 'ru',
     text: 'Running',
     value: 'Running',
@@ -18,6 +20,7 @@ export default [
     color: '#6B184E',
   },
   {
+    id: 3,
     key: 'cy',
     text: 'Cyclisme',
     value: 'Cyclisme',
@@ -27,6 +30,7 @@ export default [
     color: '#aabb22',
   },
   {
+    id: 4,
     key: 'gm',
     text: 'Sports de glisse - MER',
     value: 'Sports de glisse - MER',
@@ -36,6 +40,7 @@ export default [
     color: '#0D8BBB',
   },
   {
+    id: 5,
     key: 'go',
     text: 'Sports de glisse - MONTAGNE',
     value: 'Sports de glisse - MONTAGNE',
@@ -45,6 +50,7 @@ export default [
     color: '#ff8f3f',
   },
   {
+    id: 6,
     key: 'gu',
     text: 'Sports de glisse - URBAIN',
     value: 'Sports de glisse - URBAIN',
@@ -54,6 +60,7 @@ export default [
     color: '#6B184E',
   },
   {
+    id: 7,
     key: 'ra',
     text: 'Randonnée',
     value: 'Randonnée',
@@ -63,6 +70,7 @@ export default [
     color: '#aabb22',
   },
   {
+    id: 8,
     key: 'vt',
     text: 'VTT',
     value: 'VTT',
@@ -72,6 +80,7 @@ export default [
     color: '#ff8f3f',
   },
   {
+    id: 9,
     key: 'fi',
     text: 'Fitness',
     value: 'Fitness',
@@ -81,6 +90,7 @@ export default [
     color: '#6B184E',
   },
   {
+    id: 10,
     key: 'na',
     text: 'Natation',
     value: 'Natation',
@@ -90,6 +100,7 @@ export default [
     color: '#0D8BBB',
   },
   {
+    id: 11,
     key: 'yo',
     text: 'Yoga',
     value: 'Yoga',
@@ -99,6 +110,7 @@ export default [
     color: '#6B184E',
   },
   {
+    id: 12,
     key: 'au',
     text: 'Autre sport',
     value: 'Autre sport',

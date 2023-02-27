@@ -1,19 +1,42 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import './style.scss';
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import PropTypes from 'prop-types';
+
 import Card from './card/card';
 
-import sports from '../../../datas/sport';
-
-function Filtered() {
+function Filtered({ ListActivities }) {
+  console.log(ListActivities);
   return (
     <div className="cards">
       {
-        sports.map((sport) => <Card {...sport} />)
+       // eslint-disable-next-line react/destructuring-assignment
+       ListActivities.map((activity) => <Card {...activity} />)
       }
 
     </div>
   );
 }
+
+Filtered.propTypes = {
+  ListActivities: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      note: PropTypes.number,
+      description: PropTypes.string,
+      family_tag: PropTypes.bool,
+      sport_id: PropTypes.number,
+      user_id: PropTypes.number,
+      location_id: PropTypes.number,
+      Sport: PropTypes.objectOf(PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        icon: PropTypes.string,
+      })),
+    }).isRequired,
+  ).isRequired,
+};
 
 export default Filtered;

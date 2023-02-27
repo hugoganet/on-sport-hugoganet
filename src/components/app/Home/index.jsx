@@ -1,48 +1,61 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { Form } from 'semantic-ui-react';
+import {
+  Form, Image, Grid, Segment, Label,
+} from 'semantic-ui-react';
+import axios from 'axios';
 
 import './style.scss';
+
 import Header from '../Header';
 import Footer from '../Footer';
 
 import Filtered from '../FilteredActivities';
 
-import bg from '../../../assets/home_bg.jpg';
+import bg from '../../../assets/On.gif';
+import Step1 from '../../../assets/step1.gif';
+import Step2 from '../../../assets/step2.gif';
+import Step3 from '../../../assets/step3.gif';
 import 'animate.css';
-import sports from '../../../datas/sportselect';
-
-import sportList from '../../../datas/sport';
+import sportsList from '../../../datas/sports';
+import filterActivities from '../../../utils'; // You can also use <link> for styles
+// ..
 
 function Home() {
-  const getValue = (value) => (typeof value === 'string' ? value.toUpperCase() : value);
-  const [sportItems, setsports] = React.useState(sportList);
+  const [ListActivities, setListActivities] = React.useState({
+  });
+  const fetchDataCall = async () => {
+    const listReturn = await axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    }).then((response) => response.data).catch((error) => {
+      console(error);
+    });
+    return listReturn;
+  };
 
-  function filterPlainArray(array, filters) {
-    const filterKeys = Object.keys(filters);
-    return array.filter((item) => (
-      // validates all filter criteria
-      filterKeys.every((key) => {
-        // ignores an empty filter
-        if (!filters[key].length) return true;
-        return filters[key].find((filter) => getValue(filter) === getValue(item[key]));
-      })));
-  }
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetchDataCall();
+      console.log(response);
+      setListActivities(response);
+    };
 
+    fetchData();
+  }, []);
+
+  console.log(ListActivities);
   const handleChange = (e, { value }) => {
     const filters = {
       name: value,
     };
 
-    const filtered = filterPlainArray(sportList, filters);
-    // eslint-disable-next-line
-    console.log(filtered);
+    const filtered = filterActivities(ListActivities, filters);
 
-    // console.log(value)
-    // // setsports(sportList.filter(elem => elem.name.includes(value)))
-
-    // const found = sportList.find(x => value.includes(x))
-    setsports(filtered);
+    setListActivities(filtered);
   };
 
   return (
@@ -57,6 +70,32 @@ function Home() {
       <p className="bg-title2">Tu es veux partager tes expériences
        sportives à la communauté de OnSporters ?</p> */}
       </div>
+      <div className="steps_container">
+        <div className="steps">
+          <Grid columns={3}>
+            <Grid.Row>
+              <Grid.Column>
+                <Segment padded>
+                  <Label attached="top" color="orange">INSCRIS-TOI</Label>
+                  <Image src={Step1} />
+                </Segment>
+              </Grid.Column>
+              <Grid.Column>
+                <Segment padded>
+                  <Label attached="bottom" color="orange">INSPIRE TOI DES EXPERIENCES DES AUTRES UTILISATEURS POUR PRATIQUER TES SPORTS FAVORIS</Label>
+                  <Image src={Step2} />
+                </Segment>
+              </Grid.Column>
+              <Grid.Column>
+                <Segment padded>
+                  <Label attached="top right" color="orange">PARTAGE A TON TOUR TES ENTRAINEMENTS</Label>
+                  <Image src={Step3} />
+                </Segment>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </div>
+      </div>
 
       <Form>
         <h1 className="">Rechercher des activités</h1>
@@ -65,24 +104,28 @@ function Home() {
             placeholder="Sélectionner un ou plusieurs sports"
             fluid
             multiple
-            options={sports}
+            options={sportsList}
             // eslint-disable-next-line react/jsx-no-bind
             onChange={handleChange.bind(this)}
           />
           <Form.Select
-            placeholder="Sélectionne un département"
+            placeholder="Sélectionner un ou plusieurs sports"
             fluid
-            options={sports}
+            options={sportsList}
+            // eslint-disable-next-line react/jsx-no-bind
+            onChange={handleChange.bind(this)}
           />
           <Form.Select
-            placeholder="Sélectionner une ville"
+            placeholder="Sélectionner un ou plusieurs sports"
             fluid
-            options={sports}
+            options={sportsList}
+            // eslint-disable-next-line react/jsx-no-bind
+            onChange={handleChange.bind(this)}
           />
         </Form.Group>
       </Form>
 
-      <Filtered sports={sportItems} />
+      <Filtered ListActivities={sportsList} />
       <Footer />
     </div>
   );
