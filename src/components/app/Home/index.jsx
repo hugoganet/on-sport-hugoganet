@@ -40,7 +40,6 @@ function Home() {
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await fetchDataCall();
-      console.log(response);
       setListActivities(response);
     };
 
@@ -48,6 +47,7 @@ function Home() {
   }, []);
 
   console.log(ListActivities);
+
   const handleChange = (e, { value }) => {
     const filters = {
       name: value,

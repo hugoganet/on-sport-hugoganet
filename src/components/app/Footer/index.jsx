@@ -1,7 +1,7 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 import Logo from '../../../assets/OnSport_logo.png';
-<NavLink to="/profile" className="menu-link">Mon profil</NavLink>
+
 
 import './style.scss';
 

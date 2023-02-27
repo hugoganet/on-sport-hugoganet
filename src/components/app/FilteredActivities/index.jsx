@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Card from './card/card';
 
 function Filtered({ ListActivities }) {
-  console.log(ListActivities);
   return (
     <div className="cards">
       {
@@ -20,23 +19,21 @@ function Filtered({ ListActivities }) {
 }
 
 Filtered.propTypes = {
-  ListActivities: PropTypes.arrayOf(
-    PropTypes.shape({
+  ListActivities: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    note: PropTypes.number,
+    description: PropTypes.string,
+    family_tag: PropTypes.bool,
+    sport_id: PropTypes.number,
+    user_id: PropTypes.number,
+    location_id: PropTypes.number,
+    Sport: PropTypes.objectOf(PropTypes.shape({
       id: PropTypes.number,
-      title: PropTypes.string,
-      note: PropTypes.number,
-      description: PropTypes.string,
-      family_tag: PropTypes.bool,
-      sport_id: PropTypes.number,
-      user_id: PropTypes.number,
-      location_id: PropTypes.number,
-      Sport: PropTypes.objectOf(PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        icon: PropTypes.string,
-      })),
-    }).isRequired,
-  ).isRequired,
+      name: PropTypes.string,
+      icon: PropTypes.string,
+    })),
+  }).isRequired,
 };
 
 export default Filtered;

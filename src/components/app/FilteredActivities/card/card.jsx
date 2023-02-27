@@ -4,32 +4,39 @@
 import './style.scss';
 import React from 'react';
 import Proptypes from 'prop-types';
-import family_tag from '../../../../assets/family_tag.png';
+import tag_image from '../../../../assets/family_tag.png';
+
+import sports from '../../../../datas/sports';
 
 function Card({
-  bg, color, image_color,
+  title, sport_id, family_tag,
 }) {
+  const selectedSport = sports.find((sport) => sport.id === sport_id);
   // eslint-disable-next-line no-console
   return (
     <div className="card">
-      <img className="card-bg" src={`${bg}`} alt="" />
-      <div className="card-bk" style={{ background: `${color}88` }} />
+      <img className="card-bg" src={`${selectedSport.bg}`} alt="" />
+      <div className="card-bk" style={{ background: `${selectedSport.color}88` }} />
       <div className="card-logo">
-        <img src={`${image_color}`} alt="" />
+        <img src={`${selectedSport.image_color}`} alt="" />
       </div>
       <div className="card-family">
-        <img src={family_tag} alt="" />
+        if (
+        {family_tag}
+        ===true)
+        {' '}
+        <img src={tag_image} alt="" />
       </div>
       {/* <div className="family_tag1" style={{ color: `${color}` }}>SORTIE</div>
       <div className="family_tag2" style={{ color: `${color}` }}>FAMILLE</div> */}
       <div className="card-description">
-        <p>Randonnée soleil levant en montagne, avec en prime des chèvres qui me suivent</p>
+        <p>{title}</p>
       </div>
       <div className="card-location">
         <p>Département</p>
         <p>Ville</p>
       </div>
-      <button type="button" className="card-btn" style={{ color: `${color}` }}>
+      <button type="button" className="card-btn" style={{ color: `${selectedSport.color}` }}>
         En savoir +
       </button>
     </div>
@@ -37,9 +44,9 @@ function Card({
 }
 
 Card.propTypes = {
-  bg: Proptypes.string.isRequired,
-  color: Proptypes.string.isRequired,
-  image_color: Proptypes.string.isRequired,
+  title: Proptypes.string.isRequired,
+  sport_id: Proptypes.number.isRequired,
+  family_tag: Proptypes.string.isRequired,
 };
 
 export default Card;
