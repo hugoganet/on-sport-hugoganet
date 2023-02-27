@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 import profilPicture from '../../../../assets/Tac-raoul-2.png';
 
 import './style.scss';
@@ -8,7 +8,7 @@ function ProfilHeader() {
   return (
     <header className="ProfilHeader">
       <button type="button" className=" ProfilHeader__button ProfilHeader__button--accueil">
-        Accueil
+      <NavLink to="/" className="menu-link">Accueil</NavLink>
       </button>
       <div className="ProfilHeader__img--div">
         <img className="ProfilHeader__img" src={profilPicture} alt="profilPicture" />

@@ -7,7 +7,11 @@ import { Button, Image, Form } from 'semantic-ui-react';
 import Footer from '../Footer';
 import Header from '../Header';
 
+<<<<<<< HEAD
 import sports from '../../../datas/sportselect';
+=======
+import sport from '../../../datas/sports';
+>>>>>>> develop
 
 import './style.scss';
 

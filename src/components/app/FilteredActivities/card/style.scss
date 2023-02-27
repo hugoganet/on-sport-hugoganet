@@ -281,7 +281,7 @@
   border-radius: 20px;
   background-color: #fff;
   position: absolute;
-  bottom: 70%;
+  bottom: 33%;
   left: 30px;
   overflow:hidden;
   box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
@@ -295,7 +295,7 @@
   position: absolute;
   color:#ffffff;
   // font-weight: 900;
-  left: 20px;
+  left: 130px;
   bottom: 33%;
   text-shadow: 1px 1px 2px black;
   text-align:left;
@@ -347,8 +347,6 @@
  
 }
 
-
-
 .family_tag2{
   font-size: 1.3em;
   text-shadow: 2px 2px 2px rgb(255, 255, 255);
@@ -358,9 +356,12 @@
  rotate:30deg;
  background-color: #fff;
  border-radius:5px;
- 
-  
- 
 }
+ .card-family {
+  position:absolute;
+  left: 30px;
+  top:0px;
+  }
+ 
 }
   
