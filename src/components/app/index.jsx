@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<ProfilPage />} />
         <Route path="/activity" element={<CreateActivity />} />
-        <Route path="/activity/:id" element={<DetailledActivity />} />
+        <Route path="/activity/id" element={<DetailledActivity />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         {/* <Route path="*" element={<NotFound />} isZen={isZen} /> */}
