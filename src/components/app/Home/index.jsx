@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable linebreak-style */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
@@ -23,33 +24,18 @@ import filterActivities from '../../../utils'; // You can also use <link> for st
 // ..
 
 function Home() {
-  const [ListActivities, setListActivities] = React.useState({
-  });
-  const fetchDataCall = async () => {
-    const listReturn = await axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
+  const [ListActivities, setListActivities] = React.useState([]);
+  React.useEffect(() => {
+    axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
-    }).then((response) => response.data).catch((error) => {
+    }).then((response) => setListActivities(response.data)).catch((error) => {
       console(error);
     });
-    return listReturn;
-  };
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetchDataCall();
-      // eslint-disable-next-line no-console
-      console.log(response);
-      setListActivities(response);
-    };
-
-    fetchData();
   }, []);
 
-  // eslint-disable-next-line no-console
-  console.log(ListActivities);
   const handleChange = (e, { value }) => {
     const filters = {
       name: value,
@@ -59,7 +45,6 @@ function Home() {
 
     setListActivities(filtered);
   };
-
   return (
 
     <div className="Home">
@@ -126,8 +111,7 @@ function Home() {
           />
         </Form.Group>
       </Form>
-
-      <Filtered ListActivities={sportsList} />
+      <Filtered ListActivities={ListActivities} />
       <Footer />
     </div>
   );
