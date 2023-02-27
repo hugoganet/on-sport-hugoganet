@@ -8,7 +8,7 @@ function ProfilHeader() {
   return (
     <header className="ProfilHeader">
       <button type="button" className=" ProfilHeader__button ProfilHeader__button--accueil">
-      <NavLink to="/" className="menu-link">Accueil</NavLink>
+        <NavLink to="/" className="menu-link">Accueil</NavLink>
       </button>
       <div className="ProfilHeader__img--div">
         <img className="ProfilHeader__img" src={profilPicture} alt="profilPicture" />
