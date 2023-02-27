@@ -40,6 +40,7 @@ function Home() {
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await fetchDataCall();
+      // eslint-disable-next-line no-console
       console.log(response);
       setListActivities(response);
     };
@@ -47,6 +48,7 @@ function Home() {
     fetchData();
   }, []);
 
+  // eslint-disable-next-line no-console
   console.log(ListActivities);
   const handleChange = (e, { value }) => {
     const filters = {

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Card from './card/card';
 
 function Filtered({ ListActivities }) {
+  // eslint-disable-next-line no-console
   console.log(ListActivities);
   return (
     <div className="cards">
