@@ -12,7 +12,6 @@ import CreateActivity from './CreateActivity';
 import DetailledActivity from './DetailledActivity';
 import Contact from './Contact';
 import About from './About';
-import Header from './Header';
 
 function App() {
   return (

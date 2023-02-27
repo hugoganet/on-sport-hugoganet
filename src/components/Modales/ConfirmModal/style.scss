@@ -1,6 +1,7 @@
 // @use '../../../../styles/_vars.scss' as v;
 
 .ConfirmModal{
+  z-index:20;
   position: fixed;
   top: 0;
   left: 0;
