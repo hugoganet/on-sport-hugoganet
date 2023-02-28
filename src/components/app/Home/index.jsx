@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable linebreak-style */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -20,11 +21,27 @@ import Step2 from '../../../assets/step2.gif';
 import Step3 from '../../../assets/step3.gif';
 import 'animate.css';
 import sportsList from '../../../datas/sports';
-import filterActivities from '../../../utils'; // You can also use <link> for styles
+// import filterActivities from '../../../utils'; // You can also use <link> for styles
 // ..
 
 function Home() {
   const [ListActivities, setListActivities] = React.useState([]);
+  const getValue = (value) => (typeof value === 'string' ? value.toUpperCase() : value);
+
+  function FilterActivities(array, filters) {
+    console.log(filters);
+    const filterKeys = Object.keys(filters);
+
+    return array.filter((item) =>
+      // validates all filter criteria
+      // eslint-disable-next-line implicit-arrow-linebreak
+      filterKeys.every((key) => {
+        console.log(item.Sport[key]);
+        // ignores an empty filter
+        if (!filters[key].length) return true;
+        return filters[key].find((filter) => getValue(filter) === getValue(item[key]));
+              }));
+  }
   React.useEffect(() => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
       headers: {
@@ -41,12 +58,11 @@ function Home() {
       name: value,
     };
 
-    const filtered = filterActivities(ListActivities, filters);
+    const filtered = FilterActivities(ListActivities, filters);
 
     setListActivities(filtered);
   };
   return (
-
     <div className="Home">
 
       <Header />

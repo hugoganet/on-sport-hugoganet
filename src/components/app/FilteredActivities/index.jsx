@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable react/jsx-props-no-spreading */
 import './style.scss';
 import React from 'react';
@@ -11,7 +12,7 @@ function Filtered({ ListActivities }) {
     <div className="cards">
       {
        // eslint-disable-next-line react/destructuring-assignment
-       ListActivities.map((activity) => <Card {...activity} />)
+       ListActivities.map((activity) => <Card key={activity.id} {...activity} />)
       }
 
     </div>
@@ -33,7 +34,7 @@ Filtered.propTypes = {
         id: PropTypes.number,
         name: PropTypes.string,
         icon: PropTypes.string,
-    }),
+      }),
     }).isRequired,
   ).isRequired,
 };
