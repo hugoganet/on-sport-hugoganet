@@ -1,62 +1,84 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-import { Button, Image, Form } from 'semantic-ui-react';
+import {
+  Button, Form, Select, Input,
+} from 'semantic-ui-react';
+
 import Footer from '../Footer';
 import Header from '../Header';
+import ImageBtn from './imageBtn';
+import AddImageBtn from './addImage';
 
-<<<<<<< HEAD
-import sports from '../../../datas/sportselect';
-=======
 import sport from '../../../datas/sports';
->>>>>>> develop
 
 import './style.scss';
 
 function CreateActivity() {
+  const optionsDep = [
+    { key: 'i', text: 'ile-de-france', value: 'ile-de-france' },
+  ];
+
+  const optionsVil = [
+    { key: 'p', text: 'Paris', value: 'paris' },
+  ];
+
+  const [selectedFile, setSelectedFile] = React.useState(null);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const data = new FormData();
+    data.append('user_id', 1);
+    data.append('sport_id', 1);
+    data.append('title', 'test1');
+    data.append('photo', selectedFile);
+    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+    const url = 'http://ronaldfk-server.eddi.cloud:8080/api/activity';
 
-    const data = {
-      'sport.name': event.target.form[2].value,
-      'title' : event.target.form[0].value,
-      'location_id' : event.target.form[1].value,
-      'family_tag' : event.target.form[3].value,
-      'description' : event.target.form[4].value,
+    axios.post(url, data, config)
+      .then(response => console.log(response))
+      .catch(errors => console.log(errors));
+  };
 
-    }
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    };
-
-    const response = await axios({
-      method: 'post',
-      url: 'http://ronaldfk-server.eddi.cloud:8080/api/activity',
-      header: {
-        headers,
-      },
-      data: {
-        data,
-      },
-    });
-  }
+  const handleFileSelect = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
   return (
     <>
       <Header />
       <Form
         className="create__activity__form"
-        onSubmit={(e) => handleSubmit(e)}>
+        onSubmit={handleSubmit}
+      >
         <h1 className="">Ajouter une activité</h1>
-        <Form.Input width={12} fluid label="Entrer le titre de l'activité" placeholder="Titre de l'activité" />
-        <Form.Input width={12} fluid label="Entrer la localisation" placeholder="Localisation" />
+        <Form.Input
+          width={12}
+          fluid
+          label="Entrer le titre de l'activité"
+          placeholder="Titre de l'activité"
+        />
+        <Form.Group widths="equal">
+          <Form.Field
+            label="Département"
+            control={Select}
+            options={optionsDep}
+            placeholder="Localisation"
+          />
+          <Form.Field
+            label="Ville"
+            control={Select}
+            options={optionsVil}
+            placeholder="ville"
+          />
+        </Form.Group>
         <Form.Group inline>
           <Form.Select
             fluid
             label="Sport"
-            options={sports}
+            options={sport}
             placeholder="Sport"
           />
           <label>
@@ -75,24 +97,20 @@ function CreateActivity() {
             name="family"
           />
         </Form.Group>
-        <Form.TextArea width={12} label="Description de l'activité" placeholder="Ajouter une description de l'activité" />
-        <Button className="ui button">
-          <label>
-            Ajouter une image...
-          </label>
-        </Button>
-        <Image.Group size="medium">
-          <Image src="/default-image.png" />
-          <Image src="/default-image.png" />
-          <Image src="/default-image.png" />
-        </Image.Group>
-        <Button
+        <Form.TextArea
+          width={12}
+          label="Description de l'activité"
+          placeholder="Ajouter une description de l'activité"
+        />
+        <h3> Ajouter une image</h3>
+        <Input type="file" name="photo" onChange={handleFileSelect} />
+        {/* <ImageBtn /> */}
+        <Input
           type="submit"
-          content="Valider"
-          positive
-          onClick={handleSubmit}
+          value="Valider"
         />
       </Form>
+      {/* <AddImageBtn /> */}
 
       <Footer />
     </>
