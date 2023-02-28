@@ -2,6 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import axios from 'axios';
 
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
@@ -20,14 +21,15 @@ function App() {
   const handleLoginSuccess = (userId) => {
     setUserId(userId);
     // eslint-disable-next-line no-console
-    console.log(`App userId: ${userId}`);
+    console.log(`App userId: ${typeof userId}`);
   };
+
   return (
     <div className="App">
 
       <Routes>
         <Route path="/" element={<Home onLoginSuccess={handleLoginSuccess} userId={userId} />} />
-        <Route path="/profile/:id" element={<ProfilPage />} />
+        <Route path="/profile/:id" element={<ProfilPage userId={userId} />} />
         <Route path="/activity" element={<CreateActivity />} />
         {/* <Route path="/activity/:id" elment={<DetailledActivity />} /> */}
         <Route path="/activity/id" element={<DetailledActivity />} />

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import Proptypes from 'prop-types';
 
 import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 
 import logo from '../../../../assets/OnSport_logo.png';
 import './style.scss';
 
-function ProfilDetails() {
+function ProfilDetails({ userId }) {
   const [showUpdateProfilModal, setShowUpdateProfilDetailsModal] = useState(false);
 
   const handleUpdateProfilDetails = () => {
@@ -15,6 +17,18 @@ function ProfilDetails() {
   const handleUpdateProfilClose = () => {
     setShowUpdateProfilDetailsModal(false);
   };
+  console.log(`ProfilDetails userId: ${userId}`);
+
+  axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`)
+    .then((response) => {
+      // Traitement des données reçues
+      const users = response.data;
+      console.log(users);
+    })
+    .catch((error) => {
+      // Gestion des erreurs
+      console.error(error);
+    });
 
   return (
     <div className="ProfilDetails">
@@ -42,5 +56,9 @@ function ProfilDetails() {
     </div>
   );
 }
+
+ProfilDetails.propTypes = {
+  userId: Proptypes.number.isRequired,
+};
 
 export default ProfilDetails;

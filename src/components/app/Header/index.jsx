@@ -43,7 +43,6 @@ function Header({ onLoginSuccess, userId }) {
     setShowSignupModal(false);
   };
 
-  console.log(`Header userId: ${userId}`);
   return (
     <div className="header">
       <img className="header__logo" src={Logo} alt="logo" />
