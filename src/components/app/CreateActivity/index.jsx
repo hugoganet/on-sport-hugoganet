@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import axios from 'axios';
+import FormData from 'form-data';
 
 import {
   Button, Form, Select, Input,
@@ -10,42 +11,49 @@ import {
 
 import Footer from '../Footer';
 import Header from '../Header';
-import ImageBtn from './imageBtn';
-import AddImageBtn from './addImage';
 
 import sport from '../../../datas/sports';
 
 import './style.scss';
 
 function CreateActivity() {
-  const optionsDep = [
-    { key: 'i', text: 'ile-de-france', value: 'ile-de-france' },
-  ];
+  const [title, setTitle] = useState('');
+  const [user_id, setUserId] = useState('');
+  const [sport_id, setSportId] = useState('');
+  const [family_tag, setFamily_tag] = useState(null);
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState(null);
 
-  const optionsVil = [
-    { key: 'p', text: 'Paris', value: 'paris' },
-  ];
-
-  const [selectedFile, setSelectedFile] = React.useState(null);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData();
-    data.append('user_id', 1);
-    data.append('sport_id', 1);
-    data.append('title', 'test1');
-    data.append('photo', selectedFile);
-    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-    const url = 'http://ronaldfk-server.eddi.cloud:8080/api/activity';
-
-    axios.post(url, data, config)
-      .then(response => console.log(response))
-      .catch(errors => console.log(errors));
+  const user = {
+    title, user_id, sport_id, family_tag, description,
   };
 
-  const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0]);
+  const handleFamily_tagChange = (e, { value }) => {
+    setFamily_tag(value === 'true');
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = new FormData();
+    form.append('json', JSON.stringify(user));
+    form.append('photo', image);
+
+    try {
+      const response = await axios({
+        method: 'post',
+        url: 'http://ronaldfk-server.eddi.cloud:8080/api/activity',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        data: form,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -53,65 +61,64 @@ function CreateActivity() {
         className="create__activity__form"
         onSubmit={handleSubmit}
       >
-        <h1 className="">Ajouter une activité</h1>
+        <h1>Créer une activité</h1>
         <Form.Input
           width={12}
           fluid
           label="Entrer le titre de l'activité"
           placeholder="Titre de l'activité"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
-        <Form.Group widths="equal">
-          <Form.Field
-            label="Département"
-            control={Select}
-            options={optionsDep}
-            placeholder="Localisation"
-          />
-          <Form.Field
-            label="Ville"
-            control={Select}
-            options={optionsVil}
-            placeholder="ville"
-          />
-        </Form.Group>
+        <Form.Input
+          width={12}
+          fluid
+          label="User ID"
+          placeholder="Enter User ID"
+          value={user_id}
+          onChange={(e) => setUserId(e.target.value)}
+        />
         <Form.Group inline>
-          <Form.Select
-            fluid
-            label="Sport"
-            options={sport}
-            placeholder="Sport"
+          <Form.Input
+            label="Sport ID"
+            placeholder="Enter Sport ID"
+            // options={sport}
+            value={sport_id}
+            onChange={(e) => setSportId(e.target.value)}
           />
           <label>
             Cette activité peut-elle se faire en famille ?
           </label>
-          <Form.Field
+          <Form.Radio
             label="Oui"
-            control="input"
-            type="radio"
-            name="family"
+            value="true"
+            checked={family_tag === true}
+            onChange={handleFamily_tagChange}
           />
-          <Form.Field
+          <Form.Radio
             label="Non"
-            control="input"
-            type="radio"
-            name="family"
+            value="false"
+            checked={family_tag === false}
+            onChange={handleFamily_tagChange}
           />
         </Form.Group>
         <Form.TextArea
           width={12}
           label="Description de l'activité"
           placeholder="Ajouter une description de l'activité"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <h3> Ajouter une image</h3>
-        <Input type="file" name="photo" onChange={handleFileSelect} />
-        {/* <ImageBtn /> */}
-        <Input
-          type="submit"
-          value="Valider"
+        <Form.Input
+          type="file"
+          accept=".jpg, .png, .jpeg"
+          onChange={(e) => setImage(e.target.files[0])}
         />
+        <Button type="submit" primary>
+          Valider
+        </Button>
       </Form>
-      {/* <AddImageBtn /> */}
-
       <Footer />
     </>
   );
