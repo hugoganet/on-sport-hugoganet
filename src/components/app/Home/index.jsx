@@ -120,7 +120,7 @@ function Home({ onLoginSuccess, userId }) {
 
 Home.propTypes = {
   onLoginSuccess: Proptypes.func.isRequired,
-  userId: Proptypes.string.isRequired,
+  userId: Proptypes.number.isRequired,
 };
 
 export default Home;
