@@ -1,5 +1,6 @@
+/* eslint-disable no-shadow */
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import './style.scss';
@@ -14,12 +15,19 @@ import Contact from './Contact';
 import About from './About';
 
 function App() {
+  const [userId, setUserId] = useState('');
+
+  const handleLoginSuccess = (userId) => {
+    setUserId(userId);
+    // eslint-disable-next-line no-console
+    console.log(`App userId: ${userId}`);
+  };
   return (
     <div className="App">
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<ProfilPage />} />
+        <Route path="/" element={<Home onLoginSuccess={handleLoginSuccess} userId={userId} />} />
+        <Route path="/profile/:id" element={<ProfilPage />} />
         <Route path="/activity" element={<CreateActivity />} />
         {/* <Route path="/activity/:id" elment={<DetailledActivity />} /> */}
         <Route path="/activity/id" element={<DetailledActivity />} />

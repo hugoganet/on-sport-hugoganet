@@ -2,6 +2,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
+import Proptypes from 'prop-types';
 import {
   Form, Image, Grid, Segment, Label,
 } from 'semantic-ui-react';
@@ -23,7 +24,7 @@ import sportsList from '../../../datas/sports';
 import filterActivities from '../../../utils'; // You can also use <link> for styles
 // ..
 
-function Home() {
+function Home({ onLoginSuccess, userId }) {
   const [ListActivities, setListActivities] = React.useState([]);
   React.useEffect(() => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
@@ -49,7 +50,7 @@ function Home() {
 
     <div className="Home">
 
-      <Header />
+      <Header onLoginSuccess={onLoginSuccess} userId={userId} />
       <div className="bg">
         <img src={bg} alt="background" />
         {/* <p className="bg-title1 animate__animated animate__backInRight" >
@@ -116,5 +117,10 @@ function Home() {
     </div>
   );
 }
+
+Home.propTypes = {
+  onLoginSuccess: Proptypes.func.isRequired,
+  userId: Proptypes.string.isRequired,
+};
 
 export default Home;
