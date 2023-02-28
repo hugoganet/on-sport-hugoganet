@@ -26,17 +26,15 @@ import sportsList from '../../../datas/sports';
 
 function Home() {
   const [ListActivities, setListActivities] = React.useState([]);
+  const [UnFilteredList, setUnFilteredList] = React.useState([]);
   const getValue = (value) => (typeof value === 'string' ? value.toUpperCase() : value);
 
   function FilterActivities(array, filters) {
-    console.log(filters);
     const filterKeys = Object.keys(filters);
-
     return array.filter((item) =>
       // validates all filter criteria
       // eslint-disable-next-line implicit-arrow-linebreak
       filterKeys.every((key) => {
-        console.log(item.Sport[key]);
         // ignores an empty filter
         if (!filters[key].length) return true;
         return filters[key].find((filter) => getValue(filter) === getValue(item[key]));
@@ -48,20 +46,24 @@ function Home() {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
-    }).then((response) => setListActivities(response.data)).catch((error) => {
+    }).then(
+(response) => { setListActivities(response.data); setUnFilteredList(response.data); },
+).catch((error) => {
       console(error);
     });
   }, []);
 
   const handleChange = (e, { value }) => {
+    console.log(ListActivities);
     const filters = {
-      name: value,
+      sport_name: value,
     };
-
-    const filtered = FilterActivities(ListActivities, filters);
-
+    const filtered = FilterActivities(UnFilteredList, filters);
     setListActivities(filtered);
   };
+
+  console.log(ListActivities);
+  console.log(UnFilteredList);
   return (
     <div className="Home">
 
