@@ -79,12 +79,12 @@ function CreateActivity() {
           onChange={(e) => setUserId(e.target.value)}
         />
         <Form.Group inline>
-          <Form.Input
-            label="Sport ID"
-            placeholder="Enter Sport ID"
-            // options={sport}
-            value={sport_id}
-            onChange={(e) => setSportId(e.target.value)}
+          <Form.Select
+            label="Sport"
+            placeholder="Entrer le sport"
+            options={sport}
+            value={sport.id}
+            onChange={(e) => setSportId(e.target.id)}
           />
           <label>
             Cette activité peut-elle se faire en famille ?
