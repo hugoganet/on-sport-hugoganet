@@ -9,24 +9,13 @@ import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
 
 function Header({ onLoginSuccess }) {
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
-
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const userId = localStorage.getItem('userId');
 
   const handleLogout = () => {
     setShowConfirmModal(true);
-  };
-
-  const handleConfirm = () => {
-    setShowConfirmModal(false);
-    localStorage.clear();
-    // setIsLogged(false);
-  };
-
-  const handleCancel = () => {
-    setShowConfirmModal(false);
   };
 
   const handleLogin = () => {
@@ -68,7 +57,7 @@ function Header({ onLoginSuccess }) {
         </>
       )}
       {showConfirmModal && (
-      <ConfirmModal onConfirm={handleConfirm} onCancel={handleCancel} />
+      <ConfirmModal setShowConfirmModal={setShowConfirmModal} />
       )}
       {showLoginModal && (
       <LoginModal

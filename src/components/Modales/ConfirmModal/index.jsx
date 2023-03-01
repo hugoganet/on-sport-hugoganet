@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-function ConfirmModal(props) {
-  const { onConfirm, onCancel } = props;
+function ConfirmModal({ setShowConfirmModal }) {
   const modalRef = useRef(null);
+  const onConfirm = () => {
+    setShowConfirmModal(false);
+    localStorage.clear();
+    // setIsLogged(false);
+  };
 
+  const onCancel = () => {
+    setShowConfirmModal(false);
+  };
   const handleOutsideClick = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       onCancel();
@@ -35,8 +42,7 @@ function ConfirmModal(props) {
 }
 
 ConfirmModal.propTypes = {
-  onConfirm: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
+  setShowConfirmModal: PropTypes.bool.isRequired,
 };
 
 export default ConfirmModal;
