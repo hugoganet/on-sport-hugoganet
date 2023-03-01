@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable linebreak-style */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -22,6 +23,7 @@ import Step3 from '../../../assets/step3.gif';
 import 'animate.css';
 import sportsList from '../../../datas/sports';
 import FilterActivities from '../../../utils'; // You can also use <link> for styles
+
 
 function Home({ onLoginSuccess, userId }) {
   const [ListActivities, setListActivities] = React.useState([]);
