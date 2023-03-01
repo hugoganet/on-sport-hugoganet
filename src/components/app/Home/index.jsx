@@ -21,33 +21,59 @@ import Step2 from '../../../assets/step2.gif';
 import Step3 from '../../../assets/step3.gif';
 import 'animate.css';
 import sportsList from '../../../datas/sports';
-import filterActivities from '../../../utils'; // You can also use <link> for styles
-// ..
+import FilterActivities from '../../../utils'; // You can also use <link> for styles
 
 function Home({ onLoginSuccess, userId }) {
   const [ListActivities, setListActivities] = React.useState([]);
-  React.useEffect(() => {
+  const [UnFilteredList, setUnFilteredList] = React.useState([]);
+  const [listLocation, setListLocation] = React.useState([]);
+
+  React.useEffect(
+() => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
-    }).then((response) => setListActivities(response.data)).catch((error) => {
+    }).then(
+(response) => { setListActivities(response.data); setUnFilteredList(response.data); },
+).catch((error) => {
       console(error);
     });
-  }, []);
+  },
+  axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/').then(
+    (response) => setListLocation(response.data),
+    ).catch((error) => {
+        console(error);
+      }),
+   [],
+);
+const departments = [...new Set(listLocation.map((item) => item.department))];
+
+const departmentOptions = departments.map((department) => ({
+    key: department,
+    text: department,
+    value: department,
+  }));
 
   const handleChange = (e, { value }) => {
-    const filters = {
-      name: value,
+     const filters = {
+      sport_name: value,
     };
-
-    const filtered = filterActivities(ListActivities, filters);
-
+    const filtered = FilterActivities(UnFilteredList, filters);
     setListActivities(filtered);
   };
-  return (
 
+  const handleChange2 = (e, { value }) => {
+    const filters = {
+     department: value,
+   };
+   const filtered = FilterActivities(UnFilteredList, filters);
+   setListActivities([...ListActivities, ...filtered]);
+ };
+
+ console.log(ListActivities);
+  return (
     <div className="Home">
 
       <Header onLoginSuccess={onLoginSuccess} userId={userId} />
@@ -85,7 +111,7 @@ function Home({ onLoginSuccess, userId }) {
         </div>
       </div>
 
-      <Form>
+      <Form className="search_form">
         <h1 className="">Rechercher des activités</h1>
         <Form.Group widths="equal">
           <Form.Select
@@ -97,18 +123,11 @@ function Home({ onLoginSuccess, userId }) {
             onChange={handleChange.bind(this)}
           />
           <Form.Select
-            placeholder="Sélectionner un ou plusieurs sports"
+            placeholder="Sélectionner un département"
             fluid
-            options={sportsList}
+            options={departmentOptions}
             // eslint-disable-next-line react/jsx-no-bind
-            onChange={handleChange.bind(this)}
-          />
-          <Form.Select
-            placeholder="Sélectionner un ou plusieurs sports"
-            fluid
-            options={sportsList}
-            // eslint-disable-next-line react/jsx-no-bind
-            onChange={handleChange.bind(this)}
+            onChange={handleChange2.bind(this)}
           />
         </Form.Group>
       </Form>
