@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 
 import logo from '../../../../assets/OnSport_logo.png';
 import './style.scss';
 
-function ProfilDetails({ userId }) {
+function ProfilDetails({ loggedUser }) {
   const [showUpdateProfilModal, setShowUpdateProfilDetailsModal] = useState(false);
 
   const handleUpdateProfilDetails = () => {
@@ -17,23 +16,15 @@ function ProfilDetails({ userId }) {
   const handleUpdateProfilClose = () => {
     setShowUpdateProfilDetailsModal(false);
   };
-  console.log(`ProfilDetails userId: ${userId}`);
-
-  axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`)
-    .then((response) => {
-      // Traitement des données reçues
-      const users = response.data;
-      console.log(users);
-    })
-    .catch((error) => {
-      // Gestion des erreurs
-      console.error(error);
-    });
 
   return (
     <div className="ProfilDetails">
       <p className="ProfilDetails__location">📍Ambert - Auvergne-Rhône-Alpes</p>
-      <p className="ProfilDetails__age">⏳42 ans</p>
+      <p className="ProfilDetails__age">
+        AGE :
+        {' '}
+        {loggedUser.firstname}
+      </p>
       <button type="button" className="ProfilDetails__button" onClick={handleUpdateProfilDetails}>Modifier mon profil</button>
       {showUpdateProfilModal && <UpdateProfilModal onClose={handleUpdateProfilClose} />}
       <section className="ProfilDetails__bioAndPracticeSports">
@@ -58,7 +49,28 @@ function ProfilDetails({ userId }) {
 }
 
 ProfilDetails.propTypes = {
-  userId: Proptypes.number.isRequired,
+  loggedUser: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    city: PropTypes.string,
+    zip_code: PropTypes.string,
+    address: PropTypes.string,
+    phone_number: PropTypes.string,
+    birthdate: PropTypes.string,
+  }),
+};
+
+ProfilDetails.defaultProps = {
+  loggedUser: {
+    city: '',
+    zip_code: '',
+    address: '',
+    phone_number: '',
+    birthdate: '',
+  },
 };
 
 export default ProfilDetails;

@@ -17,19 +17,30 @@ import About from './About';
 
 function App() {
   const [userId, setUserId] = useState('');
+  const [loggedUser, setLoggedUser] = useState([]);
 
   const handleLoginSuccess = (userId) => {
     setUserId(userId);
     // eslint-disable-next-line no-console
-    console.log(`App userId: ${typeof userId}`);
+    console.log(`App userId: ${typeof userId} ${userId}`);
   };
+
+  React.useEffect(() => {
+    axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`)
+      .then((response) => setLoggedUser(response.data))
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [userId]);
+
+  console.log(loggedUser);
 
   return (
     <div className="App">
 
       <Routes>
         <Route path="/" element={<Home onLoginSuccess={handleLoginSuccess} userId={userId} />} />
-        <Route path="/profile/:id" element={<ProfilPage userId={userId} />} />
+        <Route path="/profile/:id" element={<ProfilPage loggedUser={loggedUser} />} />
         <Route path="/activity" element={<CreateActivity />} />
         {/* <Route path="/activity/:id" elment={<DetailledActivity />} /> */}
         <Route path="/activity/id" element={<DetailledActivity />} />

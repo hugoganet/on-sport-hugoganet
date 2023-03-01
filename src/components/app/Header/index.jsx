@@ -73,6 +73,7 @@ function Header({ onLoginSuccess, userId }) {
         onClose={handleLoginClose}
         onLogin={() => setIsLogged(true)}
         onLoginSuccess={onLoginSuccess}
+        userId={userId}
       />
       )}
       {showSignupModal && <SignupModal onClose={handleSignupClose} />}
@@ -82,7 +83,11 @@ function Header({ onLoginSuccess, userId }) {
 
 Header.propTypes = {
   onLoginSuccess: Proptypes.func.isRequired,
-  userId: Proptypes.number.isRequired,
+  userId: Proptypes.number,
+};
+
+Header.defaultProps = {
+  userId: null,
 };
 
 export default Header;
