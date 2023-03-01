@@ -10,7 +10,7 @@ import axios from 'axios';
 import './style.scss';
 
 function LoginModal(props) {
-  const { onClose, onLogin } = props;
+  const { onClose, onLogin, onLoginSuccess } = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const modalRef = useRef(null);
@@ -54,10 +54,13 @@ function LoginModal(props) {
         login,
         password,
       },
-
     });
-    // eslint-disable-next-line no-console
-    console.log(response.data);
+    // Si la connexion réussit, appelez la fonction onLoginSuccess avec l'id de l'utilisateur
+    if (response.status === 200) {
+      // eslint-disable-next-line no-console
+      console.log(`LoginModal response.data.id: ${response.data.id}`);
+      onLoginSuccess(response.data.id);
+    }
   };
 
   return (
@@ -91,6 +94,7 @@ function LoginModal(props) {
 LoginModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
+  onLoginSuccess: PropTypes.func.isRequired,
 };
 
 export default LoginModal;

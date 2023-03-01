@@ -48,11 +48,9 @@ function SignupModal(props) {
         login,
         password,
       },
-
     });
-
     // eslint-disable-next-line no-console
-    console.log(response.data);
+    console.log(`SignupModal: ${response}`);
   };
 
   const handleOutsideClick = (event) => {

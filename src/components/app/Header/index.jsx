@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import Modales from './Modales';
+import Proptypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import LoginModal from '../../Modales/LoginModal';
 import SignupModal from '../../Modales/SignupModal';
@@ -8,7 +8,7 @@ import ConfirmModal from '../../Modales/ConfirmModal';
 import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
 
-function Header() {
+function Header({ onLoginSuccess, userId }) {
   const [isLogged, setIsLogged] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -50,7 +50,12 @@ function Header() {
         <>
           <button className="header__button" type="button">
             {' '}
-            <NavLink to="/profile" className="menu-link">Mon profil</NavLink>
+            <NavLink
+              to={`/profile/${userId}`}
+              className="menu-link"
+            >
+              Mon profil
+            </NavLink>
           </button>
           <button className="header__button" type="button" onClick={handleLogout}>Déconnexion</button>
         </>
@@ -64,11 +69,25 @@ function Header() {
       <ConfirmModal onConfirm={handleConfirm} onCancel={handleCancel} />
       )}
       {showLoginModal && (
-      <LoginModal onClose={handleLoginClose} onLogin={() => setIsLogged(true)} />
+      <LoginModal
+        onClose={handleLoginClose}
+        onLogin={() => setIsLogged(true)}
+        onLoginSuccess={onLoginSuccess}
+        userId={userId}
+      />
       )}
       {showSignupModal && <SignupModal onClose={handleSignupClose} />}
     </div>
   );
 }
+
+Header.propTypes = {
+  onLoginSuccess: Proptypes.func.isRequired,
+  userId: Proptypes.number,
+};
+
+Header.defaultProps = {
+  userId: null,
+};
 
 export default Header;

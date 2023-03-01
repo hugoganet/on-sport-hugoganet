@@ -13,10 +13,10 @@ function Footer() {
         <img className="footer__img" src={Logo} alt="logo" />
       </div>
       <button type="button" className="footer__button">
-      <NavLink to="/about" className="menu-link">A propos</NavLink>
+        <NavLink to="/about" className="menu-link">À propos</NavLink>
       </button>
       <button type="button" className="footer__button">
-      <NavLink to="/contact" className="menu-link">Contact</NavLink>
+        <NavLink to="/contact" className="menu-link">Contact</NavLink>
       </button>
     </div>
   );

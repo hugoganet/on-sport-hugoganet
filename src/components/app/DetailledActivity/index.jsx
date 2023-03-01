@@ -37,7 +37,7 @@ function DetailledActivity() {
       <div className="filteredActivities__title">
         <h1>Autres activités qui pourraient vous intéresser</h1>
       </div>
-      <Filtered />
+      {/* <Filtered /> */}
       <Footer />
     </>
   );
