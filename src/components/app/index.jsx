@@ -1,8 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import axios from 'axios';
 
 import './style.scss';
 import 'semantic-ui-css/semantic.min.css';
@@ -16,7 +15,6 @@ import Contact from './Contact';
 import About from './About';
 
 function App() {
-  // const [loggedUser, setLoggedUser] = useState(false);
   const handleLoginSuccess = (userId) => {
     localStorage.setItem('userId', userId);
     // eslint-disable-next-line no-console

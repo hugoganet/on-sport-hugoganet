@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Proptypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import LoginModal from '../../Modales/LoginModal';
 import SignupModal from '../../Modales/SignupModal';
 import ConfirmModal from '../../Modales/ConfirmModal';
@@ -21,7 +21,7 @@ function Header({ onLoginSuccess }) {
 
   const handleConfirm = () => {
     setShowConfirmModal(false);
-    localStorage.clear()
+    localStorage.clear();
     // setIsLogged(false);
   };
 
@@ -47,7 +47,7 @@ function Header({ onLoginSuccess }) {
 
   return (
     <div className="header">
-      <img className="header__logo" src={Logo} alt="logo" />
+      <Link to="/"><img className="header__logo" src={Logo} alt="logo" /></Link>
       {userId ? (
         <>
           <button className="header__button" type="button">

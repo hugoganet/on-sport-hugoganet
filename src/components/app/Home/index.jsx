@@ -29,7 +29,7 @@ function Home({ onLoginSuccess }) {
   const [ListActivities, setListActivities] = React.useState([]);
   const [UnFilteredList, setUnFilteredList] = React.useState([]);
   const [listLocation, setListLocation] = React.useState([]);
-const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem('userId');
   React.useEffect(
 () => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
