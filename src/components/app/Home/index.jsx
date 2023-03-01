@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable linebreak-style */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -21,33 +22,50 @@ import Step2 from '../../../assets/step2.gif';
 import Step3 from '../../../assets/step3.gif';
 import 'animate.css';
 import sportsList from '../../../datas/sports';
-import filterActivities from '../../../utils'; // You can also use <link> for styles
+// import filterActivities from '../../../utils'; // You can also use <link> for styles
 // ..
 
 function Home({ onLoginSuccess, userId }) {
   const [ListActivities, setListActivities] = React.useState([]);
+  const [UnFilteredList, setUnFilteredList] = React.useState([]);
+  const getValue = (value) => (typeof value === 'string' ? value.toUpperCase() : value);
+
+  function FilterActivities(array, filters) {
+    const filterKeys = Object.keys(filters);
+    return array.filter((item) =>
+      // validates all filter criteria
+      // eslint-disable-next-line implicit-arrow-linebreak
+      filterKeys.every((key) => {
+        // ignores an empty filter
+        if (!filters[key].length) return true;
+        return filters[key].find((filter) => getValue(filter) === getValue(item[key]));
+              }));
+  }
   React.useEffect(() => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
-    }).then((response) => setListActivities(response.data)).catch((error) => {
+    }).then(
+(response) => { setListActivities(response.data); setUnFilteredList(response.data); },
+).catch((error) => {
       console(error);
     });
   }, []);
 
   const handleChange = (e, { value }) => {
+    console.log(ListActivities);
     const filters = {
-      name: value,
+      sport_name: value,
     };
-
-    const filtered = filterActivities(ListActivities, filters);
-
+    const filtered = FilterActivities(UnFilteredList, filters);
     setListActivities(filtered);
   };
-  return (
 
+  console.log(ListActivities);
+  console.log(UnFilteredList);
+  return (
     <div className="Home">
 
       <Header onLoginSuccess={onLoginSuccess} userId={userId} />
