@@ -74,7 +74,6 @@ const departmentOptions = departments.map((department) => ({
    setListActivities([...ListActivities, ...filtered]);
  };
 
- console.log(ListActivities);
   return (
     <div className="Home">
 
