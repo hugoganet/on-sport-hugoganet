@@ -24,6 +24,7 @@ function UpdateProfilModal(props) {
   const [sports, setSelectedSports] = useState([]);
   const [locationID, setLocationId] = useState('');
   const [listLocation, setListLocation] = React.useState([]);
+  const [image, setImage] = useState(null);
 
   React.useEffect(() => axios.get(
     'http://ronaldfk-server.eddi.cloud:8080/api/location/',
@@ -53,8 +54,8 @@ function UpdateProfilModal(props) {
 
     const updatedData = {
       bio: event.target[0].value,
-      age: event.target[1].value,
-      sports: event.target[4].value,
+      age,
+      sports,
       location_id: locationID,
     };
 
@@ -142,6 +143,12 @@ function UpdateProfilModal(props) {
               <option key={sport.id} value={sport.value}>{sport.text}</option>
             ))}
           </select>
+          <h3> Ajouter une image</h3>
+          <Form.Input
+            type="file"
+            accept=".jpg, .png, .jpeg"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
           <button type="submit">Enregistrer les modifications</button>
         </Form>
       </div>
