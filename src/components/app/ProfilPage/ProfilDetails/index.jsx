@@ -19,11 +19,11 @@ function ProfilDetails({ loggedUser }) {
 
   return (
     <div className="ProfilDetails">
-      <p className="ProfilDetails__location">📍Ambert - Auvergne-Rhône-Alpes</p>
+      <p className="ProfilDetails__location">📍{loggedUser.locationName} - {loggedUser.locationDepartment}</p>
       <p className="ProfilDetails__age">
         AGE :
         {' '}
-        {loggedUser.firstname}
+        {loggedUser.age}
       </p>
       <button type="button" className="ProfilDetails__button" onClick={handleUpdateProfilDetails}>Modifier mon profil</button>
       {showUpdateProfilModal && <UpdateProfilModal onClose={handleUpdateProfilClose} />}
@@ -31,8 +31,7 @@ function ProfilDetails({ loggedUser }) {
         <div className="ProfilDetails__bio--div">
           <h2 className="ProfilDetails__bio--title">Bio</h2>
           <p className="ProfilDetails__bio--description">
-            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-            consectetur, adipisci velit...
+            {loggedUser.bio}
           </p>
         </div>
         <div className="ProfilDetails__practiceSports__div">
