@@ -50,26 +50,42 @@ function ProfilDetails({ loggedUser }) {
 
 ProfilDetails.propTypes = {
   loggedUser: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.number,
+    age: PropTypes.number,
+    bio: PropTypes.string,
+    email: PropTypes.string.isRequired,
     firstname: PropTypes.string.isRequired,
     lastname: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    city: PropTypes.string,
-    zip_code: PropTypes.string,
-    address: PropTypes.string,
-    phone_number: PropTypes.string,
-    birthdate: PropTypes.string,
+    location_id: PropTypes.number,
+    login: PropTypes.string.isRequired,
+    ListActivities: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        note: PropTypes.number,
+        description: PropTypes.string,
+        photo: PropTypes.string,
+        family_tag: PropTypes.bool,
+        user_id: PropTypes.number,
+        user_firstname: PropTypes.string,
+        sportID: PropTypes.number,
+        sportName: PropTypes.string,
+        location_id: PropTypes.number,
+        locationName: PropTypes.string,
+        locationPostcode: PropTypes.number,
+        locationDepartment: PropTypes.string,
+      }).isRequired,
+    ),
   }),
+
 };
 
 ProfilDetails.defaultProps = {
   loggedUser: {
-    city: '',
-    zip_code: '',
-    address: '',
-    phone_number: '',
-    birthdate: '',
+    id: null,
+    age: null,
+    location_id: '',
+    bio: '',
   },
 };
 

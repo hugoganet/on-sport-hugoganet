@@ -8,7 +8,7 @@ import ActivitiesList from './ActivitiesList';
 import './style.scss';
 
 function ProfilPage() {
-  const [UserInfos, setUserInfos] = useState('');
+  const [UserInfos, setUserInfos] = useState({});
 
   const userId = localStorage.getItem('userId');
 
