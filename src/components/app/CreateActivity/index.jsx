@@ -37,7 +37,7 @@ function CreateActivity() {
     e.preventDefault();
 
     const form = new FormData();
-    form.append('json', JSON.stringify(user));
+    form.append('jsonAsString', JSON.stringify(user));
     form.append('photo', image);
 
     try {
