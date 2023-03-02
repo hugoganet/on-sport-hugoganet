@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Proptypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import LoginModal from '../../Modales/LoginModal';
 import SignupModal from '../../Modales/SignupModal';
@@ -8,7 +7,7 @@ import ConfirmModal from '../../Modales/ConfirmModal';
 import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
 
-function Header({ onLoginSuccess }) {
+function Header() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -62,8 +61,8 @@ function Header({ onLoginSuccess }) {
       {showLoginModal && (
       <LoginModal
         onClose={handleLoginClose}
-        onLogin={() => console.log('connexion réussie')}
-        onLoginSuccess={onLoginSuccess}
+        onLogin={() => console.log('tentative de connexion')}
+        onLoginSuccess={() => console.log('connexion réussie')}
         userId={userId}
       />
       )}
@@ -71,9 +70,5 @@ function Header({ onLoginSuccess }) {
     </div>
   );
 }
-
-Header.propTypes = {
-  onLoginSuccess: Proptypes.func.isRequired,
-};
 
 export default Header;

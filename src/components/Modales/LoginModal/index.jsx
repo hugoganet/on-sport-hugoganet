@@ -57,7 +57,11 @@ function LoginModal(props) {
 
     });
     // eslint-disable-next-line no-console
-    console.log(response.data);
+    if (response.status === 200) {
+      console.log('connexion réussie - token enregistré - userId enregistré');
+      localStorage.setItem('token', response.data.tokenUser.token);
+      localStorage.setItem('userId', response.data.id);
+    }
   };
 
   return (

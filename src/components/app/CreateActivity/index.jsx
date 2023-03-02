@@ -23,24 +23,25 @@ function CreateActivity() {
   const [family_tag, setFamily_tag] = useState(null);
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
-  const [listLocation, setListLocation] = React.useState([]);
+  const [listLocation, setListLocation] = useState([]);
 
   const user_id = parseInt(localStorage.getItem('userId'));
 
   React.useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/');
-      return response;
-    }
-    setListLocation(fetchData());
+    axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/')
+      .then((response) => {
+        setListLocation(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
-
-console.log(listLocation);
 
   const user = {
     title, user_id, sport_id, family_tag, description, locationID,
   };
 
+  console.log(listLocation);
   const handleFamily_tagChange = (e, { value }) => {
     setFamily_tag(value);
   };

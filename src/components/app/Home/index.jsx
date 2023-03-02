@@ -3,7 +3,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import Proptypes from 'prop-types';
 import {
   Form, Image, Grid, Segment, Label,
 } from 'semantic-ui-react';
@@ -24,11 +23,12 @@ import 'animate.css';
 import sportsList from '../../../datas/sports';
 import FilterActivities from '../../../utils'; // You can also use <link> for styles
 
-function Home({ onLoginSuccess }) {
+function Home() {
   const [ListActivities, setListActivities] = React.useState([]);
   const [UnFilteredList, setUnFilteredList] = React.useState([]);
   const [listLocation, setListLocation] = React.useState([]);
   const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
   React.useEffect(
 () => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
@@ -76,7 +76,7 @@ const departmentOptions = departments.map((department) => ({
   return (
     <div className="Home">
 
-      <Header onLoginSuccess={onLoginSuccess} />
+      <Header />
       <div className="bg">
         <img src={bg} alt="background" />
         {/* <p className="bg-title1 animate__animated animate__backInRight" >
@@ -132,13 +132,14 @@ const departmentOptions = departments.map((department) => ({
         </Form.Group>
       </Form>
       <Filtered ListActivities={ListActivities} />
+      <h1>
+        {' '}
+        {userId}
+        {token}
+      </h1>
       <Footer />
     </div>
   );
 }
-
-Home.propTypes = {
-  onLoginSuccess: Proptypes.func.isRequired,
-  };
 
 export default Home;
