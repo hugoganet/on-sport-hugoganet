@@ -14,17 +14,32 @@
   
 
   &__content{
-    max-width: 95%; 
+    width: 50vw;
+    height:30vh; 
     position: absolute;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__title{
     // border: 1px solid red;
     text-align: center;
+    font-size:100%;
+
   }
+
+  &__title__confirm{
+    // border: 1px solid red;
+    text-align: center;
+    font-size:100%;
+
+  }
+
+ 
+
 }
-
-

@@ -28,10 +28,10 @@ function ConfirmModal({ setShowConfirmModal }) {
   }, [handleOutsideClick]);
 
   return (
-    <div className="ConfirmModal">
-      <div className="ConfirmModal__content" ref={modalRef}>
+    <div className="ConfirmModal ConfirmModal--show">
+      <div className="ConfirmModal__content ConfirmModal__content--show" ref={modalRef}>
         <h2 className="ConfirmModal__title">Confirmation de déconnexion</h2>
-        <p>Êtes-vous sûr de vouloir vous déconnecter ?</p>
+        <p className="ConfirmModal__title__confirm">Êtes-vous sûr de vouloir vous déconnecter ?</p>
         <div className="ConfirmModal__buttons">
           <button className="ConfirmModal__button" type="button" onClick={onConfirm}>Oui</button>
           <button className="ConfirmModal__button" type="button" onClick={onCancel}>Non</button>
