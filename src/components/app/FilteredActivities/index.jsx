@@ -34,7 +34,7 @@ Filtered.propTypes = {
       sportName: PropTypes.string,
       location_id: PropTypes.number,
       locationName: PropTypes.string,
-      locationPostcode: PropTypes.number,
+      locationPostcode: PropTypes.string,
       locationDepartment: PropTypes.string,
     }).isRequired,
   ).isRequired,

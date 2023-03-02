@@ -68,14 +68,15 @@ const departmentOptions = departments.map((department) => ({
 
   const handleChange2 = (e, { value }) => {
     // eslint-disable-next-line max-len
-    const filtered = UnFilteredList.filter((dpt) => dpt.locationDepartment.toLowerCase() === (value.toLowerCase()));
+    console.log(UnFilteredList);
+    const filtered = UnFilteredList.filter((dpt) => dpt.locationDepartment === (value));
     setListActivities([...ListActivities, ...filtered]);
  };
 
   return (
     <div className="Home">
 
-      <Header onLoginSuccess={onLoginSuccess} userId={userId} />
+      <Header onLoginSuccess={onLoginSuccess} />
       <div className="bg">
         <img src={bg} alt="background" />
         {/* <p className="bg-title1 animate__animated animate__backInRight" >

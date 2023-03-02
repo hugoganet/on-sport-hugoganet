@@ -10,7 +10,7 @@ import axios from 'axios';
 import './style.scss';
 
 function LoginModal(props) {
-  const { onClose, onLogin, onLoginSuccess } = props;
+  const { onClose, onLogin } = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const modalRef = useRef(null);
@@ -35,9 +35,9 @@ function LoginModal(props) {
     onClose();
     // console.log(event.target[0].value);
 
-    const login = event.target[0].value;
-    // eslint-disable-next-line no-shadow
-    const password = event.target[1].value;
+    // const login = event.target[0].value;
+    // // eslint-disable-next-line no-shadow
+    // const password = event.target[1].value;
 
     const headers = {
       'Content-Type': 'application/json',
@@ -51,16 +51,13 @@ function LoginModal(props) {
         headers,
       },
       data: {
-        login,
+        login: username,
         password,
       },
+
     });
-    // Si la connexion réussit, appelez la fonction onLoginSuccess avec l'id de l'utilisateur
-    if (response.status === 200) {
-      // eslint-disable-next-line no-console
-      console.log(`LoginModal response.data.id: ${response.data.id}`);
-      onLoginSuccess(response.data.id);
-    }
+    // eslint-disable-next-line no-console
+    console.log(response.data);
   };
 
   return (
@@ -94,7 +91,6 @@ function LoginModal(props) {
 LoginModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
-  onLoginSuccess: PropTypes.func.isRequired,
 };
 
 export default LoginModal;

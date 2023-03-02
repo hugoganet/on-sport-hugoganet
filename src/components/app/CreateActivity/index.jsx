@@ -27,11 +27,15 @@ function CreateActivity() {
 
   const user_id = parseInt(localStorage.getItem('userId'));
 
-  React.useEffect(() => axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/').then(
-    (response) => setListLocation(response.data),
-  ).catch((error) => {
-    console.log(error);
-  }), []);
+  React.useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/');
+      return response;
+    }
+    setListLocation(fetchData());
+  }, []);
+
+console.log(listLocation);
 
   const user = {
     title, user_id, sport_id, family_tag, description, locationID,
