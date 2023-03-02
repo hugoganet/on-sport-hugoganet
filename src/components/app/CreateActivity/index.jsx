@@ -6,7 +6,7 @@ import axios from 'axios';
 import FormData from 'form-data';
 
 import {
-  Button, Form,
+  Button, Form, Dropdown,
 } from 'semantic-ui-react';
 
 import Footer from '../Footer';
@@ -19,13 +19,22 @@ import './style.scss';
 function CreateActivity() {
   const [title, setTitle] = useState('');
   const [sport_id, setSportId] = useState('');
+  const [locationID, setLocationId] = useState('');
   const [family_tag, setFamily_tag] = useState(null);
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
+  const [listLocation, setListLocation] = React.useState([]);
 
   const user_id = parseInt(localStorage.getItem('userId'));
+
+  React.useEffect(() => axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/').then(
+    (response) => setListLocation(response.data),
+  ).catch((error) => {
+    console.log(error);
+  }), []);
+
   const user = {
-    title, user_id, sport_id, family_tag, description,
+    title, user_id, sport_id, family_tag, description, locationID,
   };
 
   const handleFamily_tagChange = (e, { value }) => {
@@ -33,10 +42,10 @@ function CreateActivity() {
   };
 
   const handleSubmit = async (e) => {
-    console.log('coucou');
     e.preventDefault();
 
     const form = new FormData();
+    console.log(user);
     form.append('jsonAsString', JSON.stringify(user));
     form.append('photo', image);
 
@@ -51,10 +60,18 @@ function CreateActivity() {
       });
       console.log(response.data);
     } catch (error) {
-      console(error);
+      console.log(error);
     }
   };
 
+  const cities = [...new Set(listLocation.map((item) => [item.id, item.name]))];
+  const cityOptions = cities.map((city) => ({
+    key: city[0],
+    text: city[1],
+    value: city[0],
+  }));
+
+  console.log(locationID);
   return (
     <>
       <Header />
@@ -71,13 +88,22 @@ function CreateActivity() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
+        <Form.Dropdown
+          width={12}
+          label="Ville"
+          placeholder="Sélectionner une ville"
+          fluid
+          search
+          selection
+          options={cityOptions}
+          onChange={(e, data) => setLocationId(data.value)}
+        />
         <Form.Group inline>
           <Form.Select
             label="Sport"
             placeholder="Entrer le sport"
             options={sport}
-            value={sport.id}
-            onChange={(e) => setSportId(e.target.id)}
+            onChange={(e) => setSportId(e.target.parentNode.id)}
           />
           <label>
             Cette activité peut-elle se faire en famille ?

@@ -33,7 +33,7 @@ export default [
     id: 4,
     key: 'gm',
     text: 'Sports de glisse - MER',
-    value: 'Sports de glisse - MER',
+    value: '4',
     image: '/img/glisse_mer.png',
     image_color: '/img/glisse_mer_color.png',
     bg: '/img/glisse_mer_bg.jpg',
