@@ -34,7 +34,7 @@ function CreateActivity() {
   }), []);
 
   const user = {
-    title, user_id, sport_id, family_tag, description,
+    title, user_id, sport_id, family_tag, description, locationID,
   };
 
   const handleFamily_tagChange = (e, { value }) => {
@@ -64,10 +64,11 @@ function CreateActivity() {
     }
   };
 
-  const cityOptions = listLocation.map((city) => ({
-    key: city.id,
-    text: city,
-    value: city,
+  const cities = [...new Set(listLocation.map((item) => [item.id, item.name]))];
+  const cityOptions = cities.map((city) => ({
+    key: city[0],
+    text: city[1],
+    value: city[0],
   }));
 
   console.log(locationID);
@@ -95,7 +96,7 @@ function CreateActivity() {
           search
           selection
           options={cityOptions}
-          onChange={(e) => console.log(e.target)}
+          onChange={(e, data) => setLocationId(data.value)}
         />
         <Form.Group inline>
           <Form.Select
