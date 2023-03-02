@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Proptypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import LoginModal from '../../Modales/LoginModal';
 import SignupModal from '../../Modales/SignupModal';
 import ConfirmModal from '../../Modales/ConfirmModal';
@@ -8,23 +8,14 @@ import ConfirmModal from '../../Modales/ConfirmModal';
 import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
 
-function Header({ onLoginSuccess, userId }) {
-  const [isLogged, setIsLogged] = useState(false);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
+function Header({ onLoginSuccess }) {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const userId = localStorage.getItem('userId');
 
   const handleLogout = () => {
     setShowConfirmModal(true);
-  };
-
-  const handleConfirm = () => {
-    setShowConfirmModal(false);
-    setIsLogged(false);
-  };
-
-  const handleCancel = () => {
-    setShowConfirmModal(false);
   };
 
   const handleLogin = () => {
@@ -45,8 +36,8 @@ function Header({ onLoginSuccess, userId }) {
 
   return (
     <div className="header">
-      <img className="header__logo" src={Logo} alt="logo" />
-      {isLogged ? (
+      <Link to="/"><img className="header__logo" src={Logo} alt="logo" /></Link>
+      {userId ? (
         <>
           <button className="header__button" type="button">
             {' '}
@@ -66,12 +57,12 @@ function Header({ onLoginSuccess, userId }) {
         </>
       )}
       {showConfirmModal && (
-      <ConfirmModal onConfirm={handleConfirm} onCancel={handleCancel} />
+      <ConfirmModal setShowConfirmModal={setShowConfirmModal} />
       )}
       {showLoginModal && (
       <LoginModal
         onClose={handleLoginClose}
-        onLogin={() => setIsLogged(true)}
+        onLogin={() => console.log('connexion réussie')}
         onLoginSuccess={onLoginSuccess}
         userId={userId}
       />
@@ -83,11 +74,6 @@ function Header({ onLoginSuccess, userId }) {
 
 Header.propTypes = {
   onLoginSuccess: Proptypes.func.isRequired,
-  userId: Proptypes.number,
-};
-
-Header.defaultProps = {
-  userId: null,
 };
 
 export default Header;

@@ -6,7 +6,7 @@ import axios from 'axios';
 import FormData from 'form-data';
 
 import {
-  Button, Form, Select, Input,
+  Button, Form,
 } from 'semantic-ui-react';
 
 import Footer from '../Footer';
@@ -18,25 +18,26 @@ import './style.scss';
 
 function CreateActivity() {
   const [title, setTitle] = useState('');
-  const [user_id, setUserId] = useState('');
   const [sport_id, setSportId] = useState('');
   const [family_tag, setFamily_tag] = useState(null);
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
 
+  const user_id = parseInt(localStorage.getItem('userId'));
   const user = {
     title, user_id, sport_id, family_tag, description,
   };
 
   const handleFamily_tagChange = (e, { value }) => {
-    setFamily_tag(value === 'true');
+    setFamily_tag(value);
   };
 
   const handleSubmit = async (e) => {
+    console.log('coucou');
     e.preventDefault();
 
     const form = new FormData();
-    form.append('json', JSON.stringify(user));
+    form.append('jsonAsString', JSON.stringify(user));
     form.append('photo', image);
 
     try {
@@ -50,7 +51,7 @@ function CreateActivity() {
       });
       console.log(response.data);
     } catch (error) {
-      console.error(error);
+      console(error);
     }
   };
 
@@ -70,14 +71,6 @@ function CreateActivity() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <Form.Input
-          width={12}
-          fluid
-          label="User ID"
-          placeholder="Enter User ID"
-          value={user_id}
-          onChange={(e) => setUserId(e.target.value)}
-        />
         <Form.Group inline>
           <Form.Select
             label="Sport"
@@ -92,13 +85,13 @@ function CreateActivity() {
           <Form.Radio
             label="Oui"
             value="true"
-            checked={family_tag === true}
+            checked={family_tag === 'true'}
             onChange={handleFamily_tagChange}
           />
           <Form.Radio
             label="Non"
             value="false"
-            checked={family_tag === false}
+            checked={family_tag === 'false'}
             onChange={handleFamily_tagChange}
           />
         </Form.Group>

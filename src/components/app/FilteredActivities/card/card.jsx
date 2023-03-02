@@ -10,9 +10,9 @@ import tag_image from '../../../../assets/family_tag.png';
 import sports from '../../../../datas/sports';
 
 function Card({
-  title, sport_id, family_tag, id,
+  title, sportID, family_tag, id, locationName, locationDepartment
 }) {
-  const selectedSport = sports.find((sport) => sport.id === sport_id);
+  const selectedSport = sports.find((sport) => sport.id === sportID);
   // eslint-disable-next-line no-console
   return (
     <div className="card">
@@ -31,8 +31,8 @@ function Card({
         <p>{title}</p>
       </div>
       <div className="card-location">
-        <p>Département</p>
-        <p>Ville</p>
+        <p>{locationName}</p>
+        <p>{locationDepartment}</p>
       </div>
       <NavLink to={`/activity/${id}`} className="card-btn" style={{ color: `${selectedSport.color}` }}>En savoir +</NavLink>
     </div>
@@ -41,7 +41,7 @@ function Card({
 
 Card.propTypes = {
   title: Proptypes.string.isRequired,
-  sport_id: Proptypes.number.isRequired,
+  sportID: Proptypes.number.isRequired,
   family_tag: Proptypes.bool.isRequired,
   id: Proptypes.number.isRequired,
 };

@@ -24,12 +24,11 @@ import 'animate.css';
 import sportsList from '../../../datas/sports';
 import FilterActivities from '../../../utils'; // You can also use <link> for styles
 
-
-function Home({ onLoginSuccess, userId }) {
+function Home({ onLoginSuccess }) {
   const [ListActivities, setListActivities] = React.useState([]);
   const [UnFilteredList, setUnFilteredList] = React.useState([]);
   const [listLocation, setListLocation] = React.useState([]);
-
+  const userId = localStorage.getItem('userId');
   React.useEffect(
 () => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
@@ -60,18 +59,17 @@ const departmentOptions = departments.map((department) => ({
 
   const handleChange = (e, { value }) => {
      const filters = {
-      sport_name: value,
+      sportName: value,
     };
+    console.log(filters);
     const filtered = FilterActivities(UnFilteredList, filters);
     setListActivities(filtered);
   };
 
   const handleChange2 = (e, { value }) => {
-    const filters = {
-     department: value,
-   };
-   const filtered = FilterActivities(UnFilteredList, filters);
-   setListActivities([...ListActivities, ...filtered]);
+    // eslint-disable-next-line max-len
+    const filtered = UnFilteredList.filter((dpt) => dpt.locationDepartment.toLowerCase() === (value.toLowerCase()));
+    setListActivities([...ListActivities, ...filtered]);
  };
 
   return (
@@ -140,7 +138,6 @@ const departmentOptions = departments.map((department) => ({
 
 Home.propTypes = {
   onLoginSuccess: Proptypes.func.isRequired,
-  userId: Proptypes.number.isRequired,
-};
+  };
 
 export default Home;
