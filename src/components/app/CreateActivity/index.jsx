@@ -1,13 +1,14 @@
+/* eslint-disable camelcase */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import axios from 'axios';
 import FormData from 'form-data';
-
 import {
-  Button, Form, Dropdown,
+  Form, Image, Grid,
 } from 'semantic-ui-react';
+import logo from '../../../assets/OnSport_logo.png';
 
 import Footer from '../Footer';
 import Header from '../Header';
@@ -75,69 +76,82 @@ function CreateActivity() {
   return (
     <>
       <Header />
-      <Form
-        className="create__activity__form"
-        onSubmit={handleSubmit}
+      <Grid celled
+      // columns={2} divided
+        className="container"
       >
-        <h1>Créer une activité</h1>
-        <Form.Input
-          width={12}
-          fluid
-          label="Entrer le titre de l'activité"
-          placeholder="Titre de l'activité"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <Form.Dropdown
-          width={12}
-          label="Ville"
-          placeholder="Sélectionner une ville"
-          fluid
-          search
-          selection
-          options={cityOptions}
-          onChange={(e, data) => setLocationId(data.value)}
-        />
-        <Form.Group inline>
-          <Form.Select
-            label="Sport"
-            placeholder="Entrer le sport"
-            options={sport}
-            onChange={(e) => setSportId(e.target.parentNode.id)}
-          />
-          <label>
-            Cette activité peut-elle se faire en famille ?
-          </label>
-          <Form.Radio
-            label="Oui"
-            value="true"
-            checked={family_tag === 'true'}
-            onChange={handleFamily_tagChange}
-          />
-          <Form.Radio
-            label="Non"
-            value="false"
-            checked={family_tag === 'false'}
-            onChange={handleFamily_tagChange}
-          />
-        </Form.Group>
-        <Form.TextArea
-          width={12}
-          label="Description de l'activité"
-          placeholder="Ajouter une description de l'activité"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <h3> Ajouter une image</h3>
-        <Form.Input
-          type="file"
-          accept=".jpg, .png, .jpeg"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
-        <Button type="submit" primary>
-          Valider
-        </Button>
-      </Form>
+        <Grid.Row centered doubling>
+        <Grid.Column  width={4} className="container__image">
+          <Image src={logo} />
+        </Grid.Column>
+        <Grid.Column  width={6} className="container__form">
+          <Form
+            size="large"
+            className="create__activity__form"
+            onSubmit={handleSubmit}
+          >
+            <h1 className="create__activity__title">Créer une activité</h1>
+            <Form.Input
+              width={5}
+              fluid
+              label="Entrer le titre de l'activité"
+              placeholder="Titre de l'activité"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <Form.Dropdown
+              width={5}
+              label="Sélectionner une ville"
+              placeholder="Sélectionner une ville"
+              fluid
+              search
+              selection
+              options={cityOptions}
+              onChange={(e, data) => setLocationId(data.value)}
+            />
+            <Form.Select
+              label="Sélectionner le sport"
+              width={5}
+              placeholder="Sélectionner le sport"
+              options={sport}
+              onChange={(e) => setSportId(e.target.parentNode.id)}
+            />
+            <h3>Cette activité peut-elle se faire en famille?</h3>
+            <Form.Group inline>
+              <Form.Radio
+                label="Oui"
+                value="true"
+                checked={family_tag === 'true'}
+                onChange={handleFamily_tagChange}
+              />
+              <Form.Radio
+                label="Non"
+                value="false"
+                checked={family_tag === 'false'}
+                onChange={handleFamily_tagChange}
+              />
+            </Form.Group>
+            <Form.TextArea
+              width={8}
+              label="Description de l'activité"
+              placeholder="Description de l'activité"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <Form.Input
+              label="Ajouter une image"
+              width={5}
+              type="file"
+              accept=".jpg, .png, .jpeg"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+            <Form.Button type="submit" primary>
+              Valider
+            </Form.Button>
+          </Form>
+        </Grid.Column>
+        </Grid.Row>
+      </Grid>
       <Footer />
     </>
   );

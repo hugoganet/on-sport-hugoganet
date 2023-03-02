@@ -1,11 +1,46 @@
-.create__activity__form {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 2rem;
+@use '../../../styles/vars' as v;
+
+
+.container {
+    width: 100%;
+}
+
+.container__image {
+    background-color: v.$color-third;
+}
+
+.container__form {
+background-color: v.$color-first;
+}
+
+// .create__activity__form {
+// display: flex;
+// flex-direction: column;
+// align-items: center;
+// // margin: 2rem 20rem;
+// border-top-right-radius: 1rem;
+// border-bottom-right-radius: 1rem;
+
+// }
+
+.create__activity__title {
+    margin-bottom: 3rem;
+}
 
 .button {
     margin: 2rem;
 }
 
+.ui.form .field>label {
+    font-size: 1.2rem;
+    color: v.$color-white;
+    margin-bottom: .8rem;
+}
+
+.ui.form label {
+    color: v.$color-white
+}
+
+h1, h2, h3 {
+    color: v.$color-white;
 }
