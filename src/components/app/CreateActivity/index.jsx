@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -9,6 +10,7 @@ import _ from 'lodash';
 import {
   Button, Form, Grid, Search,
 } from 'semantic-ui-react';
+import logo from '../../../assets/OnSport_logo.png';
 
 import Footer from '../Footer';
 import Header from '../Header';
