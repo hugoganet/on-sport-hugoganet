@@ -4,16 +4,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import FormData from 'form-data';
+import _ from 'lodash';
 
 import {
-  Button, Form, Dropdown,
+  Button, Form, Grid, Search,
 } from 'semantic-ui-react';
 
 import Footer from '../Footer';
 import Header from '../Header';
 
 import sport from '../../../datas/sports';
-
+// import listLocation from '../../../datas/location.json';
 import './style.scss';
 
 function CreateActivity() {
@@ -27,21 +28,73 @@ function CreateActivity() {
 
   const user_id = parseInt(localStorage.getItem('userId'));
 
-  React.useEffect(() => {
-    axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/')
-      .then((response) => {
-        setListLocation(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
+  React.useEffect(
+    () => {
+      axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/')
+        .then((response) => {
+          setListLocation(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      return () => {
+        clearTimeout(timeoutRef.current);
+      };
+    },
+    [],
+  );
+
+  const initialState = {
+    loading: false,
+    results: [],
+    value: '',
+  };
+
+  function exampleReducer(state, action) {
+    switch (action.type) {
+      case 'CLEAN_QUERY':
+        return initialState;
+      case 'START_SEARCH':
+        return { ...state, loading: true, value: action.query };
+      case 'FINISH_SEARCH':
+        return { ...state, loading: false, results: action.results };
+      case 'UPDATE_SELECTION':
+        return { ...state, value: action.selection };
+
+      default:
+        throw new Error();
+    }
+  }
+
+  const [state, dispatch] = React.useReducer(exampleReducer, initialState);
+  const { loading, results, value } = state;
+
+  const timeoutRef = React.useRef();
+  const handleSearchChange = React.useCallback((e, data) => {
+    clearTimeout(timeoutRef.current);
+    dispatch({ type: 'START_SEARCH', query: data.value });
+
+    timeoutRef.current = setTimeout(() => {
+      if (data.value.length === 0) {
+        dispatch({ type: 'CLEAN_QUERY' });
+        return;
+      }
+
+      const re = new RegExp(_.escapeRegExp(data.value), 'i');
+      const isMatch = (result) => re.test(result.name);
+
+      dispatch({
+        type: 'FINISH_SEARCH',
+        results: _.filter(listLocation, isMatch),
       });
+    }, 300);
   }, []);
 
   const user = {
     title, user_id, sport_id, family_tag, description, locationID,
   };
 
-  console.log(listLocation);
   const handleFamily_tagChange = (e, { value }) => {
     setFamily_tag(value);
   };
@@ -76,7 +129,6 @@ function CreateActivity() {
     value: city[0],
   }));
 
-  console.log(locationID);
   return (
     <>
       <Header />
@@ -93,16 +145,19 @@ function CreateActivity() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <Form.Dropdown
-          width={12}
-          label="Ville"
-          placeholder="Sélectionner une ville"
-          fluid
-          search
-          selection
-          options={cityOptions}
-          onChange={(e, data) => setLocationId(data.value)}
-        />
+        <Grid>
+          <Grid.Column width={50}>
+            <Search
+              loading={loading}
+              placeholder="Search..."
+              onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.name })}
+              onSearchChange={handleSearchChange}
+              results={results}
+              value={value}
+            />
+          </Grid.Column>
+        </Grid>
+
         <Form.Group inline>
           <Form.Select
             label="Sport"
