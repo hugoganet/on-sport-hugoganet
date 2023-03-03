@@ -11,7 +11,6 @@ function Filtered({ ListActivities }) {
   return (
     <div className="cards">
       {
-       // eslint-disable-next-line react/destructuring-assignment
        ListActivities.map((activity) => <Card key={activity.id} {...activity} />)
       }
 
