@@ -14,7 +14,7 @@ import Footer from '../Footer';
 import Header from '../Header';
 
 import sport from '../../../datas/sports';
-// import listLocation from '../../../datas/location.json';
+
 import './style.scss';
 
 function CreateActivity() {
@@ -25,71 +25,22 @@ function CreateActivity() {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
   const [listLocation, setListLocation] = useState([]);
-
+  const [citySearch, setCitySearch] = useState('');
   const user_id = parseInt(localStorage.getItem('userId'));
 
-  React.useEffect(
-    () => {
-      axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/')
-        .then((response) => {
-          setListLocation(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  // React.useEffect(
+  //   () => {
+  //     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/')
+  //       .then((response) => {
+  //         setListLocation(response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
 
-      return () => {
-        clearTimeout(timeoutRef.current);
-      };
-    },
-    [],
-  );
-
-  const initialState = {
-    loading: false,
-    results: [],
-    value: '',
-  };
-
-  function exampleReducer(state, action) {
-    switch (action.type) {
-      case 'CLEAN_QUERY':
-        return initialState;
-      case 'START_SEARCH':
-        return { ...state, loading: true, value: action.query };
-      case 'FINISH_SEARCH':
-        return { ...state, loading: false, results: action.results };
-      case 'UPDATE_SELECTION':
-        return { ...state, value: action.selection };
-
-      default:
-        throw new Error();
-    }
-  }
-
-  const [state, dispatch] = React.useReducer(exampleReducer, initialState);
-  const { loading, results, value } = state;
-
-  const timeoutRef = React.useRef();
-  const handleSearchChange = React.useCallback((e, data) => {
-    clearTimeout(timeoutRef.current);
-    dispatch({ type: 'START_SEARCH', query: data.value });
-
-    timeoutRef.current = setTimeout(() => {
-      if (data.value.length === 0) {
-        dispatch({ type: 'CLEAN_QUERY' });
-        return;
-      }
-
-      const re = new RegExp(_.escapeRegExp(data.value), 'i');
-      const isMatch = (result) => re.test(result.name);
-
-      dispatch({
-        type: 'FINISH_SEARCH',
-        results: _.filter(listLocation, isMatch),
-      });
-    }, 300);
-  }, []);
+  //   },
+  //   [],
+  // );
 
   const user = {
     title, user_id, sport_id, family_tag, description, locationID,
@@ -121,7 +72,18 @@ function CreateActivity() {
       console.log(error);
     }
   };
-
+  const getCitiesFromSearch = async () => {
+    if (citySearch.length < 3) return;
+    try {
+      const response = await axios.get(`https://geo.api.gouv.fr/communes?nom=${citySearch}&fields=departement&boost=population&limit=5`);
+      console.log('response api geo autocomplete', response.data);
+      setListLocation(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    console.log('search > 3');
+    // appel API
+  };
   const cities = [...new Set(listLocation.map((item) => [item.id, item.name]))];
   const cityOptions = cities.map((city) => ({
     key: city[0],
@@ -145,18 +107,40 @@ function CreateActivity() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <Grid>
-          <Grid.Column width={50}>
-            <Search
+
+        { /*          <Search
               loading={loading}
               placeholder="Search..."
-              onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.name })}
+              onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })}
               onSearchChange={handleSearchChange}
+              // onKeyUp={() => console.log('keyUp')}
               results={results}
               value={value}
-            />
-          </Grid.Column>
-        </Grid>
+  /> */}
+        <div className="autocomplete__container">
+          <input type="search" onKeyUp={getCitiesFromSearch} onChange={(e) => setCitySearch(e.target.value)} value={citySearch} className="autocomplete__input" />
+          <ul className="autocomplete__ul">
+            {/* liste des villes qui vont s'afficher */}
+            {
+              listLocation[0] && listLocation.map((location) => (
+                <li
+                  data-id={location.code}
+                  className="autocomplete__li"
+                  key={location.cod}
+                  onClick={(event) => {
+                    setCitySearch(location.nom);
+                    setLocationId(location.code);
+                    setListLocation([]);
+                  }}
+                >
+
+                  {location.nom}
+
+                </li>
+              ))
+            }
+          </ul>
+        </div>
 
         <Form.Group inline>
           <Form.Select
