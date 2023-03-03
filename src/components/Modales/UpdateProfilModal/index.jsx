@@ -71,7 +71,7 @@ function UpdateProfilModal(props) {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        data: updatedData,
+        data: form,
       });
       // eslint-disable-next-line no-console
       console.log(response.data);
@@ -118,7 +118,7 @@ function UpdateProfilModal(props) {
             value={age}
             onChange={(event) => setAge(event.target.value)}
           />
-          <Form.Dropdown
+          {/* <Form.Dropdown
             width={12}
             label="Ville"
             placeholder="Sélectionner une ville"
@@ -127,7 +127,7 @@ function UpdateProfilModal(props) {
             selection
             options={cityOptions}
             onChange={(e, data) => setLocationId(data.value)}
-          />
+          /> */}
           <label className="UpdateProfilModal__form--label" htmlFor="sports">Sports pratiqués</label>
           <select
             className="UpdateProfilModal__form--input"

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 
-import logo from '../../../../assets/OnSport_logo.png';
 import './style.scss';
 
 function ProfilDetails({ loggedUser }) {
@@ -19,7 +18,14 @@ function ProfilDetails({ loggedUser }) {
 
   return (
     <div className="ProfilDetails">
-      <p className="ProfilDetails__location">📍{loggedUser.locationName} - {loggedUser.locationDepartment}</p>
+      <p className="ProfilDetails__location">
+        📍
+        {loggedUser.locationName}
+        {' '}
+        -
+        {' '}
+        {loggedUser.locationDepartment}
+      </p>
       <p className="ProfilDetails__age">
         AGE :
         {' '}
@@ -37,9 +43,9 @@ function ProfilDetails({ loggedUser }) {
         <div className="ProfilDetails__practiceSports__div">
           <h2 className="ProfilDetails__practiceSports__div--title">Sports pratiqués</h2>
           <div className="ProfilDetails__practiceSports__div--div">
-            <img className="ProfilDetails__practiceSports__div--img" src={logo} alt="icon" />
-            <img className="ProfilDetails__practiceSports__div--img" src={logo} alt="icon" />
-            <img className="ProfilDetails__practiceSports__div--img" src={logo} alt="icon" />
+            {loggedUser.sports.map((sport) => (
+              <img key={sport.id} className="ProfilDetails__practiceSports__div--img" src={sport.image_color} alt={sport.name} />
+            ))}
           </div>
         </div>
       </section>
@@ -56,7 +62,16 @@ ProfilDetails.propTypes = {
     firstname: PropTypes.string.isRequired,
     lastname: PropTypes.string.isRequired,
     location_id: PropTypes.number,
+    locationName: PropTypes.string,
+    locationDepartment: PropTypes.string,
     login: PropTypes.string.isRequired,
+    sports: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        image_color: PropTypes.string,
+      }),
+    ),
     ListActivities: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
