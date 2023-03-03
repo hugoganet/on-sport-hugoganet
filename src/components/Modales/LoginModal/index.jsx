@@ -58,7 +58,7 @@ function LoginModal(props) {
     });
     // eslint-disable-next-line no-console
     if (response.status === 200) {
-      console.log('connexion réussie - token enregistré - userId enregistré');
+      console.log(`connexion réussie - token enregistré : ${response.data.tokenUser.token}- userId enregistré : ${response.data.id}`);
       localStorage.setItem('token', response.data.tokenUser.token);
       localStorage.setItem('userId', response.data.id);
     }
