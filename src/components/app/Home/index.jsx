@@ -66,29 +66,39 @@ const departmentOptions = departmentList.map((elem) => ({
     };
     const sportsSearched = FilterActivities(UnFilteredList, filters);
     setFilteredSports(sportsSearched);
+if (value.length === 0 && filteredDepartments.length !== 0) {
+  setListActivities(filteredDepartments);
+  return;
+}
     if (filteredDepartments.length === 0) {
       setListActivities(sportsSearched);
     } else {
  const filteredActivities = [
-      ...new Set([...filteredSports, ...filteredDepartments].map((activity) => activity.id)),
-    ].map((id) => [...filteredSports, ...filteredDepartments].find((activity) => activity.id === id));
+      ...new Set([...sportsSearched, ...filteredDepartments].map((activity) => activity.id)),
+    ].map((id) => [...sportsSearched, ...filteredDepartments].find((activity) => activity.id === id));
     setListActivities(filteredActivities);
 }
   };
 
   const handleSelectDepartement = (e, { value }) => {
     // eslint-disable-next-line max-len
-
-    const filteredDept = UnFilteredList.filter((dpt) => dpt.locationDepartment === (value));
+    const filters = {
+      locationDepartment: value,
+    };
+    const filteredDept = FilterActivities(UnFilteredList, filters);
     setFilteredDepartments(filteredDept);
-
-    if (filteredSports.length !== 0) {
-      const filteredActivities = [
-        ...new Set([...filteredSports, ...filteredDepartments].map((activity) => activity.id)),
-      ].map((id) => [...filteredSports, ...filteredDepartments].find((activity) => activity.id === id));
-      setListActivities(filteredActivities);
+    if (value.length === 0 && filteredSports.length !== 0) {
+      setListActivities(filteredSports);
+      return;
     }
-    setListActivities(filteredDept);
+    if (filteredSports.length === 0) {
+      setListActivities(filteredDept);
+    } else {
+ const filteredActivities = [
+      ...new Set([...filteredSports, ...filteredDept].map((activity) => activity.id)),
+    ].map((id) => [...filteredSports, ...filteredDept].find((activity) => activity.id === id));
+    setListActivities(filteredActivities);
+    }
  };
 
   return (
@@ -143,6 +153,7 @@ const departmentOptions = departmentList.map((elem) => ({
           <Form.Select
             placeholder="Sélectionner un département"
             fluid
+            multiple
             options={departmentOptions}
             // eslint-disable-next-line react/jsx-no-bind
             onChange={handleSelectDepartement.bind(this)}
