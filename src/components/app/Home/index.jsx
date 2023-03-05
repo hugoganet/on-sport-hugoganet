@@ -100,75 +100,72 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
     setListActivities(filteredActivities);
     }
  };
+   return (
 
-  return (
-    <div className="Home">
+     <div className="Home">
 
-      <Header />
-      <div className="bg">
-        <img src={bg} alt="background" />
-        {/* <p className="bg-title1 animate__animated animate__backInRight" >
-      Tu es sportif et tu veux continuer à t'entrainer quand tu pars en vacances ?</p>
-      <p className="bg-title2">Tu es veux partager tes expériences
-       sportives à la communauté de OnSporters ?</p> */}
-      </div>
-      <div className="steps_container">
-        <div className="steps">
-          <Grid columns={3}>
-            <Grid.Row>
-              <Grid.Column>
-                <Segment padded>
-                  <Label attached="top" color="orange">INSCRIS-TOI</Label>
-                  <Image src={Step1} />
-                </Segment>
-              </Grid.Column>
-              <Grid.Column>
-                <Segment padded>
-                  <Label attached="bottom" color="orange">INSPIRE TOI DES EXPERIENCES DES AUTRES UTILISATEURS POUR PRATIQUER TES SPORTS FAVORIS</Label>
-                  <Image src={Step2} />
-                </Segment>
-              </Grid.Column>
-              <Grid.Column>
-                <Segment padded>
-                  <Label attached="top right" color="orange">PARTAGE A TON TOUR TES ENTRAINEMENTS</Label>
-                  <Image src={Step3} />
-                </Segment>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </div>
-      </div>
+       <Header />
+       <div className="bg">
+         <img src={bg} alt="background" />
+       </div>
 
-      <Form className="search_form">
-        <h1 className="">Rechercher des activités</h1>
-        <Form.Group widths="equal">
-          <Form.Select
-            placeholder="Sélectionner un ou plusieurs sports"
-            fluid
-            multiple
-            options={sportsList}
+       <div className="steps_container">
+         <div className="steps">
+           <Grid columns={3}>
+             <Grid.Row>
+               <Grid.Column>
+                 <Segment padded>
+                   <Label attached="top" color="orange">INSCRIS-TOI</Label>
+                   <Image src={Step1} />
+                 </Segment>
+               </Grid.Column>
+               <Grid.Column>
+                 <Segment padded>
+                   <Label attached="bottom" color="orange">INSPIRE TOI DES EXPERIENCES DES AUTRES UTILISATEURS POUR PRATIQUER TES SPORTS FAVORIS</Label>
+                   <Image src={Step2} />
+                 </Segment>
+               </Grid.Column>
+               <Grid.Column>
+                 <Segment padded>
+                   <Label attached="top right" color="orange">PARTAGE A TON TOUR TES ENTRAINEMENTS</Label>
+                   <Image src={Step3} />
+                 </Segment>
+               </Grid.Column>
+             </Grid.Row>
+           </Grid>
+         </div>
+       </div>
+
+       <Form className="search_form">
+         <h1 className="">Rechercher des activités</h1>
+         <Form.Group widths="equal">
+           <Form.Select
+             placeholder="Sélectionner un ou plusieurs sports"
+             fluid
+             multiple
+             options={sportsList}
             // eslint-disable-next-line react/jsx-no-bind
-            onChange={handleSelectSport.bind(this)}
-          />
-          <Form.Select
-            placeholder="Sélectionner un département"
-            fluid
-            multiple
-            options={departmentOptions}
+             onChange={handleSelectSport.bind(this)}
+           />
+           <Form.Select
+             placeholder="Sélectionner un département"
+             fluid
+             multiple
+             options={departmentOptions}
             // eslint-disable-next-line react/jsx-no-bind
-            onChange={handleSelectDepartement.bind(this)}
-          />
-        </Form.Group>
-      </Form>
-      <Filtered ListActivities={ListActivities} />
-      <h1>
-        {' '}
-        {userId}
-        {token}
-      </h1>
-      <Footer />
-    </div>
-  );
+             onChange={handleSelectDepartement.bind(this)}
+           />
+         </Form.Group>
+       </Form>
+       <Filtered ListActivities={ListActivities} />
+       <h1>
+         {' '}
+         {userId}
+         {token}
+       </h1>
+       <Footer />
+     </div>
+   );
 }
 
 export default Home;

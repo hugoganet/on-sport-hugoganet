@@ -6,16 +6,23 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import tag_image from '../../../../assets/family_tag.png';
-
+import Unauthorized from '../../../Modales/Unauthorized';
 import sports from '../../../../datas/sports';
 
 function Card({
-  title, sportID, family_tag, id, locationName, locationDepartment
+  title, sportID, family_tag, id, locationName, locationDepartment,
 }) {
+  const userId = localStorage.getItem('userId');
   const selectedSport = sports.find((sport) => sport.id === sportID);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => setOpen(true);
+
   // eslint-disable-next-line no-console
   return (
+
     <div className="card">
+      {open && <Unauthorized open={open} setOpen={setOpen} />}
       <img className="card-bg" src={`${selectedSport.bg}`} alt="" />
       <div className="card-bk" style={{ background: `${selectedSport.color}88` }} />
       <div className="card-logo">
@@ -34,8 +41,13 @@ function Card({
         <p>{locationName}</p>
         <p>{locationDepartment}</p>
       </div>
-      <NavLink to={`/activity/${id}`} className="card-btn" style={{ color: `${selectedSport.color}` }}>En savoir +</NavLink>
+      {userId ? <NavLink to={`/activity/${id}`} className="card-btn" style={{ color: `${selectedSport.color}` }}>En savoir plus</NavLink>
+        // eslint-disable-next-line react/button-has-type
+        : <button className="card-btn" style={{ color: `${selectedSport.color}` }} onClick={handleClick}>En savoir plus</button>}
+
+      {' '}
     </div>
+
   );
 }
 
@@ -44,6 +56,8 @@ Card.propTypes = {
   sportID: Proptypes.number.isRequired,
   family_tag: Proptypes.bool.isRequired,
   id: Proptypes.number.isRequired,
+  locationName: Proptypes.string.isRequired,
+  locationDepartment: Proptypes.string.isRequired,
 };
 
 export default Card;

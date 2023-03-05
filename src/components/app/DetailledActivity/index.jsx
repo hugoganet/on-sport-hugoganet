@@ -8,7 +8,6 @@ import Footer from '../Footer';
 import Header from '../Header';
 import Carousel from './Carrousel/carousel';
 import Comments from './Comments/index';
-import Annotation from './Comments/Comment';
 
 // import Filtered from '../FilteredActivities';
 
