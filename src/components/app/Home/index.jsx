@@ -64,7 +64,7 @@ const departmentOptions = departmentList.map((elem) => ({
      const filters = {
       sportName: value,
     };
-    const sportsSearched = FilterActivities(UnFilteredList, filters);
+    let sportsSearched = FilterActivities(UnFilteredList, filters);
     setFilteredSports(sportsSearched);
 if (value.length === 0 && filteredDepartments.length !== 0) {
   setListActivities(filteredDepartments);
@@ -73,10 +73,11 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
     if (filteredDepartments.length === 0) {
       setListActivities(sportsSearched);
     } else {
- const filteredActivities = [
-      ...new Set([...sportsSearched, ...filteredDepartments].map((activity) => activity.id)),
-    ].map((id) => [...sportsSearched, ...filteredDepartments].find((activity) => activity.id === id));
-    setListActivities(filteredActivities);
+     sportsSearched = FilterActivities(filteredDepartments, filters);
+      //  const filteredActivities =
+    //   [...new Set([...sportsSearched, ...filteredDepartments].map((activity) => activity.id)),
+    // ].map((id) => [...sportsSearched, ...filteredDepartments].find((activity) => activity.id === id));
+    setListActivities(sportsSearched);
 }
   };
 
@@ -85,7 +86,7 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
     const filters = {
       locationDepartment: value,
     };
-    const filteredDept = FilterActivities(UnFilteredList, filters);
+    let filteredDept = FilterActivities(UnFilteredList, filters);
     setFilteredDepartments(filteredDept);
     if (value.length === 0 && filteredSports.length !== 0) {
       setListActivities(filteredSports);
@@ -94,10 +95,11 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
     if (filteredSports.length === 0) {
       setListActivities(filteredDept);
     } else {
- const filteredActivities = [
-      ...new Set([...filteredSports, ...filteredDept].map((activity) => activity.id)),
-    ].map((id) => [...filteredSports, ...filteredDept].find((activity) => activity.id === id));
-    setListActivities(filteredActivities);
+      filteredDept = FilterActivities(filteredSports, filters);
+//  const filteredActivities = [
+//       ...new Set([...filteredSports, ...filteredDept].map((activity) => activity.id)),
+//     ].map((id) => [...filteredSports, ...filteredDept].find((activity) => activity.id === id));
+    setListActivities(filteredDept);
     }
  };
    return (
