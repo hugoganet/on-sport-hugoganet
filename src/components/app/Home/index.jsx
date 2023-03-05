@@ -30,6 +30,7 @@ function Home() {
   const [listLocation, setListLocation] = React.useState([]);
   const [filteredSports, setFilteredSports] = React.useState([]);
   const [filteredDepartments, setFilteredDepartments] = React.useState([]);
+  const [operator, setOperator] = React.useState('');
   const userId = localStorage.getItem('userId');
   const token = localStorage.getItem('token');
   React.useEffect(
@@ -52,6 +53,9 @@ function Home() {
       }),
    [],
 );
+
+const handleChange = (e, { value }) => setOperator(value);
+
 const departmentList = [...new Set(listLocation.map((item) => item.department))];
 
 const departmentOptions = departmentList.map((elem) => ({
@@ -72,13 +76,15 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
 }
     if (filteredDepartments.length === 0) {
       setListActivities(sportsSearched);
-    } else {
-     sportsSearched = FilterActivities(filteredDepartments, filters);
-      //  const filteredActivities =
-    //   [...new Set([...sportsSearched, ...filteredDepartments].map((activity) => activity.id)),
-    // ].map((id) => [...sportsSearched, ...filteredDepartments].find((activity) => activity.id === id));
-    setListActivities(sportsSearched);
-}
+    } else if (operator === 'AND') {
+      sportsSearched = FilterActivities(filteredDepartments, filters);
+      setListActivities(sportsSearched);
+     } else {
+      sportsSearched = FilterActivities(UnFilteredList, filters);
+ const filteredActivities = [...new Set([...sportsSearched, ...filteredDepartments].map((activity) => activity.id)),
+    ].map((id) => [...sportsSearched, ...filteredDepartments].find((activity) => activity.id === id));
+    setListActivities(filteredActivities);
+     }
   };
 
   const handleSelectDepartement = (e, { value }) => {
@@ -94,13 +100,16 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
     }
     if (filteredSports.length === 0) {
       setListActivities(filteredDept);
-    } else {
-      filteredDept = FilterActivities(filteredSports, filters);
-//  const filteredActivities = [
-//       ...new Set([...filteredSports, ...filteredDept].map((activity) => activity.id)),
-//     ].map((id) => [...filteredSports, ...filteredDept].find((activity) => activity.id === id));
-    setListActivities(filteredDept);
-    }
+    } else if (operator === 'AND') {
+        filteredDept = FilterActivities(filteredSports, filters);
+        setListActivities(filteredDept);
+        } else {
+          filteredDept = FilterActivities(UnFilteredList, filters);
+ const filteredActivities = [
+      ...new Set([...filteredSports, ...filteredDept].map((activity) => activity.id)),
+    ].map((id) => [...filteredSports, ...filteredDept].find((activity) => activity.id === id));
+    setListActivities(filteredActivities);
+        }
  };
    return (
 
@@ -140,8 +149,9 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
 
        <Form className="search_form">
          <h1 className="">Rechercher des activités</h1>
-         <Form.Group widths="equal">
+         <Form.Group>
            <Form.Select
+             width={8}
              placeholder="Sélectionner un ou plusieurs sports"
              fluid
              multiple
@@ -149,7 +159,22 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
             // eslint-disable-next-line react/jsx-no-bind
              onChange={handleSelectSport.bind(this)}
            />
+           <Form.Radio
+             width={1}
+             label="ET"
+             value="AND"
+             checked={operator === 'AND'}
+             onChange={handleChange}
+           />
+           <Form.Radio
+             width={1}
+             label="OU"
+             value="OR"
+             checked={operator === 'OR'}
+             onChange={handleChange}
+           />
            <Form.Select
+             width={8}
              placeholder="Sélectionner un département"
              fluid
              multiple
