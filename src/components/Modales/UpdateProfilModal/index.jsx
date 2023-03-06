@@ -25,6 +25,7 @@ function UpdateProfilModal(props) {
   const [listLocation, setListLocation] = React.useState([]);
   const [image, setImage] = useState(null);
   const [citySearch, setCitySearch] = useState('');
+  const userId = localStorage.getItem('userId');
 
   React.useEffect(() => axios.get(
     'http://ronaldfk-server.eddi.cloud:8080/api/location/',
@@ -46,12 +47,12 @@ function UpdateProfilModal(props) {
     console.log('search > 3');
     // appel API
   };
-  const cities = [...new Set(listLocation.map((item) => [item.id, item.name]))];
-  const cityOptions = cities.map((city) => ({
-    key: city[0],
-    text: city[1],
-    value: city[0],
-  }));
+  // const cities = [...new Set(listLocation.map((item) => [item.id, item.name]))];
+  // const cityOptions = cities.map((city) => ({
+  //   key: city[0],
+  //   text: city[1],
+  //   value: city[0],
+  // }));
 
   function handleChange(event) {
     const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
@@ -64,9 +65,9 @@ function UpdateProfilModal(props) {
     onClose();
 
     const updatedData = {
-      bio: event.target[0].value,
-      age,
-      sports,
+      // bio: event.target[0].value,
+      bio: 'test',
+      age: 30,
       location_id: locationID,
     };
 
@@ -78,7 +79,7 @@ function UpdateProfilModal(props) {
     try {
       const response = await axios({
         method: 'PATCH',
-        url: 'http://ronaldfk-server.eddi.cloud:8080/api/user/profil/:id',
+        url: `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`,
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -148,7 +149,7 @@ function UpdateProfilModal(props) {
                     data-id={location.code}
                     className="autocomplete__li"
                     key={location.cod}
-                    onClick={(event) => {
+                    onClick={() => {
                       setCitySearch(location.nom);
                       setLocationId(location.code);
                       setListLocation([]);
@@ -163,7 +164,7 @@ function UpdateProfilModal(props) {
             </ul>
           </div>
           <label className="UpdateProfilModal__form--label" htmlFor="sports">Sports pratiqués</label>
-          <select
+          {/* <select
             className="UpdateProfilModal__form--input"
             aria-label="sports"
             type="string"
@@ -176,7 +177,7 @@ function UpdateProfilModal(props) {
             {sportsList.map((sport) => (
               <option key={sport.id} value={sport.value}>{sport.text}</option>
             ))}
-          </select>
+          </select> */}
           <h3> Ajouter une image</h3>
           <Form.Input
             type="file"
