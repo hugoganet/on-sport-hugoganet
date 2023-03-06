@@ -6,7 +6,7 @@ import {
 } from 'semantic-ui-react';
 import Footer from '../Footer';
 import Header from '../Header';
-import Carousel from './Carrousel/carousel';
+import Carousel from './Carrousel/index';
 import Comments from './Comments/index';
 
 // import Filtered from '../FilteredActivities';
@@ -15,15 +15,29 @@ import './style.scss';
 
 function DetailledActivity() {
   const activity = useParams();
-  const [activityInfo, setActivityInfo] = useState({});
-  React.useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/activity/${activity.id}`);
-      return response;
-    }
-    setActivityInfo(fetchData());
-  }, []);
+  const [activityInfo, setActivityInfo] = useState([]);
+  const [comments, setComments] = useState([]);
+  const activityId = activity.id;
 
+  React.useEffect(
+    () => {
+      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/activity/${activityId}`).then(
+        (response) => { setActivityInfo(response.data); console.log(response.data); },
+      ).catch((error) => {
+        console(error);
+      });
+
+      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/${activityId}`).then(
+        (response) => setComments(response.data),
+      ).catch((error) => {
+        console(error);
+      });
+    },
+    [],
+  );
+
+  console.log(comments);
+  console.log(activityInfo);
   return (
     <>
       <Header />
@@ -42,7 +56,7 @@ function DetailledActivity() {
         <div className="activity__description">
           <p>{activityInfo.description}</p>
         </div>
-        <Comments activityInfo={activityInfo} />
+        <Comments comments={comments} />
       </div>
 
       <div className="filteredActivities__title">
