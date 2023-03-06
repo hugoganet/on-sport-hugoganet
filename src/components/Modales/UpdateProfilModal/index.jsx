@@ -49,23 +49,20 @@ function UpdateProfilModal(props) {
     event.preventDefault();
 
     const updatedData = {
-      bio: event.target[0].value,
+      bio,
       age,
       location_id: locationID,
     };
 
-    console.log('updatedData', updatedData);
+    // eslint-disable-next-line no-unused-vars
     const truthyFields = Object.entries(updatedData).filter(([key, value]) => value);
-    console.log('truthyFields', truthyFields);
     const filteredData = Object.fromEntries(truthyFields);
 
     const form = new FormData();
-    console.log('filtered data :', filteredData);
     form.append('jsonAsString', JSON.stringify(filteredData));
     form.append('photo', image);
 
     try {
-      console.log('on rentre dans le try', filteredData);
       const response = await axios({
         method: 'PATCH',
         url: `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`,
