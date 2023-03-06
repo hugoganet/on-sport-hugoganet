@@ -1,12 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import {
   Form, Button, Comment, Header,
 } from 'semantic-ui-react';
 import Annotation from './Comment';
 
 function Comments({ comments }) {
-  console.log(comments);
+  const userId = localStorage.getItem('userId');
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const data = e.target.parentNode[0].value;
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    };
+    try {
+      const response = await axios({
+        method: 'post',
+        url: `http://ronaldfk-server.eddi.cloud:8080//api/comment/activity/${userId}`,
+        headers: {
+          headers,
+        },
+        data,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="activity__comments">
 
@@ -22,7 +46,7 @@ function Comments({ comments }) {
 
         <Form reply className="activity__add__comment">
           <Form.TextArea placeholder="Ajouter un commentaire" />
-          <Button content="Commenter" labelPosition="right" icon="send" />
+          <Button content="Commenter" labelPosition="right" icon="send" onClick={handleClick} />
         </Form>
       </Comment.Group>
     </div>
@@ -30,22 +54,6 @@ function Comments({ comments }) {
 }
 
 Comments.propTypes = {
-  // activityInfo: PropTypes.shape({
-  //   id: PropTypes.number,
-  //   title: PropTypes.string,
-  //   note: PropTypes.number,
-  //   description: PropTypes.string,
-  //   photo: PropTypes.string,
-  //   family_tag: PropTypes.bool,
-  //   // user_id: PropTypes.number,
-  //   // user_firstname: PropTypes.string,
-  //   sportID: PropTypes.number,
-  //   sportName: PropTypes.string,
-  //   location_id: PropTypes.number,
-  //   locationName: PropTypes.string,
-  //   locationPostcode: PropTypes.string,
-  //   locationDepartment: PropTypes.string,
-  // }).isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

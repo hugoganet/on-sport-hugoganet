@@ -12,6 +12,7 @@ import sports from '../../../../datas/sports';
 function Card({
   title, sportID, family_tag, id, locationName, locationDepartment,
 }) {
+  console.log(family_tag);
   const userId = localStorage.getItem('userId');
   const selectedSport = sports.find((sport) => sport.id === sportID);
   const [open, setOpen] = React.useState(false);
@@ -29,7 +30,7 @@ function Card({
         <img src={`${selectedSport.image_color}`} alt="" />
       </div>
       <div className="card-family">
-        {family_tag === 'true' ? <img src={tag_image} alt="" />
+        {family_tag ? <img src={tag_image} alt="" />
           : ''}
       </div>
       {/* <div className="family_tag1" style={{ color: `${color}` }}>SORTIE</div>

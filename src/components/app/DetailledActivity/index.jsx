@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-unused-expressions */
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -9,7 +11,8 @@ import Header from '../Header';
 import Carousel from './Carrousel/index';
 import Comments from './Comments/index';
 
-// import Filtered from '../FilteredActivities';
+import Filtered from '../FilteredActivities';
+import map from '../../../assets/map.gif';
 
 import './style.scss';
 
@@ -17,12 +20,15 @@ function DetailledActivity() {
   const activity = useParams();
   const [activityInfo, setActivityInfo] = useState([]);
   const [comments, setComments] = useState([]);
+  const [ListActivities, setListActivities] = useState([]);
+  const [ListActivitiesDpt, setListActivitiesDpt] = useState([]);
+  const [ListActivitiesSport, setListActivitiesSport] = useState([]);
   const activityId = activity.id;
 
   React.useEffect(
     () => {
       axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/activity/${activityId}`).then(
-        (response) => { setActivityInfo(response.data); console.log(response.data); },
+        (response) => { setActivityInfo(response.data); },
       ).catch((error) => {
         console(error);
       });
@@ -32,12 +38,27 @@ function DetailledActivity() {
       ).catch((error) => {
         console(error);
       });
+      axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }).then(
+        (response) => { setListActivities(response.data); },
+      ).catch((error) => {
+        console(error);
+      });
     },
     [],
   );
 
-  console.log(comments);
-  console.log(activityInfo);
+  React.useEffect(() => {
+    const filterDepartment = ListActivities.filter((loc) => loc.locationDepartment === activityInfo.locationDepartment);
+    setListActivitiesDpt(filterDepartment);
+    const filterSport = ListActivities.filter((sport) => sport.sportName === activityInfo.sportName);
+    setListActivitiesSport(filterSport);
+  }, [ListActivities, activityInfo]);
+
   return (
     <>
       <Header />
@@ -59,10 +80,13 @@ function DetailledActivity() {
         <Comments comments={comments} />
       </div>
 
-      <div className="filteredActivities__title">
-        <h1>Autres activités qui pourraient vous intéresser</h1>
+      <div className="filteredActivities">
+        <span className="filteredActivities__title"><img src={map} alt="background" />AUTRES ACTIVITÉS AYANT LIEU DANS LE MÊME DÉPARTEMENT</span>
+        <Filtered ListActivities={ListActivitiesDpt} />
+        <span className="filteredActivities__title">AUTRES ACTIVITÉS RELATIVES AU MÊME SPORT</span>
+        <Filtered ListActivities={ListActivitiesSport} />
       </div>
-      {/* <Filtered /> */}
+
       <Footer />
     </>
   );

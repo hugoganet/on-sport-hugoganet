@@ -94,39 +94,13 @@
   font-size: 0.9rem;
 }
 
-.family_tag1{
-  font-size: 0.8em;
-  text-shadow: 2px 2px 2px rgb(255, 255, 255);
-  bottom: 88%;
-  left:75%;
+.card-family {
   position:absolute;
-  rotate:30deg;
-  background-color: #fff;
-  border-radius:5px;
- 
- 
-}
-
-
-
-.family_tag2{
-  font-size: 0.8em;
-  text-shadow: 2px 2px 2px rgb(255, 255, 255);
- bottom: 82%;
- left:75%;
- position:absolute;
- rotate:30deg;
- background-color: #fff;
-  border-radius:5px;
- 
-  
+  left: 30px;
+  top:0px;
+  }
  
 }
-}
-
-
-
-
 
 @media (min-width: 768px) and (max-width: 1365px) {
  
@@ -217,35 +191,15 @@
   line-height:20px;
   font-size: 1.2rem;
 }
-.family_tag1{
-  font-size: 0.9em;
-  text-shadow: 2px 2px 2px rgb(255, 255, 255);
-  bottom: 88%;
-  left:75%;
+
+.card-family {
   position:absolute;
-  rotate:30deg;
-  background-color: #fff;
-  border-radius:5px;
- 
+  left: 30px;
+  top:0px;
+  }
  
 }
 
-
-
-.family_tag2{
-  font-size: 0.9em;
-  text-shadow: 2px 2px 2px rgb(255, 255, 255);
- bottom: 82%;
- left:75%;
- position:absolute;
- rotate:30deg;
- background-color: #fff;
-  border-radius:5px;
- 
-  
- 
-}
-}
 
 @media (min-width: 1366px) {
  
@@ -337,29 +291,6 @@
   font-size: 1.2rem;
 }
 
-.family_tag1{
-  font-size: 1.3em;
-  text-shadow: 2px 2px 2px rgb(255, 255, 255);
-  bottom: 88%;
-  left:75%;
-  position:absolute;
-  rotate:30deg;
-  background-color: #fff;
-  border-radius:5px;
- 
- 
-}
-
-.family_tag2{
-  font-size: 1.3em;
-  text-shadow: 2px 2px 2px rgb(255, 255, 255);
- bottom: 82%;
- left:75%;
- position:absolute;
- rotate:30deg;
- background-color: #fff;
- border-radius:5px;
-}
  .card-family {
   position:absolute;
   left: 30px;
