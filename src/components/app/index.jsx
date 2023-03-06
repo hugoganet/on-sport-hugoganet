@@ -15,17 +15,11 @@ import Contact from './Contact';
 import About from './About';
 
 function App() {
-  const handleLoginSuccess = (userId) => {
-    localStorage.setItem('userId', userId);
-    // eslint-disable-next-line no-console
-    console.log(`App userId: ${typeof userId} ${userId}`);
-  };
-
   return (
     <div className="App">
 
       <Routes>
-        <Route path="/" element={<Home onLoginSuccess={handleLoginSuccess} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/profile/:id" element={<ProfilPage />} />
         <Route path="/activity" element={<CreateActivity />} />
         {/* <Route path="/activity/:id" elment={<DetailledActivity />} /> */}
