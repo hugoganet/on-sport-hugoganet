@@ -25,7 +25,7 @@ function CreateActivity() {
   const [location_id, setLocationId] = useState('');
   const [family_tag, setFamily_tag] = useState(null);
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
   const [listLocation, setListLocation] = useState([]);
   const [citySearch, setCitySearch] = useState('');
   const user_id = parseInt(localStorage.getItem('userId'), 10);
@@ -199,7 +199,7 @@ console.log(sport);
               type="file"
               multiple
               accept=".jpg, .png, .jpeg"
-              onChange={(e) => setImage(e.target.files[0])}
+              onChange={(e) => setImage(e.target.files)}
             />
             <Button type="submit" primary>
               Valider
