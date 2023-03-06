@@ -15,6 +15,10 @@ import Contact from './Contact';
 import About from './About';
 
 function App() {
+  React.useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   return (
     <div className="App">
 
