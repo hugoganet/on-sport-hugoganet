@@ -31,8 +31,6 @@ function Home() {
   const [filteredSports, setFilteredSports] = React.useState([]);
   const [filteredDepartments, setFilteredDepartments] = React.useState([]);
   const [operator, setOperator] = React.useState('');
-  const userId = localStorage.getItem('userId');
-  const token = localStorage.getItem('token');
   React.useEffect(
 () => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
@@ -185,11 +183,6 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
          </Form.Group>
        </Form>
        <Filtered ListActivities={ListActivities} />
-       <h1>
-         {' '}
-         {userId}
-         {token}
-       </h1>
        <Footer />
      </div>
    );
