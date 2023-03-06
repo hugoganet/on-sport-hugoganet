@@ -19,7 +19,6 @@ function ProfilPage() {
         console(error);
       });
   }, []);
-  console.log(`ProfilPage UserInfos: ${UserInfos}`);
 
   return (
     <div className="ProfilPage">

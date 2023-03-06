@@ -34,44 +34,17 @@ function ProfilHeader({ loggedUser: { firstname, lastname } }) {
 
 ProfilHeader.propTypes = {
   loggedUser: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    age: PropTypes.number,
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.oneOf([undefined]),
+    ]),
+    age: PropTypes.string,
     bio: PropTypes.string,
-    email: PropTypes.string.isRequired,
-    firstname: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
     location_id: PropTypes.number,
-    login: PropTypes.string.isRequired,
-    ListActivities: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        note: PropTypes.number,
-        description: PropTypes.string,
-        photo: PropTypes.string,
-        family_tag: PropTypes.bool,
-        user_id: PropTypes.number,
-        user_firstname: PropTypes.string,
-        sportID: PropTypes.number,
-        sportName: PropTypes.string,
-        location_id: PropTypes.number,
-        locationName: PropTypes.string,
-        locationPostcode: PropTypes.number,
-        locationDepartment: PropTypes.string,
-      }).isRequired,
-    ),
-  }),
-};
-ProfilHeader.propTypes = {
-  loggedUser: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    age: PropTypes.number,
-    bio: PropTypes.string,
-    email: PropTypes.string.isRequired,
-    firstname: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
-    location_id: PropTypes.number,
-    login: PropTypes.string.isRequired,
+    login: PropTypes.string,
     ListActivities: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
@@ -93,13 +66,6 @@ ProfilHeader.propTypes = {
   }),
 };
 
-ProfilHeader.defaultProps = {
-  loggedUser: {
-    age: '',
-    location_id: '',
-    bio: '',
-  },
-};
 ProfilHeader.defaultProps = {
   loggedUser: {
     age: '',

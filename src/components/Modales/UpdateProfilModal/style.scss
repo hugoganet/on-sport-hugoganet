@@ -15,6 +15,10 @@
   font-size: 2rem;
   color:black;
 
+  &--hide{
+    display: none;
+  }
+
   &__content{
     z-index:20;
     display: flex;
@@ -58,4 +62,7 @@
     }
   }
 
+}
+.close{
+  display: none;
 }
