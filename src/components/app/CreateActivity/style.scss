@@ -2,48 +2,47 @@
 
 
 .container {
+    &__row {
     width: 100%;
-}
-
-.container__image {
     background-color: v.$color-third;
+    border-radius: 1rem;
+    };
+    &__image {
+        background-color: v.$color-third;
+        border-radius: 1rem;
+    };
+    &__form {
+    background-color: v.$color-first;
+    width: 100%;
+    border-radius: 1rem;
+    };
 }
 
-.container__form {
-background-color: v.$color-first;
+.create__activity{
+    &__title {
+        display: flex;
+        justify-content: center;
+    // margin-bottom: 3rem;
+}
+    &__form__titles{
+        color: v.$color-white;
+    }
 }
 
-// .create__activity__form {
-// display: flex;
-// flex-direction: column;
-// align-items: center;
-// // margin: 2rem 20rem;
-// border-top-right-radius: 1rem;
-// border-bottom-right-radius: 1rem;
-
-// }
-
-.create__activity__title {
-    margin-bottom: 3rem;
-}
-
-.button {
-    margin: 2rem;
-}
 
 .autocomplete{
     &__container{
-        width: 50%;
+        // width: 100%;
         cursor: pointer;
-        position: relative;
-        margin: 0 auto;
+        // position: relative;
+        // margin: 0 auto;
         z-index: 2;
     };
     &__input{
-        width: 50%;
+        // width: 50%;
         border-radius: none;
-        padding: 1rem;
-        margin:  1rem;
+        // padding: 1rem;
+        // margin:  1rem;
     };
     &__ul{
         width: 100%;
@@ -60,4 +59,21 @@ background-color: v.$color-first;
         list-style: none;
     }
 
+}
+
+.ui.form label {
+    color: v.$color-white
+}
+
+.ui.form .field>label {
+    font-size: 1.2rem;
+    color: v.$color-white;
+}
+
+// h2, h3 {
+//     color: v.$color-white;
+// }
+
+.ui.celled.grid>.row {
+    box-shadow: none;
 }
