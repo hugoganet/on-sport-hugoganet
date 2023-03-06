@@ -81,13 +81,11 @@ function CreateActivity() {
       });
       console.log(response.data);
       setSuccessMessage("L'activité a été créée avec succès !");
-      setErrorMessage("");
-      // formSub ? <Message success header="Activité créée" content="Votre activité a été créée avec succès !" /> : <Message error header="Erreur" content={errorMessage} />;
-
+      setErrorMessage('');
     } catch (error) {
       // console.log(error);
       setErrorMessage('Une erreur est survenue lors de la création de la création d\'activité');
-      setSuccessMessage("");
+      setSuccessMessage('');
     }
 
     // setTimeout(() => {
@@ -115,9 +113,9 @@ function CreateActivity() {
       <h1 className="create__activity__title">Créer une activité</h1>
       <Grid
         columns={2}
-        inline
-        celled
         // inline
+        celled
+        stackable
         className="container"
       >
         {/* <Grid.Row className="container__row"> */}
@@ -125,7 +123,7 @@ function CreateActivity() {
           stretched
             // width={4}
           className="container__image"
-          only="large screen"
+          only="computer tablet"
         >
           <Image src={logo} />
         </Grid.Column>
@@ -134,8 +132,6 @@ function CreateActivity() {
           className="container__form"
         >
           <Form
-            // success={formSub}
-            // error={!!errorMessage}
             size="large"
             className="create__activity__form"
             onSubmit={handleSubmit}
@@ -146,6 +142,7 @@ function CreateActivity() {
               placeholder="Titre"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
 
             { /*          <Search
@@ -167,6 +164,7 @@ function CreateActivity() {
                 onChange={(e) => setCitySearch(e.target.value)}
                 value={citySearch}
                 className="autocomplete__input"
+                required
               />
               <ul className="autocomplete__ul">
                 {/* liste des villes qui vont s'afficher */}
@@ -198,9 +196,10 @@ function CreateActivity() {
               value={sport.value}
               // onChange={(e) => setSportId(e.target.id)}
               onChange={handleSelectSport.bind(this)}
+              required
             />
-            <h3 className="create__activity__form__titles">Cette activité peut-elle se faire en famille ?</h3>
-            <Form.Group inline>
+            <h3 className="create__activity__form__titles" required>Cette activité peut-elle se faire en famille ?</h3>
+            <Form.Field required inline>
               <Form.Radio
                 label="Oui"
                 value="true"
@@ -213,12 +212,13 @@ function CreateActivity() {
                 checked={family_tag === 'false'}
                 onChange={handleFamily_tagChange}
               />
-            </Form.Group>
+            </Form.Field>
             <Form.TextArea
               label="Description de l'activité"
               placeholder="Ajouter une description de l'activité"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required
             />
             <h3 className="create__activity__form__titles"> Ajouter une image</h3>
             <Form.Input
@@ -226,24 +226,26 @@ function CreateActivity() {
               multiple
               accept=".jpg, .png, .jpeg"
               onChange={(e) => setImage(e.target.files)}
+              required
             />
             <Button type="submit" primary>
               Valider
             </Button>
-            {successMessage &&
-              <Message positive>
-                <Message.Header>{successMessage}</Message.Header>
-              </Message>
-            }
-            {errorMessage &&
-              <Message negative>
-                <Message.Header>{errorMessage}</Message.Header>
-              </Message>
-            }
+            
           </Form>
         </Grid.Column>
         {/* </Grid.Row> */}
       </Grid>
+      {successMessage && (
+              <Message compact positive className="create__activity__successMessage">
+                <Message.Header>{successMessage}</Message.Header>
+              </Message>
+            )}
+            {errorMessage && (
+              <Message compact negative className="create__activity__errorMessage">
+                <Message.Header>{errorMessage}</Message.Header>
+              </Message>
+            )}
       <Footer />
     </>
   );

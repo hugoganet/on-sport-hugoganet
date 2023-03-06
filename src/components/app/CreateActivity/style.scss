@@ -22,10 +22,14 @@
     &__title {
         display: flex;
         justify-content: center;
-    // margin-bottom: 3rem;
+        color: v.$color-first;
 }
     &__form__titles{
         color: v.$color-white;
+    }
+
+    &__errorMessage {
+        background-color: #f0f;
     }
 }
 
@@ -72,6 +76,6 @@
     color: v.$color-white;
 }
 
-.ui.celled.grid>.row {
+.ui.celled.grid {
     box-shadow: none;
 }
