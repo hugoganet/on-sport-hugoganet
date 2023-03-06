@@ -8,7 +8,6 @@ import './style.scss';
 
 function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
   const userId = localStorage.getItem('userId');
-  console.log('photo', photo);
 
   return (
     <header className="ProfilHeader">

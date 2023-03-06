@@ -54,14 +54,16 @@ function UpdateProfilModal(props) {
       location_id: locationID,
     };
 
-    const truthyFields = Object.entries(updatedData).filter((value) => value);
+    console.log('updatedData', updatedData);
+    const truthyFields = Object.entries(updatedData).filter(([key, value]) => value);
+    console.log('truthyFields', truthyFields);
     const filteredData = Object.fromEntries(truthyFields);
 
     const form = new FormData();
     console.log('filtered data :', filteredData);
     form.append('jsonAsString', JSON.stringify(filteredData));
     form.append('photo', image);
-    console.log('juste avant le try');
+
     try {
       console.log('on rentre dans le try', filteredData);
       const response = await axios({
@@ -72,16 +74,11 @@ function UpdateProfilModal(props) {
         },
         data: form,
       });
-      console.log('try après la requête');
-
       // eslint-disable-next-line no-console
       console.log('response', response.data);
     } catch (error) {
-      console.log('catch');
-
       console.log(error);
     }
-
     handleUpdateProfilToggle();
   };
 
