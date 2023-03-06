@@ -7,7 +7,7 @@ import axios from 'axios';
 import FormData from 'form-data';
 
 import {
-  Button, Form, Grid, Image,
+  Button, Form, Grid, Image, Message,
 } from 'semantic-ui-react';
 import logo from '../../../assets/OnSport_logo.png';
 
@@ -27,6 +27,8 @@ function CreateActivity() {
   const [image, setImage] = useState([]);
   const [listLocation, setListLocation] = useState([]);
   const [citySearch, setCitySearch] = useState('');
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const user_id = parseInt(localStorage.getItem('userId'), 10);
 
   // React.useEffect(
@@ -78,9 +80,20 @@ function CreateActivity() {
         data: form,
       });
       console.log(response.data);
+      setSuccessMessage("L'activité a été créée avec succès !");
+      setErrorMessage("");
+      // formSub ? <Message success header="Activité créée" content="Votre activité a été créée avec succès !" /> : <Message error header="Erreur" content={errorMessage} />;
+
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      setErrorMessage('Une erreur est survenue lors de la création de la création d\'activité');
+      setSuccessMessage("");
     }
+
+    // setTimeout(() => {
+    //   setErrorMessage("");
+    //   setSuccessMessage("");
+    // }, 3000);
   };
   const getCitiesFromSearch = async () => {
     if (citySearch.length < 3) return;
@@ -89,7 +102,8 @@ function CreateActivity() {
       console.log('response api back autocomplete', response.data);
       setListLocation(response.data);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      setErrorMessage('Une erreur est survenue lors de la création de l\'activité');
     }
     console.log('search > 3');
     // appel API
@@ -101,6 +115,7 @@ function CreateActivity() {
       <h1 className="create__activity__title">Créer une activité</h1>
       <Grid
         columns={2}
+        inline
         celled
         // inline
         className="container"
@@ -119,6 +134,8 @@ function CreateActivity() {
           className="container__form"
         >
           <Form
+            // success={formSub}
+            // error={!!errorMessage}
             size="large"
             className="create__activity__form"
             onSubmit={handleSubmit}
@@ -213,6 +230,16 @@ function CreateActivity() {
             <Button type="submit" primary>
               Valider
             </Button>
+            {successMessage &&
+              <Message positive>
+                <Message.Header>{successMessage}</Message.Header>
+              </Message>
+            }
+            {errorMessage &&
+              <Message negative>
+                <Message.Header>{errorMessage}</Message.Header>
+              </Message>
+            }
           </Form>
         </Grid.Column>
         {/* </Grid.Row> */}
