@@ -12,7 +12,6 @@ function Header() {
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const userId = localStorage.getItem('userId');
-  console.log(`Header userId: ${userId}`);
 
   const handleLogout = () => {
     setShowConfirmModal(true);

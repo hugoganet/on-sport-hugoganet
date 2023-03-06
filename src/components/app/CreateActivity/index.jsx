@@ -104,54 +104,45 @@ function CreateActivity() {
         className="container"
       >
         {/* <Grid.Row className="container__row"> */}
-          <Grid.Column
-            stretched
+        <Grid.Column
+          stretched
             // width={4}
-            className="container__image"
-            only="large screen"
-          >
-            <Image src={logo} />
-          </Grid.Column>
-          <Grid.Column
+          className="container__image"
+          only="large screen"
+        >
+          <Image src={logo} />
+        </Grid.Column>
+        <Grid.Column
             // width={12}
-            className="container__form"
+          className="container__form"
+        >
+          <Form
+            size="large"
+            className="create__activity__form"
+            onSubmit={handleSubmit}
           >
-            <Form
-              size="large"
-              className="create__activity__form"
-              onSubmit={handleSubmit}
-            >
-              <Form.Input
-                fluid
-                label="Entrer le titre de l'activité"
-                placeholder="Titre"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+            <Form.Input
+              fluid
+              label="Entrer le titre de l'activité"
+              placeholder="Titre"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
 
-            { /*          <Search
-              loading={loading}
-              placeholder="Search..."
-              onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })}
-              onSearchChange={handleSearchChange}
-              // onKeyUp={() => console.log('keyUp')}
-              results={results}
-              value={value}
-  /> */}
-              <div className="autocomplete__container">
-                <Form.Input
-                  label="Entrer une ville"
-                  placeholder="Ville"
-                  type="search"
-                  icon="search"
-                  onKeyUp={getCitiesFromSearch}
-                  onChange={(e) => setCitySearch(e.target.value)}
-                  value={citySearch}
-                  className="autocomplete__input"
-                />
-                <ul className="autocomplete__ul">
-                  {/* liste des villes qui vont s'afficher */}
-                  {
+            <div className="autocomplete__container">
+              <Form.Input
+                label="Entrer une ville"
+                placeholder="Ville"
+                type="search"
+                icon="search"
+                onKeyUp={getCitiesFromSearch}
+                onChange={(e) => setCitySearch(e.target.value)}
+                value={citySearch}
+                className="autocomplete__input"
+              />
+              <ul className="autocomplete__ul">
+                {/* liste des villes qui vont s'afficher */}
+                {
                 listLocation[0] && listLocation.map((location) => (
                   <li
                     data-id={location.code}
@@ -164,53 +155,53 @@ function CreateActivity() {
                     }}
                   >
 
-                  {location.nom}
+                    {location.nom}
 
-                </li>
-              ))
+                  </li>
+                ))
             }
               </ul>
             </div>
 
-              <Form.Select
-                label="Sport"
-                placeholder="Entrer le sport"
-                options={sport}
-                onChange={(e) => setSportId(e.target.parentNode.id)}
+            <Form.Select
+              label="Sport"
+              placeholder="Entrer le sport"
+              options={sport}
+              onChange={(e) => setSportId(e.target.parentNode.id)}
+            />
+            <h3>Cette activité peut-elle se faire en famille ?</h3>
+            <Form.Group inline>
+              <Form.Radio
+                label="Oui"
+                value="true"
+                checked={family_tag === 'true'}
+                onChange={handleFamily_tagChange}
               />
-              <h3>Cette activité peut-elle se faire en famille ?</h3>
-              <Form.Group inline>
-                <Form.Radio
-                  label="Oui"
-                  value="true"
-                  checked={family_tag === 'true'}
-                  onChange={handleFamily_tagChange}
-                />
-                <Form.Radio
-                  label="Non"
-                  value="false"
-                  checked={family_tag === 'false'}
-                  onChange={handleFamily_tagChange}
-                />
-              </Form.Group>
-              <Form.TextArea
-                label="Description de l'activité"
-                placeholder="Ajouter une description de l'activité"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+              <Form.Radio
+                label="Non"
+                value="false"
+                checked={family_tag === 'false'}
+                onChange={handleFamily_tagChange}
               />
-              <h3> Ajouter une image</h3>
-              <Form.Input
-                type="file"
-                multiple
-                accept=".jpg, .png, .jpeg"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
-              <Button type="submit" primary>
-                Valider
-              </Button>
-            </Form>
-          </Grid.Column>
+            </Form.Group>
+            <Form.TextArea
+              label="Description de l'activité"
+              placeholder="Ajouter une description de l'activité"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <h3> Ajouter une image</h3>
+            <Form.Input
+              type="file"
+              multiple
+              accept=".jpg, .png, .jpeg"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+            <Button type="submit" primary>
+              Valider
+            </Button>
+          </Form>
+        </Grid.Column>
         {/* </Grid.Row> */}
       </Grid>
       <Footer />

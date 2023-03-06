@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable max-len */
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -8,9 +9,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import {
-  Button, Form, Dropdown,
-} from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 
 import sportsList from '../../../datas/sports'; // Tableau d'objets importé depuis le fichier
 
@@ -25,6 +24,7 @@ function UpdateProfilModal(props) {
   const [locationID, setLocationId] = useState('');
   const [listLocation, setListLocation] = React.useState([]);
   const [image, setImage] = useState(null);
+  const [citySearch, setCitySearch] = useState('');
 
   React.useEffect(() => axios.get(
     'http://ronaldfk-server.eddi.cloud:8080/api/location/',
@@ -34,13 +34,24 @@ function UpdateProfilModal(props) {
     console.log(error);
   }), []);
 
+  const getCitiesFromSearch = async () => {
+    if (citySearch.length < 3) return;
+    try {
+      const response = await axios.get(`https://geo.api.gouv.fr/communes?nom=${citySearch}&fields=departement&boost=population&limit=5`);
+      console.log('response api geo autocomplete', response.data);
+      setListLocation(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    console.log('search > 3');
+    // appel API
+  };
   const cities = [...new Set(listLocation.map((item) => [item.id, item.name]))];
   const cityOptions = cities.map((city) => ({
     key: city[0],
     text: city[1],
     value: city[0],
   }));
-  // console.log(cityOptions);
 
   function handleChange(event) {
     const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
@@ -118,16 +129,39 @@ function UpdateProfilModal(props) {
             value={age}
             onChange={(event) => setAge(event.target.value)}
           />
-          {/* <Form.Dropdown
-            width={12}
-            label="Ville"
-            placeholder="Sélectionner une ville"
-            fluid
-            search
-            selection
-            options={cityOptions}
-            onChange={(e, data) => setLocationId(data.value)}
-          /> */}
+          <div className="autocomplete__container">
+            <Form.Input
+              label="Entrer une ville"
+              placeholder="Ville"
+              type="search"
+              icon="search"
+              onKeyUp={getCitiesFromSearch}
+              onChange={(e) => setCitySearch(e.target.value)}
+              value={citySearch}
+              className="autocomplete__input"
+            />
+            <ul className="autocomplete__ul">
+              {/* liste des villes qui vont s'afficher */}
+              {
+                listLocation[0] && listLocation.map((location) => (
+                  <li
+                    data-id={location.code}
+                    className="autocomplete__li"
+                    key={location.cod}
+                    onClick={(event) => {
+                      setCitySearch(location.nom);
+                      setLocationId(location.code);
+                      setListLocation([]);
+                    }}
+                  >
+
+                    {location.nom}
+
+                  </li>
+                ))
+            }
+            </ul>
+          </div>
           <label className="UpdateProfilModal__form--label" htmlFor="sports">Sports pratiqués</label>
           <select
             className="UpdateProfilModal__form--input"
