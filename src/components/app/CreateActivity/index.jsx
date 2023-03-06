@@ -1,13 +1,16 @@
+/* eslint-disable camelcase */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import axios from 'axios';
 import FormData from 'form-data';
+import _ from 'lodash';
 
 import {
-  Button, Form, Dropdown,
+  Button, Form, Grid, Search,
 } from 'semantic-ui-react';
+import logo from '../../../assets/OnSport_logo.png';
 
 import Footer from '../Footer';
 import Header from '../Header';
@@ -23,15 +26,23 @@ function CreateActivity() {
   const [family_tag, setFamily_tag] = useState(null);
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
-  const [listLocation, setListLocation] = React.useState([]);
-
+  const [listLocation, setListLocation] = useState([]);
+  const [citySearch, setCitySearch] = useState('');
   const user_id = parseInt(localStorage.getItem('userId'));
 
-  React.useEffect(() => axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/').then(
-    (response) => setListLocation(response.data),
-  ).catch((error) => {
-    console.log(error);
-  }), []);
+  // React.useEffect(
+  //   () => {
+  //     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/')
+  //       .then((response) => {
+  //         setListLocation(response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+
+  //   },
+  //   [],
+  // );
 
   const user = {
     title, user_id, sport_id, family_tag, description, locationID,
@@ -63,7 +74,18 @@ function CreateActivity() {
       console.log(error);
     }
   };
-
+  const getCitiesFromSearch = async () => {
+    if (citySearch.length < 3) return;
+    try {
+      const response = await axios.get(`https://geo.api.gouv.fr/communes?nom=${citySearch}&fields=departement&boost=population&limit=5`);
+      console.log('response api geo autocomplete', response.data);
+      setListLocation(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    console.log('search > 3');
+    // appel API
+  };
   const cities = [...new Set(listLocation.map((item) => [item.id, item.name]))];
   const cityOptions = cities.map((city) => ({
     key: city[0],
@@ -71,7 +93,6 @@ function CreateActivity() {
     value: city[0],
   }));
 
-  console.log(locationID);
   return (
     <>
       <Header />
@@ -88,16 +109,41 @@ function CreateActivity() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <Form.Dropdown
-          width={12}
-          label="Ville"
-          placeholder="Sélectionner une ville"
-          fluid
-          search
-          selection
-          options={cityOptions}
-          onChange={(e, data) => setLocationId(data.value)}
-        />
+
+        { /*          <Search
+              loading={loading}
+              placeholder="Search..."
+              onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })}
+              onSearchChange={handleSearchChange}
+              // onKeyUp={() => console.log('keyUp')}
+              results={results}
+              value={value}
+  /> */}
+        <div className="autocomplete__container">
+          <input type="search" onKeyUp={getCitiesFromSearch} onChange={(e) => setCitySearch(e.target.value)} value={citySearch} className="autocomplete__input" />
+          <ul className="autocomplete__ul">
+            {/* liste des villes qui vont s'afficher */}
+            {
+              listLocation[0] && listLocation.map((location) => (
+                <li
+                  data-id={location.code}
+                  className="autocomplete__li"
+                  key={location.cod}
+                  onClick={(event) => {
+                    setCitySearch(location.nom);
+                    setLocationId(location.code);
+                    setListLocation([]);
+                  }}
+                >
+
+                  {location.nom}
+
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
         <Form.Group inline>
           <Form.Select
             label="Sport"

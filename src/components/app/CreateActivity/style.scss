@@ -1,11 +1,63 @@
-.create__activity__form {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 2rem;
+@use '../../../styles/vars' as v;
+
+
+.container {
+    width: 100%;
+}
+
+.container__image {
+    background-color: v.$color-third;
+}
+
+.container__form {
+background-color: v.$color-first;
+}
+
+// .create__activity__form {
+// display: flex;
+// flex-direction: column;
+// align-items: center;
+// // margin: 2rem 20rem;
+// border-top-right-radius: 1rem;
+// border-bottom-right-radius: 1rem;
+
+// }
+
+.create__activity__title {
+    margin-bottom: 3rem;
+}
 
 .button {
     margin: 2rem;
 }
+
+.autocomplete{
+    &__container{
+        width: 50%;
+        cursor: pointer;
+        position: relative;
+        margin: 0 auto;
+        z-index: 2;
+    };
+    &__input{
+        width: 50%;
+        border-radius: none;
+        padding: 1rem;
+        margin:  1rem;
+    };
+    &__ul{
+        width: 100%;
+        background-color: #fff;
+        color: #000;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    &__li{
+        border-bottom: solid 1px #000;
+        padding: 10px;
+        list-style: none;
+    }
 
 }

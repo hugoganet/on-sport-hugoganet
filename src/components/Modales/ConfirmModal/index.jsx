@@ -42,7 +42,7 @@ function ConfirmModal({ setShowConfirmModal }) {
 }
 
 ConfirmModal.propTypes = {
-  setShowConfirmModal: PropTypes.bool.isRequired,
+  setShowConfirmModal: PropTypes.func.isRequired,
 };
 
 export default ConfirmModal;
