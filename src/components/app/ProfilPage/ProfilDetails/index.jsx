@@ -43,9 +43,9 @@ function ProfilDetails({ loggedUser }) {
         <div className="ProfilDetails__practiceSports__div">
           <h2 className="ProfilDetails__practiceSports__div--title">Sports pratiqués</h2>
           <div className="ProfilDetails__practiceSports__div--div">
-            {loggedUser.sports.map((sport) => (
+            {/* {loggedUser.sports.map((sport) => (
               <img key={sport.id} className="ProfilDetails__practiceSports__div--img" src={sport.image_color} alt={sport.name} />
-            ))}
+            ))} */}
           </div>
         </div>
       </section>
