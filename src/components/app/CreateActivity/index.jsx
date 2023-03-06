@@ -9,7 +9,7 @@ import FormData from 'form-data';
 import {
   Button, Form, Grid, Image, Message,
 } from 'semantic-ui-react';
-import logo from '../../../assets/OnSport_logo.png';
+import image_create from '../../../assets/create-act-image.jpg';
 
 import Footer from '../Footer';
 import Header from '../Header';
@@ -84,7 +84,7 @@ function CreateActivity() {
       setErrorMessage('');
     } catch (error) {
       // console.log(error);
-      setErrorMessage('Une erreur est survenue lors de la création de la création d\'activité');
+      setErrorMessage('Une erreur est survenue. Veuillez réessayer');
       setSuccessMessage('');
     }
 
@@ -118,17 +118,14 @@ function CreateActivity() {
         stackable
         className="container"
       >
-        {/* <Grid.Row className="container__row"> */}
         <Grid.Column
           stretched
-            // width={4}
           className="container__image"
           only="computer tablet"
         >
-          <Image src={logo} />
+          <Image src={image_create} />
         </Grid.Column>
         <Grid.Column
-            // width={12}
           className="container__form"
         >
           <Form
@@ -198,8 +195,9 @@ function CreateActivity() {
               onChange={handleSelectSport.bind(this)}
               required
             />
-            <h3 className="create__activity__form__titles" required>Cette activité peut-elle se faire en famille ?</h3>
-            <Form.Field required inline>
+            <h3 className="create__activity__form__titles">Cette activité peut-elle se faire en famille ?</h3>
+            <span className="required__asterisk">*</span>
+            <Form.Group>
               <Form.Radio
                 label="Oui"
                 value="true"
@@ -212,7 +210,7 @@ function CreateActivity() {
                 checked={family_tag === 'false'}
                 onChange={handleFamily_tagChange}
               />
-            </Form.Field>
+            </Form.Group>
             <Form.TextArea
               label="Description de l'activité"
               placeholder="Ajouter une description de l'activité"
@@ -221,6 +219,7 @@ function CreateActivity() {
               required
             />
             <h3 className="create__activity__form__titles"> Ajouter une image</h3>
+            <span className="required__asterisk">*</span>
             <Form.Input
               type="file"
               multiple
@@ -228,24 +227,23 @@ function CreateActivity() {
               onChange={(e) => setImage(e.target.files)}
               required
             />
-            <Button type="submit" primary>
+            <Button className="create__activity__button" type="submit" primary fluid>
               Valider
             </Button>
-            
+            <p className="required__description">(*) Champs obligatoires</p>
           </Form>
         </Grid.Column>
-        {/* </Grid.Row> */}
-      </Grid>
       {successMessage && (
-              <Message compact positive className="create__activity__successMessage">
-                <Message.Header>{successMessage}</Message.Header>
+              <Message attached positive className="create__activity__successMessage">
+                <Message.Item>{successMessage}</Message.Item>
               </Message>
             )}
             {errorMessage && (
-              <Message compact negative className="create__activity__errorMessage">
-                <Message.Header>{errorMessage}</Message.Header>
+              <Message attached negative className="create__activity__errorMessage">
+                <Message.Item>{errorMessage}</Message.Item>
               </Message>
             )}
+      </Grid>
       <Footer />
     </>
   );

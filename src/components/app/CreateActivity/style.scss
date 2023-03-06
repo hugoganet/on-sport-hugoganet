@@ -26,10 +26,15 @@
 }
     &__form__titles{
         color: v.$color-white;
+        display: inline-block;
     }
 
     &__errorMessage {
         background-color: #f0f;
+    }
+
+    &__button {
+        font-size: 10rem;
     }
 }
 
@@ -78,4 +83,18 @@
 
 .ui.celled.grid {
     box-shadow: none;
+}
+
+.required {
+    &__asterisk {
+    color: #DF352B;
+    margin-left: .3rem;
+    margin-bottom: .3rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+    &__description {
+        font-size: 1rem;
+        color: #DF352B;
+    }
 }
