@@ -2,17 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
+import defaultProfilePicture from '../../../../assets/default_profile_picture_icon.jpeg';
 
 import './style.scss';
 
 function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
+  const userId = localStorage.getItem('userId');
+  console.log('photo', photo);
+
   return (
     <header className="ProfilHeader">
       <button type="button" className=" ProfilHeader__button ProfilHeader__button--accueil">
         <NavLink to="/" className="menu-link">Accueil</NavLink>
       </button>
       <div className="ProfilHeader__img--div">
-        <img className="ProfilHeader__img" src={photo || '../../../assets/default_profile_picture_icon.jpeg'} alt="profilPicture" />
+        <img
+          className="ProfilHeader__img"
+          src={photo ? `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}/photo/${photo}` : defaultProfilePicture}
+          alt="profilPicture"
+        />
         <p className="ProfilHeader__name">
           {firstname}
           {' '}
