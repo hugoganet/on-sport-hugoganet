@@ -5,10 +5,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import FormData from 'form-data';
-import _ from 'lodash';
 
 import {
-  Button, Form, Grid, Search, Image,
+  Button, Form, Grid, Image,
 } from 'semantic-ui-react';
 import logo from '../../../assets/OnSport_logo.png';
 
@@ -43,12 +42,21 @@ function CreateActivity() {
   //   },
   //   [],
   // );
-console.log(sport);
+
   const user = {
     title, user_id, sport_id, family_tag, description, location_id,
   };
 
-  console.log(location_id);
+  const arrayImages = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const elem of image) {
+    arrayImages.push(elem.name);
+  }
+
+  const handleSelectSport = (e, { value }) => {
+    setSportId(value);
+  };
+
   const handleFamily_tagChange = (e, { value }) => {
     setFamily_tag(value);
   };
@@ -58,7 +66,7 @@ console.log(sport);
 
     const form = new FormData();
     form.append('jsonAsString', JSON.stringify(user));
-    form.append('photo', image);
+    form.append('photo', arrayImages);
 
     try {
       const response = await axios({
@@ -86,7 +94,6 @@ console.log(sport);
     console.log('search > 3');
     // appel API
   };
-  const cities = [...new Set(listLocation.map((item) => [item.id, item.name]))];
 
   return (
     <>
@@ -171,7 +178,9 @@ console.log(sport);
               label="Sport"
               placeholder="Entrer le sport"
               options={sport}
-              onChange={(e) => setSportId(e.target.id)}
+              value={sport.value}
+              // onChange={(e) => setSportId(e.target.id)}
+              onChange={handleSelectSport.bind(this)}
             />
             <h3 className="create__activity__form__titles">Cette activité peut-elle se faire en famille ?</h3>
             <Form.Group inline>

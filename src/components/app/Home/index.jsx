@@ -43,12 +43,13 @@ function Home() {
 ).catch((error) => {
       console(error);
     });
-  },
+
   axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/getall').then(
     (response) => setListLocation(response.data),
     ).catch((error) => {
         console(error);
-      }),
+      });
+},
    [],
 );
 
