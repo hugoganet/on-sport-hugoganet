@@ -2,18 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
-import profilPicture from '../../../../assets/Tac-raoul-2.png';
 
 import './style.scss';
 
-function ProfilHeader({ loggedUser: { firstname, lastname } }) {
+function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
   return (
     <header className="ProfilHeader">
       <button type="button" className=" ProfilHeader__button ProfilHeader__button--accueil">
         <NavLink to="/" className="menu-link">Accueil</NavLink>
       </button>
       <div className="ProfilHeader__img--div">
-        <img className="ProfilHeader__img" src={profilPicture} alt="profilPicture" />
+        <img className="ProfilHeader__img" src={photo || '../../../assets/default_profile_picture_icon.jpeg'} alt="profilPicture" />
         <p className="ProfilHeader__name">
           {firstname}
           {' '}
@@ -40,6 +39,7 @@ ProfilHeader.propTypes = {
     ]),
     age: PropTypes.string,
     bio: PropTypes.string,
+    photo: PropTypes.string,
     email: PropTypes.string,
     firstname: PropTypes.string,
     lastname: PropTypes.string,

@@ -58,7 +58,7 @@ function UpdateProfilModal(props) {
     const filteredData = Object.fromEntries(truthyFields);
 
     const form = new FormData();
-    console.log(updatedData);
+    console.log('filtered data :', filteredData);
     form.append('jsonAsString', JSON.stringify(filteredData));
     form.append('photo', image);
     console.log('juste avant le try');
