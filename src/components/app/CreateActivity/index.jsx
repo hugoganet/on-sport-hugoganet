@@ -202,6 +202,7 @@ function CreateActivity() {
               <h3> Ajouter une image</h3>
               <Form.Input
                 type="file"
+                multiple
                 accept=".jpg, .png, .jpeg"
                 onChange={(e) => setImage(e.target.files[0])}
               />
