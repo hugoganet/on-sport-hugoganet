@@ -24,6 +24,9 @@
         justify-content: center;
     // margin-bottom: 3rem;
 }
+    &__form__titles{
+        color: v.$color-white;
+    }
 }
 
 
@@ -67,9 +70,9 @@
     color: v.$color-white;
 }
 
-h2, h3 {
-    color: v.$color-white;
-}
+// h2, h3 {
+//     color: v.$color-white;
+// }
 
 .ui.celled.grid>.row {
     box-shadow: none;
