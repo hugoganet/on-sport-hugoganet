@@ -27,7 +27,11 @@ function Annotation({
     <Comment>
       <Comment.Avatar src="/default-image.png" />
       <Comment.Content>
-        <Comment.Author as="a">{userComment.firstname}{' '}{userComment.lastname}</Comment.Author>
+        <Comment.Author as="a">
+          {userComment.firstname}
+          {' '}
+          {userComment.lastname}
+        </Comment.Author>
         <div>
           <Rating icon="star" defaultRating={activity_note} maxRating={5} size="mini" disabled />
         </div>
@@ -40,7 +44,6 @@ function Annotation({
 Annotation.propTypes = {
   activity_note: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
   user_id: PropTypes.number.isRequired,
 
 };

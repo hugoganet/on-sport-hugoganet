@@ -201,7 +201,7 @@ function CreateActivity() {
               options={sport}
               value={sport.value}
               // onChange={(e) => setSportId(e.target.id)}
-              onChange={handleSelectSport.bind(this)}
+              onChange={handleSelectSport}
               required
             />
             <h3 className="create__activity__form__titles">Cette activité peut-elle se faire en famille ?</h3>

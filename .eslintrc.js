@@ -19,5 +19,6 @@ module.exports = {
   rules: {
     camelcase: 'off',
     'import/no-extraneous-dependencies': 'off',
+    'no-plusplus': 'off',
   },
 };
