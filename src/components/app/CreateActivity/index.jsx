@@ -47,11 +47,13 @@ function CreateActivity() {
     title, user_id, sport_id, family_tag, description, location_id,
   };
 
+  console.log(image);
   const arrayImages = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of image) {
-    arrayImages.push(elem.name);
+    arrayImages.push(elem);
   }
+  console.log(arrayImages);
 
   const handleSelectSport = (e, { value }) => {
     setSportId(value);
@@ -66,7 +68,9 @@ function CreateActivity() {
 
     const form = new FormData();
     form.append('jsonAsString', JSON.stringify(user));
-    form.append('photo', arrayImages);
+    for (let i = 0; i < arrayImages.length; i++) {
+      form.append('photo', arrayImages[i]);
+    }
 
     try {
       const response = await axios({
