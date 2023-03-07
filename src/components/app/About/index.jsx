@@ -1,9 +1,9 @@
 import React from 'react';
+import { Card } from 'semantic-ui-react';
 
 import TeamMemberCard from './TeamMemberCard';
 
 import './style.scss';
-import { Card } from 'semantic-ui-react';
 
 function About() {
   return (

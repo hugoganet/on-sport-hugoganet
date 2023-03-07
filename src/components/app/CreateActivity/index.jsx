@@ -148,7 +148,7 @@ function CreateActivity() {
             size="large"
             className="create__activity__form"
             encType="multipart/form-data"
-            method='POST'
+            method="POST"
             onSubmit={handleSubmit}
           >
             <Form.Input
@@ -201,7 +201,7 @@ function CreateActivity() {
               options={sport}
               value={sport.value}
               // onChange={(e) => setSportId(e.target.id)}
-              onChange={handleSelectSport.bind(this)}
+              onChange={handleSelectSport}
               required
             />
             <h3 className="create__activity__form__titles">Cette activité peut-elle se faire en famille ?</h3>
