@@ -3,6 +3,7 @@ import React from 'react';
 import TeamMemberCard from './TeamMemberCard';
 
 import './style.scss';
+import { Card } from 'semantic-ui-react';
 
 function About() {
   return (
@@ -22,11 +23,13 @@ function About() {
         to make a type specimen book.
       </p>
       <section className="About__teamMembers">
-        <TeamMemberCard />
-        <TeamMemberCard />
-        <TeamMemberCard />
-        <TeamMemberCard />
-        <TeamMemberCard />
+        <Card.Group centered stackable>
+          <TeamMemberCard />
+          <TeamMemberCard />
+          <TeamMemberCard />
+          <TeamMemberCard />
+          <TeamMemberCard />
+        </Card.Group>
       </section>
     </div>
   );
