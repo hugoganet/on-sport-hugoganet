@@ -198,7 +198,7 @@ function CreateActivity() {
 
             <Form.Select
               label="Sport"
-              placeholder="Entrer le sport"
+              placeholder="Sélectionner le sport"
               options={sport}
               value={sport.value}
               // onChange={(e) => setSportId(e.target.id)}
