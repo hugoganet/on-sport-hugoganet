@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 
-import logo from '../../../../assets/OnSport_logo.png';
 import './style.scss';
 
 function ProfilDetails({ loggedUser }) {
@@ -30,7 +29,14 @@ function ProfilDetails({ loggedUser }) {
 
   return (
     <div className="ProfilDetails">
-      <p className="ProfilDetails__location">📍Ambert - Auvergne-Rhône-Alpes</p>
+      <p className="ProfilDetails__location">
+        📍
+        {loggedUser.locationName}
+        {' '}
+        -
+        {' '}
+        {loggedUser.locationDepartment}
+      </p>
       <p className="ProfilDetails__age">
         AGE :
         {' '}
@@ -47,8 +53,7 @@ function ProfilDetails({ loggedUser }) {
         <div className="ProfilDetails__bio--div">
           <h2 className="ProfilDetails__bio--title">Bio</h2>
           <p className="ProfilDetails__bio--description">
-            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-            consectetur, adipisci velit...
+            {loggedUser.bio}
           </p>
         </div>
       </section>

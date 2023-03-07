@@ -70,9 +70,6 @@ function CreateActivity() {
 
     const form = new FormData();
     form.append('jsonAsString', JSON.stringify(user));
-    // arrayImages.forEach((file) => {console.log(file);
-    //   form.append('photo', file);
-    // });
     for (let i = 0; i < image.length; i++) {
       form.append('photo', image[i]);
     }
@@ -117,15 +114,7 @@ function CreateActivity() {
         {/* <Grid.Row className="container__row"> */}
         <Grid.Column
           stretched
-        <Grid.Column
-          stretched
             // width={4}
-          className="container__image"
-          only="large screen"
-        >
-          <Image src={logo} />
-        </Grid.Column>
-        <Grid.Column
           className="container__image"
           only="large screen"
         >
@@ -164,20 +153,6 @@ function CreateActivity() {
               <ul className="autocomplete__ul">
                 {/* liste des villes qui vont s'afficher */}
                 {
-            <div className="autocomplete__container">
-              <Form.Input
-                label="Entrer une ville"
-                placeholder="Ville"
-                type="search"
-                icon="search"
-                onKeyUp={getCitiesFromSearch}
-                onChange={(e) => setCitySearch(e.target.value)}
-                value={citySearch}
-                className="autocomplete__input"
-              />
-              <ul className="autocomplete__ul">
-                {/* liste des villes qui vont s'afficher */}
-                {
                 listLocation[0] && listLocation.map((location) => (
                   <li
                     data-id={location.id}
@@ -192,8 +167,6 @@ function CreateActivity() {
 
                     {location.name}
 
-                  </li>
-                ))
                   </li>
                 ))
             }
@@ -250,4 +223,3 @@ function CreateActivity() {
 }
 
 export default CreateActivity;
-
