@@ -12,7 +12,6 @@ import sports from '../../../../datas/sports';
 function Card({
   title, sportID, family_tag, id, locationName, locationDepartment,
 }) {
-  console.log(family_tag);
   const userId = localStorage.getItem('userId');
   const selectedSport = sports.find((sport) => sport.id === sportID);
   const [open, setOpen] = React.useState(false);

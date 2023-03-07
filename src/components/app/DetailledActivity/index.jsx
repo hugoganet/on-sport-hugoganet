@@ -12,7 +12,6 @@ import Carousel from './Carrousel/index';
 import Comments from './Comments/index';
 
 import Filtered from '../FilteredActivities';
-import map from '../../../assets/map.gif';
 
 import './style.scss';
 
@@ -63,7 +62,9 @@ function DetailledActivity() {
     <>
       <Header />
       <div className="activity__content">
-        <Carousel />
+        {activityInfo.title}
+        {activityInfo.photos ? <Carousel photos={activityInfo.photos} /> : ''}
+        {/* <Carousel activityInfo={activityInfo.photos} /> */}
         <div className="activity__author">
           <Image src="/default-image.png" avatar />
           <span>Username</span>
@@ -77,13 +78,13 @@ function DetailledActivity() {
         <div className="activity__description">
           <p>{activityInfo.description}</p>
         </div>
-        <Comments comments={comments} />
+        <Comments comments={comments} activityId={activityInfo.id} />
       </div>
 
       <div className="filteredActivities">
-        <span className="filteredActivities__title"><img src={map} alt="background" />AUTRES ACTIVITÉS AYANT LIEU DANS LE MÊME DÉPARTEMENT</span>
+        <span className="filteredActivities__title__dpt">AUTRES ACTIVITÉS AYANT LIEU DANS LE MÊME DÉPARTEMENT</span>
         <Filtered ListActivities={ListActivitiesDpt} />
-        <span className="filteredActivities__title">AUTRES ACTIVITÉS RELATIVES AU MÊME SPORT</span>
+        <span className="filteredActivities__title__sport">AUTRES ACTIVITÉS RELATIVES AU MÊME SPORT</span>
         <Filtered ListActivities={ListActivitiesSport} />
       </div>
 
