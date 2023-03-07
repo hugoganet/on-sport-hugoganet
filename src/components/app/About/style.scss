@@ -1,60 +1,60 @@
 @use 'src/styles/_vars' as v;
 
-p:first-child {
-  margin-top: 8px; /* override the margin-top property */
-}
+// p:first-child {
+//   margin-top: 8px; /* override the margin-top property */
+// }
 
-.About{
-  display: flex;
-  align-items: center;
-  margin-top: 3rem;
+// .About{
+//   display: flex;
+//   align-items: center;
+//   margin-top: 3rem;
 
-  &__projectPresentation {
-    padding: .5rem;
-    width: 90%;
-    border: 2px solid v.$color-grey-light;
-    border-radius: .3rem;
-  }
+//   &__projectPresentation {
+//     padding: .5rem;
+//     width: 90%;
+//     border: 2px solid v.$color-grey-light;
+//     border-radius: .3rem;
+//   }
 
-  &__teamPresentation {
-    padding: .5rem;
-    width: 90%;
-    border: 2px solid v.$color-grey-light;
-    border-radius: .3rem;
-  }  
+//   &__teamPresentation {
+//     padding: .5rem;
+//     width: 90%;
+//     border: 2px solid v.$color-grey-light;
+//     border-radius: .3rem;
+//   }  
 
-  &__teamMembers{
-    width: 90%;
-  }
-}
+//   &__teamMembers{
+//     width: 90%;
+//   }
+// }
 
-@media screen and (min-width: 768px) {
-  .About{
-    &__teamMembers{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      // align-items: center;
-      justify-content: space-evenly;
-      padding-bottom: 8px;
-      margin-top: 3rem;
-    }
-  }
-}
+// @media screen and (min-width: 768px) {
+//   .About{
+//     &__teamMembers{
+//       display: flex;
+//       flex-direction: row;
+//       flex-wrap: wrap;
+//       // align-items: center;
+//       justify-content: space-evenly;
+//       padding-bottom: 8px;
+//       margin-top: 3rem;
+//     }
+//   }
+// }
 
-@media screen and (min-width: 1366px) {
-  .About{
-    &__teamMembers{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      width: 90%;
-      padding-bottom: 8px;
-      margin-top: 3rem;
-    }
-  }
-}
+// @media screen and (min-width: 1366px) {
+//   .About{
+//     &__teamMembers{
+//       display: flex;
+//       flex-direction: row;
+//       flex-wrap: wrap;
+//       align-items: center;
+//       justify-content: space-between;
+//       width: 90%;
+//       padding-bottom: 8px;
+//       margin-top: 3rem;
+//     }
+//   }
+// }
   
   

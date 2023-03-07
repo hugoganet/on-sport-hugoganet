@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card } from 'semantic-ui-react';
 
 import TeamMemberCard from './TeamMemberCard';
 
@@ -22,11 +23,13 @@ function About() {
         to make a type specimen book.
       </p>
       <section className="About__teamMembers">
-        <TeamMemberCard />
-        <TeamMemberCard />
-        <TeamMemberCard />
-        <TeamMemberCard />
-        <TeamMemberCard />
+        <Card.Group centered stackable>
+          <TeamMemberCard />
+          <TeamMemberCard />
+          <TeamMemberCard />
+          <TeamMemberCard />
+          <TeamMemberCard />
+        </Card.Group>
       </section>
     </div>
   );
