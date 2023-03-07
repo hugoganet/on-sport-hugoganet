@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable linebreak-style */
@@ -52,7 +55,6 @@ function CreateActivity() {
   for (const elem of image) {
     arrayImages.push(elem);
   }
-  console.log(arrayImages);
 
   const handleSelectSport = (e, { value }) => {
     setSportId(value);
@@ -63,13 +65,17 @@ function CreateActivity() {
   };
 
   const handleSubmit = async (e) => {
+    console.log(arrayImages);
     e.preventDefault();
 
     const form = new FormData();
     form.append('jsonAsString', JSON.stringify(user));
-    arrayImages.forEach((file) =>{
-      form.append('photo', file);
-    });
+    // arrayImages.forEach((file) => {console.log(file);
+    //   form.append('photo', file);
+    // });
+    for (let i = 0; i < image.length; i++) {
+      form.append('photo', image[i]);
+    }
 
     try {
       const response = await axios({
@@ -124,6 +130,8 @@ function CreateActivity() {
           <Form
             size="large"
             className="create__activity__form"
+            encType="multipart/form-data"
+            method='POST'
             onSubmit={handleSubmit}
           >
             <Form.Input
@@ -134,15 +142,6 @@ function CreateActivity() {
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            { /*          <Search
-              loading={loading}
-              placeholder="Search..."
-              onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })}
-              onSearchChange={handleSearchChange}
-              // onKeyUp={() => console.log('keyUp')}
-              results={results}
-              value={value}
-  /> */}
             <div className="autocomplete__container">
               <Form.Input
                 label="Entrer une ville"
@@ -209,6 +208,7 @@ function CreateActivity() {
             <h3 className="create__activity__form__titles"> Ajouter une image</h3>
             <Form.Input
               type="file"
+              name="photo"
               multiple
               accept=".jpg, .png, .jpeg"
               onChange={(e) => setImage(e.target.files)}
