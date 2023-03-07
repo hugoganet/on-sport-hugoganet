@@ -56,8 +56,13 @@ Card.propTypes = {
   sportID: Proptypes.number.isRequired,
   family_tag: Proptypes.bool.isRequired,
   id: Proptypes.number.isRequired,
-  locationName: Proptypes.string.isRequired,
-  locationDepartment: Proptypes.string.isRequired,
+  locationName: Proptypes.string,
+  locationDepartment: Proptypes.string,
+};
+
+Card.defaultProps = {
+  locationName: '',
+  locationDepartment: '',
 };
 
 export default Card;

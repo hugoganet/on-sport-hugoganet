@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-expressions */
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import {
   Image, Header as HeaderUi, Rating,
@@ -23,6 +23,7 @@ function DetailledActivity() {
   const [ListActivitiesDpt, setListActivitiesDpt] = useState([]);
   const [ListActivitiesSport, setListActivitiesSport] = useState([]);
   const activityId = activity.id;
+  const location = useLocation();
 
   React.useEffect(
     () => {
@@ -48,7 +49,7 @@ function DetailledActivity() {
         console(error);
       });
     },
-    [],
+    [location],
   );
 
   React.useEffect(() => {

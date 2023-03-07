@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-undef */
 import React from 'react';
