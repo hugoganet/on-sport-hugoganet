@@ -1,7 +1,7 @@
 import React from 'react';
+import { Card, Image } from 'semantic-ui-react';
 
 import profilPicture from '../../../../assets/Tac-raoul-2.png';
-import { Card, Image, Icon } from 'semantic-ui-react';
 
 import './style.scss';
 

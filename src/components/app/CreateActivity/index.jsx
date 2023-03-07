@@ -148,7 +148,7 @@ function CreateActivity() {
             size="large"
             className="create__activity__form"
             encType="multipart/form-data"
-            method='POST'
+            method="POST"
             onSubmit={handleSubmit}
           >
             <Form.Input
