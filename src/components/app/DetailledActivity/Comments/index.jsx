@@ -73,7 +73,7 @@ Comments.propTypes = {
       activity_id: PropTypes.number,
     }).isRequired,
   ).isRequired,
-  activityId: PropTypes.string,
+  activityId: PropTypes.string.isRequired,
 };
 
 export default Comments;

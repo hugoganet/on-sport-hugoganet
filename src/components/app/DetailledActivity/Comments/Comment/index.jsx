@@ -21,8 +21,6 @@ function Annotation({
     },
     [],
   );
-  console.log(userComment);
-
   return (
     <Comment>
       <Comment.Avatar src="/default-image.png" />
@@ -40,7 +38,6 @@ function Annotation({
 Annotation.propTypes = {
   activity_note: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
   user_id: PropTypes.number.isRequired,
 
 };
