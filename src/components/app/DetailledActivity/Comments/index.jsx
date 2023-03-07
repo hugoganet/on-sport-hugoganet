@@ -16,8 +16,6 @@ function Comments({ comments, activityId }) {
   const handleRate = (e, { rating }) => { setRate(rating); };
 
   const handleClick = async (e) => {
-    e.preventDefault();
-
     const content = e.target.parentNode[0].value;
     const user_id = parseInt(userId);
     const activity_note = parseInt(rate);
@@ -38,6 +36,7 @@ function Comments({ comments, activityId }) {
     } catch (error) {
       console.log(error);
     }
+    window.location.reload();
   };
 
   return (

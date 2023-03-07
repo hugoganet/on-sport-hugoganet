@@ -21,8 +21,6 @@ function Annotation({
     },
     [],
   );
-  console.log(userComment);
-
   return (
     <Comment>
       <Comment.Avatar src="/default-image.png" />
