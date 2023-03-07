@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-function ActivitiesList({ loggedUser: { ListActivities } }) {
+function ActivitiesList({ loggedUser: { activitiesList } }) {
+  console.log(activitiesList);
+
   return (
     <div className="ActivitiesList">
       <div className="ActivitiesList__div--titleAndButton">
@@ -26,28 +28,32 @@ function ActivitiesList({ loggedUser: { ListActivities } }) {
 }
 
 ActivitiesList.propTypes = {
-  ListActivities: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      title: PropTypes.string,
-      note: PropTypes.number,
-      description: PropTypes.string,
-      photo: PropTypes.string,
-      family_tag: PropTypes.bool,
-      user_id: PropTypes.number,
-      user_firstname: PropTypes.string,
-      sportID: PropTypes.number,
-      sportName: PropTypes.string,
-      location_id: PropTypes.number,
-      locationName: PropTypes.string,
-      locationPostcode: PropTypes.number,
-      locationDepartment: PropTypes.string,
-    }).isRequired,
-  ),
+  loggedUser: PropTypes.shape({
+    activitiesList: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        note: PropTypes.string,
+        description: PropTypes.string,
+        photo: PropTypes.string,
+        family_tag: PropTypes.bool,
+        user_id: PropTypes.number,
+        user_firstname: PropTypes.string,
+        sportID: PropTypes.number,
+        sportName: PropTypes.string,
+        location_id: PropTypes.number,
+        locationName: PropTypes.string,
+        locationPostcode: PropTypes.number,
+        locationDepartment: PropTypes.string,
+      }),
+    ),
+  }),
 };
 
 ActivitiesList.defaultProps = {
-  ListActivities: [],
+  loggedUser: {
+    activitiesList: [],
+  },
 };
 
 export default ActivitiesList;
