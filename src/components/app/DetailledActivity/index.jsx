@@ -24,7 +24,6 @@ function DetailledActivity() {
   const [ListActivitiesSport, setListActivitiesSport] = useState([]);
   const activityId = activity.id;
   const location = useLocation();
-
   React.useEffect(
     () => {
       axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/activity/${activityId}`).then(
@@ -51,6 +50,8 @@ function DetailledActivity() {
     },
     [location],
   );
+
+  console.log(comments);
 
   React.useEffect(() => {
     const filterDepartment = ListActivities.filter((loc) => loc.locationDepartment === activityInfo.locationDepartment);
@@ -79,7 +80,7 @@ function DetailledActivity() {
         <div className="activity__description">
           <p>{activityInfo.description}</p>
         </div>
-        <Comments comments={comments} activityId={activityInfo.id} />
+        <Comments comments={comments} activityId={activityId} />
       </div>
 
       <div className="filteredActivities">
