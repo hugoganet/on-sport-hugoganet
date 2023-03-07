@@ -24,25 +24,35 @@ function UpdateProfilModal(props) {
   const [citySearch, setCitySearch] = useState(null);
   const userId = localStorage.getItem('userId');
 
-  React.useEffect(() => axios.get(
-    'http://ronaldfk-server.eddi.cloud:8080/api/location/',
-  ).then(
-    (response) => setListLocation(response.data),
-  ).catch((error) => {
-    console.log(error);
-  }), []);
+  // React.useEffect(() => axios.get(
+  //   'http://ronaldfk-server.eddi.cloud:8080/api/location/',
+  // ).then(
+  //   (response) => setListLocation(response.data),
+  // ).catch((error) => {
+  //   console.log(error);
+  // }), []);
+
+  // ci-dessous, la même chose mais en async/await (chatGPT)
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/');
+        setListLocation(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const getCitiesFromSearch = async () => {
     if (citySearch.length < 3) return;
     try {
       const response = await axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/location?search=${citySearch}`);
-      console.log('response api geo autocomplete', response.data);
       setListLocation(response.data);
     } catch (error) {
       console.error(error);
     }
-    console.log('search > 3');
-    // appel API
   };
 
   const handleSubmit = async (event) => {

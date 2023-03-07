@@ -10,8 +10,22 @@ function ProfilDetails({ loggedUser }) {
 
   const handleUpdateProfilToggle = () => {
     toggleShowUpdateProfilDetailsModal((state) => !state);
-    // console.log('click ProfilDetails :', isShowUpdateProfilModal);
   };
+
+  function calculateAge(birthdate) {
+    // Split the birthdate string into day, month, and year components
+    const [year, month, day] = birthdate.split('-');
+    // Calculate the difference between the birth year and the current year
+    const age = new Date().getFullYear() - year;
+    // Check if the current month and day is before the birth month and day
+    const birthdateThisYear = new Date(`${year}-${month}-${day}`);
+    const now = new Date();
+    if (now < birthdateThisYear) {
+      // Subtract one year if the birthdate hasn't occurred yet this year
+      return age - 1;
+    }
+    return age;
+  }
 
   return (
     <div className="ProfilDetails">
@@ -26,7 +40,8 @@ function ProfilDetails({ loggedUser }) {
       <p className="ProfilDetails__age">
         AGE :
         {' '}
-        {loggedUser.age}
+        {/* ci-dessous : optionnal chaining (?.) */}
+        {loggedUser?.age && calculateAge(loggedUser.age)}
       </p>
       <button type="button" className="ProfilDetails__button" onClick={handleUpdateProfilToggle}>Modifier mon profil</button>
       <UpdateProfilModal

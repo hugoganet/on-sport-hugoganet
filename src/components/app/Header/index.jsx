@@ -45,6 +45,7 @@ function Header() {
               className="menu-link"
             >
               Mon profil
+              {/* {this.state.UserInfos.userName} */}
             </NavLink>
           </button>
           <button className="header__button" type="button" onClick={handleLogout}>Déconnexion</button>
