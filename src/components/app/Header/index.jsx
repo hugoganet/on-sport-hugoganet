@@ -34,11 +34,11 @@ function Header() {
   };
 
   return (
-    <div className="profile__header">
-      <Link to="/"><img className="profile__header__logo" src={Logo} alt="logo" /></Link>
+    <div className="Header">
+      <Link to="/"><img className="Header__logo" src={Logo} alt="logo" /></Link>
       {userId ? (
         <>
-          <button className="profile__header__button" type="button">
+          <button className="Header__button" type="button">
             {' '}
             <NavLink
               to={`/profile/${userId}`}
@@ -48,12 +48,12 @@ function Header() {
               {/* {this.state.UserInfos.userName} */}
             </NavLink>
           </button>
-          <button className="profile__header__button" type="button" onClick={handleLogout}>Déconnexion</button>
+          <button className="Header__button" type="button" onClick={handleLogout}>Déconnexion</button>
         </>
       ) : (
         <>
-          <button className="profile__header__button" type="button" onClick={handleLogin}>Connexion</button>
-          <button className="profile__header__button" type="button" onClick={handleSignup}>Créer un compte</button>
+          <button className="Header__button" type="button" onClick={handleLogin}>Connexion</button>
+          <button className="Header__button" type="button" onClick={handleSignup}>Créer un compte</button>
         </>
       )}
       {showConfirmModal && (
