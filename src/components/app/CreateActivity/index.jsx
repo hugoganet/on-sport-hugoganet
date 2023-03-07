@@ -1,15 +1,17 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable camelcase */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import FormData from 'form-data';
 
 import {
-  Button, Form, Grid, Image, Message,
+  Button, Form, Grid, Image, Message, Modal,
 } from 'semantic-ui-react';
-import image_create from '../../../assets/create-act-image.jpg';
+import image_create from '../../../assets/hamster.png';
 
 import Footer from '../Footer';
 import Header from '../Header';
@@ -29,6 +31,7 @@ function CreateActivity() {
   const [citySearch, setCitySearch] = useState('');
   const [successMessage, setSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [open, setOpen] = useState(false);
   const user_id = parseInt(localStorage.getItem('userId'), 10);
 
   // React.useEffect(
@@ -46,7 +49,12 @@ function CreateActivity() {
   // );
 
   const user = {
-    title, user_id, sport_id, family_tag, description, location_id,
+    title,
+    user_id,
+    sport_id,
+    family_tag,
+    description,
+    location_id,
   };
 
   const arrayImages = [];
@@ -80,7 +88,9 @@ function CreateActivity() {
         data: form,
       });
       console.log(response.data);
+      console.log(response.data.id);
       setSuccessMessage("L'activité a été créée avec succès !");
+      setOpen(true);
       setErrorMessage('');
     } catch (error) {
       // console.log(error);
@@ -101,7 +111,7 @@ function CreateActivity() {
       setListLocation(response.data);
     } catch (error) {
       // console.error(error);
-      setErrorMessage('Une erreur est survenue lors de la création de l\'activité');
+      setErrorMessage('Une erreur est survenue. Veuillez réessyer');
     }
     console.log('search > 3');
     // appel API
@@ -232,17 +242,34 @@ function CreateActivity() {
             </Button>
             <p className="required__description">(*) Champs obligatoires</p>
           </Form>
-        </Grid.Column>
-      {successMessage && (
+          {/* {successMessage && (
               <Message attached positive className="create__activity__successMessage">
                 <Message.Item>{successMessage}</Message.Item>
-              </Message>
-            )}
-            {errorMessage && (
-              <Message attached negative className="create__activity__errorMessage">
-                <Message.Item>{errorMessage}</Message.Item>
-              </Message>
-            )}
+              </Message> */}
+          <Modal
+            onOpen={() => setOpen(true)}
+            open={open}
+            // trigger={<Button>Show Modal</Button>}
+          >
+            <Modal.Header>Votre activité a été créée avec succès !</Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                Veuillez retourner à l'accueil.
+              </Modal.Description>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button as={Link} to="/" color="blue">
+                Retour à l'accueil
+              </Button>
+            </Modal.Actions>
+
+          </Modal>
+          {errorMessage && (
+            <Message attached negative className="create__activity__errorMessage">
+              <Message.Item>{errorMessage}</Message.Item>
+            </Message>
+          )}
+        </Grid.Column>
       </Grid>
       <Footer />
     </>
