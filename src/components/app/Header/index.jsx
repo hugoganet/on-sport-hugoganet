@@ -35,11 +35,11 @@ function Header() {
   };
 
   return (
-    <div className="header">
-      <Link to="/"><img className="header__logo" src={Logo} alt="logo" /></Link>
+    <div className="profile__header">
+      <Link to="/"><img className="profile__header__logo" src={Logo} alt="logo" /></Link>
       {userId ? (
         <>
-          <button className="header__button" type="button">
+          <button className="profile__header__button" type="button">
             {' '}
             <NavLink
               to={`/profile/${userId}`}
@@ -48,12 +48,12 @@ function Header() {
               Mon profil
             </NavLink>
           </button>
-          <button className="header__button" type="button" onClick={handleLogout}>Déconnexion</button>
+          <button className="profile__header__button" type="button" onClick={handleLogout}>Déconnexion</button>
         </>
       ) : (
         <>
-          <button className="header__button" type="button" onClick={handleLogin}>Connexion</button>
-          <button className="header__button" type="button" onClick={handleSignup}>Créer un compte</button>
+          <button className="profile__header__button" type="button" onClick={handleLogin}>Connexion</button>
+          <button className="profile__header__button" type="button" onClick={handleSignup}>Créer un compte</button>
         </>
       )}
       {showConfirmModal && (
