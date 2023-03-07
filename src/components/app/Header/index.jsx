@@ -12,7 +12,6 @@ function Header() {
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const userId = localStorage.getItem('userId');
-  console.log(`Header userId: ${userId}`);
 
   const handleLogout = () => {
     setShowConfirmModal(true);
@@ -46,6 +45,7 @@ function Header() {
               className="menu-link"
             >
               Mon profil
+              {/* {this.state.UserInfos.userName} */}
             </NavLink>
           </button>
           <button className="header__button" type="button" onClick={handleLogout}>Déconnexion</button>

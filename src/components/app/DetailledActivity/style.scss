@@ -65,12 +65,49 @@
     max-width: 100%;
 }
 
-.filteredActivities__title {
-    display: flex;
-    justify-content: center;
+
+
+.filteredActivities{
+    display:flex;
+    flex-direction: column;
+    
 }
 
 
+.filteredActivities__title__dpt {
+    display: flex;
+    justify-content: center;
+    background-color: v.$color-first;
+    color:#ffffff;
+    font-size: 2rem;
+    padding:20px;
+    align-items: center;
 
+}
+
+.filteredActivities__title__dpt:before {
+    content: url(../../../assets/map.png);
+    margin-right : 20px;
+    }
+
+
+    .filteredActivities__title__sport {
+        display: flex;
+        justify-content: center;
+        background-color: v.$color-first;
+        color:#ffffff;
+        font-size: 2rem;
+        padding:20px;
+        align-items: center;
+    
+    }
+    
+    .filteredActivities__title__sport:before {
+        content: url(../../../assets/sport.png);
+        margin-right : 20px;
+        }
+    
+    
+    
 
 

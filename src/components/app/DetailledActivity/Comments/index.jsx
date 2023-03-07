@@ -1,12 +1,45 @@
+/* eslint-disable radix */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable no-undef */
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import {
-  Form, Button, Comment, Header,
+  Form, Button, Comment, Header, Rating,
 } from 'semantic-ui-react';
 import Annotation from './Comment';
 
-function Comments({ comments }) {
-  console.log(comments);
+function Comments({ comments, activityId }) {
+  const userId = localStorage.getItem('userId');
+  const [rate, setRate] = React.useState('');
+
+  const handleRate = (e, { rating }) => { setRate(rating); };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+
+    const content = e.target.parentNode[0].value;
+    const user_id = parseInt(userId);
+    const activity_note = parseInt(rate);
+    const activity_id = parseInt(activityId);
+
+    // const headers = {
+    //   'Content-Type': 'application/json',
+    //   'Access-Control-Allow-Origin': '*',
+    // };
+    try {
+      const response = await axios.post('http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/2', {
+        content,
+        user_id,
+        activity_note,
+        activity_id,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="activity__comments">
 
@@ -22,7 +55,8 @@ function Comments({ comments }) {
 
         <Form reply className="activity__add__comment">
           <Form.TextArea placeholder="Ajouter un commentaire" />
-          <Button content="Commenter" labelPosition="right" icon="send" />
+          <Rating maxRating={5} clearable onRate={handleRate.bind(this)} />
+          <Button content="Commenter" labelPosition="right" icon="send" onClick={handleClick} />
         </Form>
       </Comment.Group>
     </div>
@@ -30,22 +64,6 @@ function Comments({ comments }) {
 }
 
 Comments.propTypes = {
-  // activityInfo: PropTypes.shape({
-  //   id: PropTypes.number,
-  //   title: PropTypes.string,
-  //   note: PropTypes.number,
-  //   description: PropTypes.string,
-  //   photo: PropTypes.string,
-  //   family_tag: PropTypes.bool,
-  //   // user_id: PropTypes.number,
-  //   // user_firstname: PropTypes.string,
-  //   sportID: PropTypes.number,
-  //   sportName: PropTypes.string,
-  //   location_id: PropTypes.number,
-  //   locationName: PropTypes.string,
-  //   locationPostcode: PropTypes.string,
-  //   locationDepartment: PropTypes.string,
-  // }).isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
@@ -55,6 +73,7 @@ Comments.propTypes = {
       activity_id: PropTypes.number,
     }).isRequired,
   ).isRequired,
+  activityId: PropTypes.number.isRequired,
 };
 
 export default Comments;

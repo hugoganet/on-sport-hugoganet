@@ -18,14 +18,13 @@ function ProfilPage() {
       .catch((error) => {
         console(error);
       });
-  }, []);
-  console.log(`ProfilPage UserInfos: ${UserInfos}`);
+  }, [UserInfos]);
 
   return (
     <div className="ProfilPage">
       <ProfilHeader loggedUser={UserInfos} />
       <ProfilDetails loggedUser={UserInfos} />
-      <ActivitiesList />
+      <ActivitiesList loggedUser={UserInfos} />
     </div>
   );
 }

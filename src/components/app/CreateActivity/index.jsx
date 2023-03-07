@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable camelcase */
 /* eslint-disable import/no-unresolved */
@@ -60,7 +63,7 @@ function CreateActivity() {
   const arrayImages = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of image) {
-    arrayImages.push(elem.name);
+    arrayImages.push(elem);
   }
 
   const handleSelectSport = (e, { value }) => {
@@ -72,11 +75,14 @@ function CreateActivity() {
   };
 
   const handleSubmit = async (e) => {
+    console.log(arrayImages);
     e.preventDefault();
 
     const form = new FormData();
     form.append('jsonAsString', JSON.stringify(user));
-    form.append('photo', arrayImages);
+    for (let i = 0; i < image.length; i++) {
+      form.append('photo', image[i]);
+    }
 
     try {
       const response = await axios({
@@ -141,6 +147,8 @@ function CreateActivity() {
           <Form
             size="large"
             className="create__activity__form"
+            encType="multipart/form-data"
+            method='POST'
             onSubmit={handleSubmit}
           >
             <Form.Input
@@ -152,15 +160,6 @@ function CreateActivity() {
               required
             />
 
-            { /*          <Search
-              loading={loading}
-              placeholder="Search..."
-              onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })}
-              onSearchChange={handleSearchChange}
-              // onKeyUp={() => console.log('keyUp')}
-              results={results}
-              value={value}
-  /> */}
             <div className="autocomplete__container">
               <Form.Input
                 label="Entrer une ville"
@@ -232,6 +231,7 @@ function CreateActivity() {
             <span className="required__asterisk">*</span>
             <Form.Input
               type="file"
+              name="photo"
               multiple
               accept=".jpg, .png, .jpeg"
               onChange={(e) => setImage(e.target.files)}

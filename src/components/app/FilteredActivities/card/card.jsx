@@ -29,7 +29,7 @@ function Card({
         <img src={`${selectedSport.image_color}`} alt="" />
       </div>
       <div className="card-family">
-        {family_tag === 'true' ? <img src={tag_image} alt="" />
+        {family_tag ? <img src={tag_image} alt="" />
           : ''}
       </div>
       {/* <div className="family_tag1" style={{ color: `${color}` }}>SORTIE</div>
@@ -56,8 +56,13 @@ Card.propTypes = {
   sportID: Proptypes.number.isRequired,
   family_tag: Proptypes.bool.isRequired,
   id: Proptypes.number.isRequired,
-  locationName: Proptypes.string.isRequired,
-  locationDepartment: Proptypes.string.isRequired,
+  locationName: Proptypes.string,
+  locationDepartment: Proptypes.string,
+};
+
+Card.defaultProps = {
+  locationName: '',
+  locationDepartment: '',
 };
 
 export default Card;
