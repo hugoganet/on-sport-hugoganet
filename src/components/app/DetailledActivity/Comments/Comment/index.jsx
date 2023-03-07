@@ -9,7 +9,6 @@ import './style.scss';
 function Annotation({
   activity_note, content, user_id,
 }) {
-  const userId = localStorage.getItem('userId');
   const [userComment, setUserComment] = React.useState([]);
 
   React.useEffect(
@@ -39,7 +38,6 @@ function Annotation({
 }
 
 Annotation.propTypes = {
-  activity_id: PropTypes.number.isRequired,
   activity_note: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,

@@ -28,7 +28,7 @@ function Comments({ comments, activityId }) {
     //   'Access-Control-Allow-Origin': '*',
     // };
     try {
-      const response = await axios.post('http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/2', {
+      const response = await axios.post(`http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/${activityId}`, {
         content,
         user_id,
         activity_note,
@@ -73,7 +73,7 @@ Comments.propTypes = {
       activity_id: PropTypes.number,
     }).isRequired,
   ).isRequired,
-  activityId: PropTypes.number.isRequired,
+  activityId: PropTypes.string,
 };
 
 export default Comments;
