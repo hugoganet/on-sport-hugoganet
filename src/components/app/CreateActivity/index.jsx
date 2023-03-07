@@ -47,7 +47,6 @@ function CreateActivity() {
     title, user_id, sport_id, family_tag, description, location_id,
   };
 
-  console.log(image);
   const arrayImages = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of image) {
@@ -68,9 +67,9 @@ function CreateActivity() {
 
     const form = new FormData();
     form.append('jsonAsString', JSON.stringify(user));
-    for (let i = 0; i < arrayImages.length; i++) {
-      form.append('photo', arrayImages[i]);
-    }
+    arrayImages.forEach((file) =>{
+      form.append('photo', file);
+    });
 
     try {
       const response = await axios({

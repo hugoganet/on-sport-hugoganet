@@ -6,7 +6,7 @@ import profilPicture from '../../../../assets/Tac-raoul-2.png';
 
 import './style.scss';
 
-function ProfilHeader({ loggedUser: { firstname, lastname } }) {
+function ProfilHeader({ loggedUser }) {
   return (
     <header className="ProfilHeader">
       <button type="button" className=" ProfilHeader__button ProfilHeader__button--accueil">
@@ -14,11 +14,7 @@ function ProfilHeader({ loggedUser: { firstname, lastname } }) {
       </button>
       <div className="ProfilHeader__img--div">
         <img className="ProfilHeader__img" src={profilPicture} alt="profilPicture" />
-        <p className="ProfilHeader__name">
-          {firstname}
-          {' '}
-          {lastname}
-        </p>
+        <p className="ProfilHeader__name">{loggedUser.firstname}</p>
       </div>
       <div className="ProfilHeader__button--div">
         <button type="button" className=" ProfilHeader__button ProfilHeader__button--monProfil">
@@ -35,76 +31,21 @@ function ProfilHeader({ loggedUser: { firstname, lastname } }) {
 ProfilHeader.propTypes = {
   loggedUser: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    age: PropTypes.number,
-    bio: PropTypes.string,
-    email: PropTypes.string.isRequired,
     firstname: PropTypes.string.isRequired,
     lastname: PropTypes.string.isRequired,
-    location_id: PropTypes.number,
-    login: PropTypes.string.isRequired,
-    ListActivities: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        note: PropTypes.number,
-        description: PropTypes.string,
-        photo: PropTypes.string,
-        family_tag: PropTypes.bool,
-        user_id: PropTypes.number,
-        user_firstname: PropTypes.string,
-        sportID: PropTypes.number,
-        sportName: PropTypes.string,
-        location_id: PropTypes.number,
-        locationName: PropTypes.string,
-        locationPostcode: PropTypes.number,
-        locationDepartment: PropTypes.string,
-      }).isRequired,
-    ),
-  }),
-};
-ProfilHeader.propTypes = {
-  loggedUser: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    age: PropTypes.number,
-    bio: PropTypes.string,
     email: PropTypes.string.isRequired,
-    firstname: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
     location_id: PropTypes.number,
     login: PropTypes.string.isRequired,
-    ListActivities: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        note: PropTypes.number,
-        description: PropTypes.string,
-        photo: PropTypes.string,
-        family_tag: PropTypes.bool,
-        user_id: PropTypes.number,
-        user_firstname: PropTypes.string,
-        sportID: PropTypes.number,
-        sportName: PropTypes.string,
-        location_id: PropTypes.number,
-        locationName: PropTypes.string,
-        locationPostcode: PropTypes.number,
-        locationDepartment: PropTypes.string,
-      }).isRequired,
-    ),
+    age: PropTypes.string,
+    bio: PropTypes.string,
   }),
 };
 
 ProfilHeader.defaultProps = {
   loggedUser: {
     age: '',
-    location_id: '',
     bio: '',
-  },
-};
-ProfilHeader.defaultProps = {
-  loggedUser: {
-    age: '',
     location_id: '',
-    bio: '',
   },
 };
 
