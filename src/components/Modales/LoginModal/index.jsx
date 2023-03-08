@@ -13,6 +13,7 @@ function LoginModal(props) {
   const { onClose, onLogin } = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
   const modalRef = useRef(null);
 
   const handleOutsideClick = (event) => {
@@ -30,14 +31,8 @@ function LoginModal(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Vérifier les informations de connexion ici
     onLogin();
     onClose();
-    // console.log(event.target[0].value);
-
-    // const login = event.target[0].value;
-    // // eslint-disable-next-line no-shadow
-    // const password = event.target[1].value;
 
     const headers = {
       'Content-Type': 'application/json',

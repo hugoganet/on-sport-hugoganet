@@ -39,7 +39,7 @@ function Home() {
         'Access-Control-Allow-Origin': '*',
       },
     }).then(
-(response) => { setListActivities(response.data); setUnFilteredList(response.data); console.log(response.data); },
+(response) => { setListActivities(response.data); setUnFilteredList(response.data); },
 ).catch((error) => {
       console(error);
     });
@@ -52,8 +52,6 @@ function Home() {
 },
    [],
 );
-
-console.log(ListActivities);
 
 const departmentList = [...new Set(listLocation.map((item) => item.department))];
 
