@@ -7,7 +7,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import FormData from 'form-data';
 
@@ -36,6 +36,7 @@ function CreateActivity() {
   const [errorMessage, setErrorMessage] = useState('');
   const [open, setOpen] = useState(false);
   const user_id = parseInt(localStorage.getItem('userId'), 10);
+  const navigate = useNavigate();
 
   // React.useEffect(
   //   () => {
@@ -103,12 +104,13 @@ function CreateActivity() {
       setErrorMessage('Une erreur est survenue. Veuillez réessayer');
       setSuccessMessage('');
     }
-
+    navigate('/profile/{user_id}');
     // setTimeout(() => {
     //   setErrorMessage("");
     //   setSuccessMessage("");
     // }, 3000);
   };
+
   const getCitiesFromSearch = async () => {
     if (citySearch.length < 3) return;
     try {
