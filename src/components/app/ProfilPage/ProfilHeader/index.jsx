@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
 import defaultProfilePicture from '../../../../assets/default_profile_picture_icon.jpeg';
+import ConfirmModal from '../../../Modales/ConfirmModal';
 
 import './style.scss';
 
 function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const userId = localStorage.getItem('userId');
+
+  const handleLogout = () => {
+    setShowConfirmModal(true);
+  };
 
   return (
     <header className="ProfilHeader">
@@ -27,13 +33,17 @@ function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
         </p>
       </div>
       <div className="ProfilHeader__button--div">
-        <button type="button" className=" ProfilHeader__button ProfilHeader__button--monProfil">
-          Mon profil
-        </button>
-        <button type="button" className=" ProfilHeader__button ProfilHeader__button--deconnexion">
-          Sign out
+        <button
+          type="button"
+          className=" ProfilHeader__button ProfilHeader__button--deconnexion"
+          onClick={handleLogout}
+        >
+          Déconnexion
         </button>
       </div>
+      {showConfirmModal && (
+        <ConfirmModal setShowConfirmModal={setShowConfirmModal} />
+      )}
     </header>
   );
 }

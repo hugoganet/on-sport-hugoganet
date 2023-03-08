@@ -1,9 +1,11 @@
 // /import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import axios from 'axios';
+
 import ProfilDetails from './ProfilDetails';
 import ProfilHeader from './ProfilHeader';
 import ActivitiesList from './ActivitiesList';
+import Footer from '../Footer';
 
 import './style.scss';
 
@@ -25,6 +27,7 @@ function ProfilPage() {
       <ProfilHeader loggedUser={UserInfos} />
       <ProfilDetails loggedUser={UserInfos} />
       <ActivitiesList loggedUser={UserInfos} />
+      <Footer />
     </div>
   );
 }
