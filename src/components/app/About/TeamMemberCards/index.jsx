@@ -9,64 +9,49 @@ import './style.scss';
 function TeamMemberCards() {
   return (
     <Card.Group className="Cards__group" centered stackable>
-      <Card color="red">
+      <Card>
         <Image src={profilPicture} wrapped ui={false} />
         <Card.Content>
           <Card.Header>Karen Bartaud</Card.Header>
           <Card.Meta>
             <span>Lead Dev Front - Product Owner</span>
           </Card.Meta>
-          <Card.Description>
-            Lorem ipsum dolor sit amet
-          </Card.Description>
         </Card.Content>
       </Card>
-      <Card color="red">
+      <Card>
         <Image src={profilPicture} wrapped ui={false} />
         <Card.Content>
           <Card.Header>Hugo Ganet</Card.Header>
           <Card.Meta>
             <span>Git Master</span>
           </Card.Meta>
-          <Card.Description>
-            Lorem ipsum dolor sit amet
-          </Card.Description>
         </Card.Content>
       </Card>
-      <Card color="red">
+      <Card>
         <Image src={profilPicture} wrapped ui={false} />
         <Card.Content>
           <Card.Header>Ramazan Cinar</Card.Header>
           <Card.Meta>
             <span>Référent technique</span>
           </Card.Meta>
-          <Card.Description>
-            Lorem ipsum dolor sit amet
-          </Card.Description>
         </Card.Content>
       </Card>
-      <Card color="red">
+      <Card>
         <Image src={profilPicture} wrapped ui={false} />
         <Card.Content>
           <Card.Header>Olivier Vinot</Card.Header>
           <Card.Meta>
             <span>Scrum Master</span>
           </Card.Meta>
-          <Card.Description>
-            Lorem ipsum dolor sit amet
-          </Card.Description>
         </Card.Content>
       </Card>
-      <Card color="red">
+      <Card>
         <Image src={profilPicture} wrapped ui={false} />
         <Card.Content>
           <Card.Header>Ronald Fonlebeck</Card.Header>
           <Card.Meta>
             <span>Lead Dev Back</span>
           </Card.Meta>
-          <Card.Description>
-            Lorem ipsum dolor sit amet
-          </Card.Description>
         </Card.Content>
       </Card>
     </Card.Group>
