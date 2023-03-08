@@ -81,8 +81,8 @@ function DetailledActivity() {
           <Grid.Column>
             <Segment raised>
               <Label as="a" color="blue" ribbon>
-                <Rating icon="star" defaultRating={3} maxRating={5} disabled size="large" />
-              </Label>
+                <Rating icon="star" defaultRating={0} maxRating={5} rating={activityInfo.note} disabled size="large" />
+                </Label>
               <span className="activity__title">{activityInfo.title}</span>
 
             </Segment>
@@ -101,12 +101,12 @@ function DetailledActivity() {
         </div>
 
         <div className="activity__description">
-        <div className="activity__description__detail">
-          <p>{activityInfo.description}</p>
+          <div className="activity__description__detail">
+            <p>{activityInfo.description}</p>
           </div>
           <div className="activity__description__comments">
-        <Comments comments={comments} activityId={activityId} />
-        </div>
+            <Comments comments={comments} activityId={activityId} />
+          </div>
         </div>
       </div>
 
