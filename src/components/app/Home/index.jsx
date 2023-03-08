@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable max-len */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -8,6 +9,8 @@ import {
   Form, Image, Grid, Segment, Label,
 } from 'semantic-ui-react';
 import axios from 'axios';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import './style.scss';
 
@@ -20,6 +23,7 @@ import bg from '../../../assets/On.gif';
 import Step1 from '../../../assets/step1.gif';
 import Step2 from '../../../assets/step2.gif';
 import Step3 from '../../../assets/step3.gif';
+import Step4 from '../../../assets/step4.gif';
 import 'animate.css';
 import sportsList from '../../../datas/sports';
 import FilterActivities from '../../../utils'; // You can also use <link> for styles
@@ -31,6 +35,7 @@ function Home() {
   const [filteredSports, setFilteredSports] = React.useState([]);
   const [filteredDepartments, setFilteredDepartments] = React.useState([]);
   const [operator, setOperator] = React.useState('');
+  AOS.init();
   React.useEffect(
 () => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
@@ -124,28 +129,22 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
 
        <div className="steps_container">
          <div className="steps">
-           <Grid columns={3}>
-             <Grid.Row>
-               <Grid.Column>
-                 <Segment padded>
-                   <Label attached="top" color="orange">INSCRIS-TOI</Label>
-                   <Image src={Step1} />
-                 </Segment>
-               </Grid.Column>
-               <Grid.Column>
-                 <Segment padded>
-                   <Label attached="bottom" color="orange">INSPIRE TOI DES EXPERIENCES DES AUTRES UTILISATEURS POUR PRATIQUER TES SPORTS FAVORIS</Label>
-                   <Image src={Step2} />
-                 </Segment>
-               </Grid.Column>
-               <Grid.Column>
-                 <Segment padded>
-                   <Label attached="top right" color="orange">PARTAGE A TON TOUR TES ENTRAINEMENTS</Label>
-                   <Image src={Step3} />
-                 </Segment>
-               </Grid.Column>
-             </Grid.Row>
-           </Grid>
+           <div className="groupe1">
+             <div className="step1" data-aos="zoom-in">
+               <img src={Step1} />
+             </div>
+             <div className="step2" data-aos="zoom-in">
+               <img src={Step2} />
+             </div>
+           </div>
+           <div className="groupe1">
+             <div className="step3" data-aos="zoom-in">
+               <img src={Step3} />
+             </div>
+             <div className="step4" data-aos="zoom-in">
+               <img src={Step4} />
+             </div>
+           </div>
          </div>
        </div>
 

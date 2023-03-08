@@ -16,6 +16,7 @@ z-index:1;
 
 .steps{
 display:flex;
+flex-direction: column;
 width:70vw;
 justify-content: center;
 padding-top:40px;
@@ -26,9 +27,41 @@ margin-right:auto;
 
 .steps_container{
     // background-color:  v.$color-third;
-    width:100vw;
+    width:80vw;
     margin-bottom:40px;
 }
+.groupe1{
+    display:flex;
+flex-direction: row;
+}
+
+
+.step1 img{
+   width:700px;
+    height:420px;
+   
+}
+.step2 img{
+    margin-top: 200px;
+    width:700px;
+    height:420px;
+   
+}
+
+
+.step3 img{
+    width:700px;
+     height:420px;
+    
+ }
+
+ .step4 img{
+    margin-top: 200px;
+    width:700px;
+    height:420px;
+   
+}
+
 
 .search_form{
 background-color: v.$color-first;

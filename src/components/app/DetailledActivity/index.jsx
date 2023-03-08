@@ -71,6 +71,8 @@ function DetailledActivity() {
     });
   }, [activityInfo]);
 
+  const note = Math.round(activityInfo.note);
+
   return (
     <>
       <Header />
@@ -81,8 +83,8 @@ function DetailledActivity() {
           <Grid.Column>
             <Segment raised>
               <Label as="a" color="blue" ribbon>
-                <Rating icon="star" defaultRating={0} maxRating={5} rating={activityInfo.note} disabled size="large" />
-                </Label>
+                <Rating icon="star" defaultRating={0} maxRating={5} rating={note} disabled size="large" />
+              </Label>
               <span className="activity__title">{activityInfo.title}</span>
 
             </Segment>
