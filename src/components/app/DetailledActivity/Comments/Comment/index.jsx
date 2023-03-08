@@ -5,6 +5,7 @@ import {
   Rating, Comment,
 } from 'semantic-ui-react';
 import './style.scss';
+import defaultProfilePicture from '../../../../../assets/Tac-raoul-2.png';
 
 function Annotation({
   activity_note, content, user_id,
@@ -23,7 +24,7 @@ function Annotation({
   );
   return (
     <Comment>
-      <Comment.Avatar src="/default-image.png" />
+      <Comment.Avatar src={userComment.photo ? `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${user_id}/photo/${userComment.photo}` : defaultProfilePicture} />
       <Comment.Content>
         <Comment.Author as="a">
           {userComment.firstname}
