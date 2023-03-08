@@ -101,10 +101,13 @@ function DetailledActivity() {
         </div>
 
         <div className="activity__description">
-       
+        <div className="activity__description__detail">
           <p>{activityInfo.description}</p>
-        </div>
+          </div>
+          <div className="activity__description__comments">
         <Comments comments={comments} activityId={activityId} />
+        </div>
+        </div>
       </div>
 
       <div className="filteredActivities">

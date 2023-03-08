@@ -162,14 +162,14 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
              onChange={handleSelectSport.bind(this)}
            />
            <Form.Radio
-             width={1}
+             width={2}
              label="ET"
              value="AND"
              checked={operator === 'AND'}
              onChange={handleChange}
            />
            <Form.Radio
-             width={1}
+             width={2}
              label="OU"
              value="OR"
              checked={operator === 'OR'}
