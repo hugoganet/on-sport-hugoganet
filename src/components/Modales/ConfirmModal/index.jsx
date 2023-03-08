@@ -1,14 +1,17 @@
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './style.scss';
 
 function ConfirmModal({ setShowConfirmModal }) {
   const modalRef = useRef(null);
+  const navigate = useNavigate();
+
   const onConfirm = () => {
     setShowConfirmModal(false);
     localStorage.clear();
-    // setIsLogged(false);
+    navigate('/');
   };
 
   const onCancel = () => {
