@@ -4,22 +4,23 @@
 .project{
     margin: .8rem;
     border-radius: 1rem;
-    background-color: v.$color-third;
+    // background-color: v.$color-third;
     max-width: 700px;
     &__title {
-    display: flex;
-    justify-content: center;   
-    font-size: 2.5rem;
-    // background-color: v.$color-first;
-    color: v.$color-white;
-    border-radius: 1rem;
+        display: flex;
+        justify-content: center;   
+        color: v.$color-first;
+        font-size: 2.5rem;
+        // background-color: v.$color-first;
+        // color: v.$color-white;
+        border-radius: 1rem;
 }
     &__description {
         border-radius: 1rem;
         padding: .8rem;
         // margin: 1rem;
         color: v.$color-white;
-        // background-color: v.$color-first;
+        background-color: v.$color-first;
         font-size: 1.2rem;
     }
 }
@@ -27,19 +28,19 @@
     .about{
     margin: .8rem;
     border-radius: 1rem;
-    background-color: v.$color-third;
+    // background-color: v.$color-third;
     &__title {
     display: flex;
     justify-content: center;   
     font-size: 2.5rem;
-    color: v.$color-white;
+    color: v.$color-first;
     border-radius: 1rem;
 }
     &__description {
         border-radius: 1rem;
         padding: 1rem;
         color: v.$color-white;
-        // background-color: v.$color-first;
+        background-color: v.$color-first;
         margin: 1rem;
         font-size: 1.2rem;
     }
