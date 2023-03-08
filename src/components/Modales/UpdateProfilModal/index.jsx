@@ -67,11 +67,12 @@ function UpdateProfilModal(props) {
     // eslint-disable-next-line no-unused-vars
     const truthyFields = Object.entries(updatedData).filter(([key, value]) => value);
     const filteredData = Object.fromEntries(truthyFields);
-    console.log('filteredData', filteredData);
 
     const form = new FormData();
     form.append('jsonAsString', JSON.stringify(filteredData));
-    form.append('photo', image);
+    if (image) {
+      form.append('photo', image);
+    }
 
     try {
       console.log('form', form);
