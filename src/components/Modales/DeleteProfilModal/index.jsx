@@ -12,7 +12,7 @@ function DeleteProfilModal({ toggleDeleteProfilModal }) {
   const userId = localStorage.getItem('userId');
 
   const onConfirm = () => {
-    axios.delete(`http://ronaldfk-server.eddi.cloud:8080/api/user/${userId}`);
+    axios.delete(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`);
     toggleDeleteProfilModal(false);
     localStorage.clear();
     navigate('/');

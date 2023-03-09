@@ -17,7 +17,7 @@ function Header() {
   return (
     <div className="Header">
       <Link to="/"><img className="Header__logo" src={Logo} alt="logo" /></Link>
-      {isLogged ? (
+      {userId ? (
         <>
           <button className="Header__button" type="button">
             {' '}
