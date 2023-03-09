@@ -6,7 +6,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import {
-  Form,
+  Form, Grid, Image,
 } from 'semantic-ui-react';
 import axios from 'axios';
 import AOS from 'aos';
@@ -140,30 +140,33 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
          <img src={bg} alt="background" />
        </div>
 
-       <div className="steps_container">
-         <div className="steps">
-           <div className="groupe1">
-             <div className="step1">
-               <img src={Step1} data-aos="zoom-in" data-aos-delay="600" data-aos-offset="300" />
-               <img src={Step1_title} className="step1_title" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500" data-aos-offset="200" />
-             </div>
-             <div className="step2">
-               <img src={Step2} data-aos="zoom-in" data-aos-delay="600" data-aos-offset="300" />
-               <img src={Step2_title} className="step2_title" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500" data-aos-offset="400" />
-             </div>
-           </div>
-           <div className="groupe1">
-             <div className="step1">
-               <img src={Step3} data-aos="fade-up-right" data-aos-duration="1000" />
-               <img src={Step3_title} className="step3_title" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500" data-aos-offset="200" />
-             </div>
-             <div className="step2">
-               <img src={Step4} data-aos="zoom-in" data-aos-offset="300" />
-               <img src={Step4_title} className="step4_title" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500" data-aos-offset="400" />
-             </div>
-           </div>
-         </div>
-       </div>
+       <Grid>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step1} data-aos="zoom-in" data-aos-offset="100" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step1_title} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="200" data-delay="500" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step2} data-aos="zoom-in" data-aos-offset="300" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step2_title} data-aos="zoom-in" data-aos-offset="400" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step3} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="500" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step3_title} data-aos="zoom-in" data-aos-offset="600" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step4} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="700" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step4_title} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="800" />
+         </Grid.Column>
+
+       </Grid>
 
        <Form className="search_form">
          <h1 className="search_form_title">RECHERCHER DES ACTIVITÉS</h1>
@@ -174,7 +177,7 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
              fluid
              multiple
              options={sportsList}
-            // eslint-disable-next-line react/jsx-no-bind
+               // eslint-disable-next-line react/jsx-no-bind
              onChange={handleSelectSport.bind(this)}
            />
            <Form.Radio
@@ -197,7 +200,7 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
              fluid
              multiple
              options={departmentOptions}
-            // eslint-disable-next-line react/jsx-no-bind
+               // eslint-disable-next-line react/jsx-no-bind
              onChange={handleSelectDepartement.bind(this)}
            />
          </Form.Group>
@@ -205,6 +208,7 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
        <Filtered ListActivities={ListActivities} />
        <Footer />
      </div>
+
    );
 }
 
