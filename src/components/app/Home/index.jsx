@@ -35,13 +35,6 @@ import sportsList from '../../../datas/sports';
 import FilterActivities from '../../../utils'; // You can also use <link> for styles
 
 function Home() {
-  window.onload = () => {
-    lax.init();
-
-    // Add a driver that we use to control our animations
-    lax.addDriver('scrollY', () => window.scrollY);
-  };
-  window.onload();
   const [ListActivities, setListActivities] = React.useState([]);
   const [UnFilteredList, setUnFilteredList] = React.useState([]);
   const [listLocation, setListLocation] = React.useState([]);
