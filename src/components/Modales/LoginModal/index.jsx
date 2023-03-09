@@ -12,9 +12,6 @@ function LoginModal({ toggleLoginModal, isShowLoginModal }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // onLogin();
-    // onClose();
-
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',

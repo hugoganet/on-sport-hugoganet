@@ -63,9 +63,6 @@ function Header() {
       <LoginModal
         toggleLoginModal={toggleLoginModal}
         isShowLoginModal={isShowLoginModal}
-        onClose={() => toggleLoginModal(false)}
-        onLogin={() => console.log('tentative de connexion')}
-        userId={userId}
       />
       )}
       {showSignupModal && <SignupModal onClose={() => setShowSignupModal(false)} />}

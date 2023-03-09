@@ -1,13 +1,13 @@
-﻿/* eslint-disable unicode-bom */
-import React, { useEffect, useRef } from 'react';
+﻿import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-import './style.scss';
+import {
+  Button, Modal,
+} from 'semantic-ui-react';
 
-function DeleteProfilModal({ toggleDeleteProfilModal }) {
-  const modalRef = useRef(null);
+function DeleteProfilModal({ isShowDeleteProfilModal, toggleDeleteProfilModal }) {
   const navigate = useNavigate();
   const userId = localStorage.getItem('userId');
 
@@ -18,37 +18,30 @@ function DeleteProfilModal({ toggleDeleteProfilModal }) {
     navigate('/');
   };
 
-  const onCancel = () => {
-    toggleDeleteProfilModal(false);
-  };
-  const handleOutsideClick = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      onCancel();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      window.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [handleOutsideClick]);
-
   return (
-    <div className="ConfirmModal ConfirmModal--show">
-      <div className="ConfirmModal__content ConfirmModal__content--show" ref={modalRef}>
-        <h2 className="ConfirmModal__title">Confirmation de suppression</h2>
-        <p className="ConfirmModal__title__confirm">Êtes-vous sûr de vouloir supprimer votre compte ?</p>
-        <div className="ConfirmModal__buttons">
-          <button className="ConfirmModal__button" type="button" onClick={onConfirm}>Oui</button>
-          <button className="ConfirmModal__button" type="button" onClick={onCancel}>Non</button>
-        </div>
-      </div>
-    </div>
+    <Modal
+      onClose={() => toggleDeleteProfilModal(false)}
+      onOpen={() => toggleDeleteProfilModal(true)}
+      open={isShowDeleteProfilModal}
+    >
+      <Modal.Actions>
+        <Button color="black" onClick={() => toggleDeleteProfilModal(false)}>
+          Non
+        </Button>
+        <Button
+          content="Oui"
+          labelPosition="right"
+          icon="checkmark"
+          onClick={onConfirm}
+          positive
+        />
+      </Modal.Actions>
+    </Modal>
   );
 }
 
 DeleteProfilModal.propTypes = {
+  isShowDeleteProfilModal: PropTypes.bool.isRequired,
   toggleDeleteProfilModal: PropTypes.func.isRequired,
 };
 
