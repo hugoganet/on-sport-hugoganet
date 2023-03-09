@@ -1,60 +1,54 @@
 @use 'src/styles/_vars' as v;
 
-// p:first-child {
-//   margin-top: 8px; /* override the margin-top property */
-// }
+.project{
+    // margin: .8rem;
+    border-radius: 1rem;
+    // background-color: v.$color-third;
+    width: 90vw;
+    &__title {
+        display: flex;
+        justify-content: center;   
+        color: v.$color-first;
+        font-size: 2.5rem;
+        // background-color: v.$color-first;
+        // color: v.$color-white;
+        border-radius: 1rem;
+}
+    &__description {
+        border-radius: 1rem;
+        padding: .8rem;
+        color: v.$color-white;
+        background-color: v.$color-first;
+        font-size: 1.2rem;
+    }
+}
 
-// .About{
-//   display: flex;
-//   align-items: center;
-//   margin-top: 3rem;
+    .about{
+    margin: .8rem;
+    border-radius: 1rem;
+    // background-color: v.$color-third;
+    &__title {
+    display: flex;
+    justify-content: center;   
+    font-size: 2.5rem;
+    color: v.$color-first;
+    border-radius: 1rem;
+}
+    &__description {
+        border-radius: 1rem;
+        padding: .8rem;
+        color: v.$color-white;
+        background-color: v.$color-first;
+        font-size: 1.2rem;
+    }
+}
 
-//   &__projectPresentation {
-//     padding: .5rem;
-//     width: 90%;
-//     border: 2px solid v.$color-grey-light;
-//     border-radius: .3rem;
-//   }
 
-//   &__teamPresentation {
-//     padding: .5rem;
-//     width: 90%;
-//     border: 2px solid v.$color-grey-light;
-//     border-radius: .3rem;
-//   }  
-
-//   &__teamMembers{
-//     width: 90%;
-//   }
-// }
-
-// @media screen and (min-width: 768px) {
-//   .About{
-//     &__teamMembers{
-//       display: flex;
-//       flex-direction: row;
-//       flex-wrap: wrap;
-//       // align-items: center;
-//       justify-content: space-evenly;
-//       padding-bottom: 8px;
-//       margin-top: 3rem;
-//     }
-//   }
-// }
-
-// @media screen and (min-width: 1366px) {
-//   .About{
-//     &__teamMembers{
-//       display: flex;
-//       flex-direction: row;
-//       flex-wrap: wrap;
-//       align-items: center;
-//       justify-content: space-between;
-//       width: 90%;
-//       padding-bottom: 8px;
-//       margin-top: 3rem;
-//     }
-//   }
-// }
+.ui.card, .ui.cards>.card {
+    width: 220px;
+}
   
-  
+
+.ui.fluid.justified.container {
+    width: 80%;
+    }
