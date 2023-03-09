@@ -1,59 +1,43 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 
-import profilPicture from '../../../../assets/Tac-raoul-2.png';
+import olivier from '../../../../assets/1.png';
+import ronald from '../../../../assets/2.png';
+import hugo from '../../../../assets/3.png';
+import karen from '../../../../assets/4.png';
+import ramazan from '../../../../assets/5.png';
 
 import './style.scss';
 
 function TeamMemberCards() {
   return (
     <Card.Group className="Cards__group" centered stackable>
-      <Card>
-        <Image src={profilPicture} wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>Karen Bartaud</Card.Header>
-          <Card.Meta>
-            <span>Lead Dev Front - Product Owner</span>
-          </Card.Meta>
-        </Card.Content>
-      </Card>
-      <Card>
-        <Image src={profilPicture} wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>Hugo Ganet</Card.Header>
-          <Card.Meta>
-            <span>Git Master</span>
-          </Card.Meta>
-        </Card.Content>
-      </Card>
-      <Card>
-        <Image src={profilPicture} wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>Ramazan Cinar</Card.Header>
-          <Card.Meta>
-            <span>Référent technique</span>
-          </Card.Meta>
-        </Card.Content>
-      </Card>
-      <Card>
-        <Image src={profilPicture} wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>Olivier Vinot</Card.Header>
-          <Card.Meta>
-            <span>Scrum Master</span>
-          </Card.Meta>
-        </Card.Content>
-      </Card>
-      <Card>
-        <Image src={profilPicture} wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>Ronald Fonlebeck</Card.Header>
-          <Card.Meta>
-            <span>Lead Dev Back</span>
-          </Card.Meta>
-        </Card.Content>
-      </Card>
+      <Card
+        image={karen}
+        header="Karen Bartaud"
+        meta="Lead Dev Front - Product Owner"
+      />
+      <Card
+        image={hugo}
+        header="Hugo Ganet"
+        meta="Git Master"
+      />
+      <Card
+        image={ramazan}
+        header="Ramazan Cinar"
+        meta="Référent Technique"
+      />
+      <Card
+        image={olivier}
+        header="Olivier Vinot"
+        meta="Scrum Master"
+      />
+      <Card
+        image={ronald}
+        header="Ronald Fonlebeck"
+        meta="Lead Dev Back"
+      />
     </Card.Group>
   );
 }

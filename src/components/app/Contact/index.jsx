@@ -42,7 +42,7 @@ function Contact() {
       <Header />
       <h1 className="Contact__title">Nous contacter</h1>
       <Grid stackable centered columns={1}>
-        <Grid.Column width={10}>
+        <Grid.Column width={6}>
           <Form fluid size="large" className="Contact__form" onSubmit={handleSubmit} error={formError}>
             <Form.Input
               width={40}

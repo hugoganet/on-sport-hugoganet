@@ -2,10 +2,10 @@
 
 
 .project{
-    margin: .8rem;
+    // margin: .8rem;
     border-radius: 1rem;
     // background-color: v.$color-third;
-    max-width: 700px;
+    // max-width: 700px;
     &__title {
         display: flex;
         justify-content: center;   
@@ -18,7 +18,6 @@
     &__description {
         border-radius: 1rem;
         padding: .8rem;
-        // margin: 1rem;
         color: v.$color-white;
         background-color: v.$color-first;
         font-size: 1.2rem;
@@ -38,11 +37,14 @@
 }
     &__description {
         border-radius: 1rem;
-        padding: 1rem;
+        padding: .8rem;
         color: v.$color-white;
         background-color: v.$color-first;
-        margin: 1rem;
         font-size: 1.2rem;
     }
+}
+
+.ui.card, .ui.cards>.card {
+    width: 220px;
 }
   
