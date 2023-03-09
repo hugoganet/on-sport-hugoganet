@@ -13,16 +13,9 @@ import LoginModal from '../LoginModal';
 import SignupModal from '../SignupModal';
 
 function Unauthorized({ open, setOpen }) {
-  const [showLoginModal, setShowLoginModal] = React.useState(false);
-  const [showSignupModal, setShowSignupModal] = React.useState(false);
+  const [isShowLoginModal, toggleLoginModal] = React.useState(false);
+  const [isShowSignupModal, toggleSignupModal] = React.useState(false);
 
-  const handleLogin = () => {
-    setShowLoginModal(true);
-  };
-
-  const handleSignup = () => {
-    setShowSignupModal(true);
-  };
   return (
     <Modal
       onClose={() => setOpen(false)}
@@ -38,22 +31,22 @@ function Unauthorized({ open, setOpen }) {
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button color="orange" onClick={handleSignup}>
+        <Button color="orange" onClick={() => toggleSignupModal(true)}>
           Je crée mon compte
         </Button>
         <Button
           content="Je me connecte"
           labelPosition="right"
           icon="checkmark"
-          onClick={handleLogin}
+          onClick={() => toggleLoginModal(true)}
           positive
         />
       </Modal.Actions>
-      {showLoginModal && (
+      {isShowLoginModal && (
       <LoginModal />
 
 )}
-      {showSignupModal && <SignupModal />}
+      {isShowSignupModal && <SignupModal />}
     </Modal>
 
   );

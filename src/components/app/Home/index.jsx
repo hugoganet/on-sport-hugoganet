@@ -149,13 +149,13 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
            <Image src={Step2} data-aos="zoom-in" data-aos-offset="300" />
          </Grid.Column>
          <Grid.Column mobile={8} tablet={8} computer={2} data-aos="zoom-in" data-aos-offset="400">
-         <Image src={Step2_title} data-aos="zoom-in" data-aos-offset="600" />
-                    </Grid.Column>
+           <Image src={Step2_title} data-aos="zoom-in" data-aos-offset="600" />
+         </Grid.Column>
          <Grid.Column mobile={8} tablet={8} computer={2}>
-        
+
            <Image src={Step3} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="500" />
          </Grid.Column>
-         <Grid.Column mobile={8} tablet={8} computer={2} >
+         <Grid.Column mobile={8} tablet={8} computer={2}>
            <Image src={Step3_title} data-aos="zoom-in" data-aos-offset="600" />
          </Grid.Column>
          <Grid.Column mobile={8} tablet={8} computer={2}>

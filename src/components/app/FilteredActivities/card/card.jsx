@@ -16,8 +16,6 @@ function Card({
   const selectedSport = sports.find((sport) => sport.id === sportID);
   const [open, setOpen] = React.useState(false);
 
-  const handleClick = () => setOpen(true);
-
   // eslint-disable-next-line no-console
   return (
 
@@ -43,7 +41,7 @@ function Card({
       </div>
       {userId ? <NavLink to={`/activity/${id}`} className="card-btn" style={{ color: `${selectedSport.color}` }}>En savoir plus</NavLink>
         // eslint-disable-next-line react/button-has-type
-        : <button className="card-btn" style={{ color: `${selectedSport.color}` }} onClick={handleClick}>En savoir plus</button>}
+        : <button className="card-btn" style={{ color: `${selectedSport.color}` }} onClick={() => setOpen(true)}>En savoir plus</button>}
 
       {' '}
     </div>

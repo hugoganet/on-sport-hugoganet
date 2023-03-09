@@ -7374,6 +7374,11 @@ lax.js@^2.0.3:
   resolved "https://registry.yarnpkg.com/lax.js/-/lax.js-2.0.3.tgz#74aed57a628db42fcfa91b7a746cec443a611a38"
   integrity sha512-q2q0jVRwruvFdQZeeE3OwIszRIkey6CItPmB+BcTUFPgHd2R8LI+bntAI7d2GJEjheu79mzQ++MROkODuZoXlA==
 
+lax@^0.0.40:
+  version "0.0.40"
+  resolved "https://registry.yarnpkg.com/lax/-/lax-0.0.40.tgz#ef6bb815ef6760949362f44998c46d38ecde3f4a"
+  integrity sha512-JQrch01FPD5qXgzYIITyw8IW3VebNh/ic/yZcp1ZLLS1i7/tn/wawn0hqyI4okSrcs7ELcREZuVdYCtUbyN+IQ==
+
 lazystream@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/lazystream/-/lazystream-1.0.1.tgz#494c831062f1f9408251ec44db1cba29242a2638"

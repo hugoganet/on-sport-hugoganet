@@ -150,7 +150,7 @@ function CreateActivity() {
             size="large"
             className="create__activity__form"
             encType="multipart/form-data"
-            method='POST'
+            method="POST"
             onSubmit={handleSubmit}
           >
             <Form.Input
@@ -203,6 +203,7 @@ function CreateActivity() {
               options={sport}
               value={sport.value}
               // onChange={(e) => setSportId(e.target.id)}
+              // eslint-disable-next-line react/jsx-no-bind
               onChange={handleSelectSport.bind(this)}
               required
             />
