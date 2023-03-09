@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
+
+import DeleteProfilModal from '../../../Modales/DeleteProfilModal';
 
 import Card from '../../FilteredActivities/card/card';
 
 import './style.scss';
 
 function ActivitiesList({ loggedUser: { activitiesList } }) {
+  const [isShowDeleteProfilModal, toggleDeleteProfilModal] = useState(false);
+
   return (
     <div className="ActivitiesList">
       <div className="ActivitiesList__div--titleAndButton">
@@ -45,6 +49,10 @@ function ActivitiesList({ loggedUser: { activitiesList } }) {
           ))
           : <p>Vous n&apos;avez pas encore créé d&apos;activité</p>}
       </div>
+      <button className="ProfilPage__button" type="submit">Supprimer mon profil</button>
+      {isShowDeleteProfilModal && (
+        <DeleteProfilModal toggleDeleteProfilModal={toggleDeleteProfilModal} />
+      )}
     </div>
   );
 }
