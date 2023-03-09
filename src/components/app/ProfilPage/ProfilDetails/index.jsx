@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 import defaultProfilePicture from '../../../../assets/default_profile_picture_icon.jpeg';
+import location from '../../../../assets/location.png';
+import age from '../../../../assets/age.png';
 
 import './style.scss';
 
@@ -42,7 +44,10 @@ function ProfilDetails({ loggedUser }) {
           {loggedUser.lastname}
         </div>
         <p className="ProfilDetails__location">
-          📍
+        <div className="icone">
+            <img src={location} />
+          </div>
+          {/* 📍 */}
           {loggedUser.locationName}
           {' '}
           -
@@ -50,6 +55,9 @@ function ProfilDetails({ loggedUser }) {
           {loggedUser.locationDepartment}
         </p>
         <p className="ProfilDetails__age">
+          <div className="icone">
+            <img src={age} />
+          </div>
           {loggedUser?.age && calculateAge(loggedUser.age)}
           {' '}
           ans

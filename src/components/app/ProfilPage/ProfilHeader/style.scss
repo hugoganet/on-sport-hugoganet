@@ -126,6 +126,22 @@
       margin-top: 2rem;
       order: 2;
     }
+
+    .ProfilDetails__button{
+      background-color: #ffffff;
+      border:solid #ffffff;
+      border-radius: 50px;
+      color:v.$color-third;
+      font-size: 1.2rem;
+    }
+    .ProfilDetails__button:hover{
+      background-color:v.$color-third;
+      border:solid #ffffff;
+      border-radius: 50px;
+      color:#ffffff;
+      font-size: 1rem;
+    }
+
   }
 }
 
