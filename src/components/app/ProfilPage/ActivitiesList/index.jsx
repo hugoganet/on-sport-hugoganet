@@ -49,7 +49,13 @@ function ActivitiesList({ loggedUser: { activitiesList } }) {
           ))
           : <p>Vous n&apos;avez pas encore créé d&apos;activité</p>}
       </div>
-      <button className="ProfilPage__button" type="submit">Supprimer mon profil</button>
+      <button
+        onClick={() => toggleDeleteProfilModal(!isShowDeleteProfilModal)}
+        className="ProfilPage__button"
+        type="submit"
+      >
+        Supprimer mon profil
+      </button>
       {isShowDeleteProfilModal && (
         <DeleteProfilModal toggleDeleteProfilModal={toggleDeleteProfilModal} />
       )}
