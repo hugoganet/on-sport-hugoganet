@@ -1,21 +1,14 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable max-len */
-/* eslint-disable no-shadow */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+﻿/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import { Form } from 'semantic-ui-react';
+import {
+  Button, Input, Modal, TextArea, Form,
+} from 'semantic-ui-react';
 
-import './style.scss';
-
-function UpdateProfilModal(props) {
-  const modalRef = useRef(null);
-  const { handleUpdateProfilToggle, isShowUpdateProfilModal } = props;
+function UpdateProfilModal({ toggleUpdateProfilModal, isShowUpdateProfilModal }) {
   const [bio, setBio] = useState(null);
   const [age, setAge] = useState(null);
   const [locationID, setLocationId] = useState(null);
@@ -24,15 +17,6 @@ function UpdateProfilModal(props) {
   const [citySearch, setCitySearch] = useState(null);
   const userId = localStorage.getItem('userId');
 
-  // React.useEffect(() => axios.get(
-  //   'http://ronaldfk-server.eddi.cloud:8080/api/location/',
-  // ).then(
-  //   (response) => setListLocation(response.data),
-  // ).catch((error) => {
-  //   console.log(error);
-  // }), []);
-
-  // ci-dessous, la même chose mais en async/await (chatGPT)
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -90,21 +74,20 @@ function UpdateProfilModal(props) {
     } catch (error) {
       console.log('error', error);
     }
-    handleUpdateProfilToggle();
+    toggleUpdateProfilModal(false);
   };
 
   return (
-    <div
-      className={isShowUpdateProfilModal ? 'UpdateProfilModal' : 'UpdateProfilModal close'}
-      // onClick={handleUpdateProfilToggle}
+    <Modal
+      onClose={() => toggleUpdateProfilModal(false)}
+      onOpen={() => toggleUpdateProfilModal(true)}
+      open={isShowUpdateProfilModal}
     >
-      <div className="UpdateProfilModal__content" ref={modalRef}>
-        <h2 className="UpdateProfilModal__title">
-          Modifier les informations de mon profil
-        </h2>
-        <Form className="UpdateProfilModal__form" onSubmit={handleSubmit}>
-          <label className="UpdateProfilModal__form--label" htmlFor="bio">Bio:</label>
-          <textarea
+      <Modal.Header>Modifier les informations de mon profil</Modal.Header>
+      <Modal.Content>
+        <Modal.Description>
+          <TextArea
+            placeholder="Ajouter une bio"
             className="UpdateProfilModal__form--input"
             type="text"
             id="bio"
@@ -112,8 +95,8 @@ function UpdateProfilModal(props) {
             value={bio || ''}
             onChange={(event) => setBio(event.target.value)}
           />
-          <label className="UpdateProfilModal__form--label" htmlFor="age">Age:</label>
-          <input
+          <Input
+            placeholder="Date de naissance"
             className="UpdateProfilModal__form--input"
             type="date"
             id="age"
@@ -121,20 +104,19 @@ function UpdateProfilModal(props) {
             value={age || ''}
             onChange={(event) => setAge(event.target.value)}
           />
-          <div className="autocomplete__container">
-            <Form.Input
-              label="Entrer une ville"
-              placeholder="Ville"
-              type="search"
-              icon="search"
-              onKeyUp={getCitiesFromSearch}
-              onChange={(e) => setCitySearch(e.target.value)}
-              value={citySearch || ''}
-              className="autocomplete__input"
-            />
-            <ul className="autocomplete__ul">
-              {/* liste des villes qui vont s'afficher */}
-              {
+          <Form.Input
+            label="Entrer une ville"
+            placeholder="Ville"
+            type="search"
+            icon="search"
+            onKeyUp={getCitiesFromSearch}
+            onChange={(e) => setCitySearch(e.target.value)}
+            value={citySearch || ''}
+            className="autocomplete__input"
+          />
+          <ul className="autocomplete__ul">
+            {/* liste des villes qui vont s'afficher */}
+            {
                 listLocation[0] && listLocation.map((location) => (
                   <li
                     data-id={location.id}
@@ -146,30 +128,35 @@ function UpdateProfilModal(props) {
                       setListLocation([]);
                     }}
                   >
-
                     {location.name}
-
                   </li>
                 ))
             }
-            </ul>
-          </div>
-          <h3> Ajouter une image</h3>
+          </ul>
           <Form.Input
             type="file"
             accept=".jpg, .png, .jpeg"
             onChange={(e) => setImage(e.target.files[0])}
           />
-          <button type="submit">Enregistrer les modifications</button>
-        </Form>
-      </div>
-    </div>
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button
+          type="submit"
+          content="Valider"
+          labelPosition="right"
+          icon="checkmark"
+          positive
+          onClick={handleSubmit}
+        />
+      </Modal.Actions>
+    </Modal>
   );
 }
 
 UpdateProfilModal.propTypes = {
+  toggleUpdateProfilModal: PropTypes.func.isRequired,
   isShowUpdateProfilModal: PropTypes.bool.isRequired,
-  handleUpdateProfilToggle: PropTypes.func.isRequired,
 };
 
 export default UpdateProfilModal;

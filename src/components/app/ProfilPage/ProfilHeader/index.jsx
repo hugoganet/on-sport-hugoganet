@@ -3,17 +3,13 @@ import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
 import defaultProfilePicture from '../../../../assets/default_profile_picture_icon.jpeg';
-import ConfirmModal from '../../../Modales/ConfirmModal';
+import DisconnectionModal from '../../../Modales/DisconnectionModal';
 
 import './style.scss';
 
 function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [isShowDisconnectionModal, toggleDisconnectionModal] = useState(false);
   const userId = localStorage.getItem('userId');
-
-  const handleLogout = () => {
-    setShowConfirmModal(true);
-  };
 
   return (
     <header className="ProfilHeader">
@@ -36,13 +32,16 @@ function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
         <button
           type="button"
           className=" ProfilHeader__button ProfilHeader__button--deconnexion"
-          onClick={handleLogout}
+          onClick={() => toggleDisconnectionModal(true)}
         >
           Déconnexion
         </button>
       </div>
-      {showConfirmModal && (
-        <ConfirmModal setShowConfirmModal={setShowConfirmModal} />
+      {isShowDisconnectionModal && (
+        <DisconnectionModal
+          toggleDisconnectionModal={toggleDisconnectionModal}
+          isShowDisconnectionModal={isShowDisconnectionModal}
+        />
       )}
     </header>
   );

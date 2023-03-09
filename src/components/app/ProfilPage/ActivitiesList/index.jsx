@@ -57,7 +57,10 @@ function ActivitiesList({ loggedUser: { activitiesList } }) {
         Supprimer mon profil
       </button>
       {isShowDeleteProfilModal && (
-        <DeleteProfilModal toggleDeleteProfilModal={toggleDeleteProfilModal} />
+        <DeleteProfilModal
+          toggleDeleteProfilModal={toggleDeleteProfilModal}
+          isShowDeleteProfilModal={isShowDeleteProfilModal}
+        />
       )}
     </div>
   );

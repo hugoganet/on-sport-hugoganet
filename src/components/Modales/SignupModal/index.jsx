@@ -1,34 +1,21 @@
-/* eslint-disable no-shadow */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import './style.scss';
+import {
+  Button, Input, Modal,
+} from 'semantic-ui-react';
 
-function SignupModal(props) {
-  const { onClose } = props;
+function SignupModal({ toggleSignupModal, isShowSignupModal }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const modalRef = useRef(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Vérifier les informations de création de compte ici
-    onClose();
-
-    const firstname = event.target[0].value;
-    const lastname = event.target[1].value;
-    const email = event.target[2].value;
-    const login = event.target[3].value;
-    const password = event.target[4].value;
 
     const headers = {
       'Content-Type': 'application/json',
@@ -42,92 +29,93 @@ function SignupModal(props) {
         headers,
       },
       data: {
-        firstname,
-        lastname,
+        firstname: firstName,
+        lastname: lastName,
         email,
-        login,
+        login: username,
         password,
       },
     });
     // eslint-disable-next-line no-console
     console.log(`SignupModal: ${response}`);
+    toggleSignupModal(false);
   };
-
-  const handleOutsideClick = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      onClose();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      window.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [handleOutsideClick]);
 
   return (
-    <div className="SignupModal">
-      <div className="SignupModal__content" ref={modalRef}>
-        <h2 className="SignupModal__title">Créer un compte</h2>
-        <form className="SignupModal__form" onSubmit={handleSubmit}>
-          <label htmlFor="firstName">Prénom:</label>
-          <input
+    <Modal
+      onClose={() => toggleSignupModal(false)}
+      onOpen={() => toggleSignupModal(true)}
+      open={isShowSignupModal}
+    >
+      <Modal.Header>Créer un compte</Modal.Header>
+      <Modal.Content>
+        <Modal.Description>
+          <Input
+            placeholder="Prénom"
             type="text"
             id="firstName"
             name="firstName"
             value={firstName}
             onChange={(event) => setFirstName(event.target.value)}
           />
-          <label htmlFor="lastName">Nom:</label>
-          <input
+          <Input
+            placeholder="Nom"
             type="text"
             id="lastName"
             name="lastName"
             value={lastName}
             onChange={(event) => setLastName(event.target.value)}
           />
-          <label htmlFor="email">Adresse email:</label>
-          <input
+          <Input
+            placeholder="Adresse email"
             type="email"
             id="email"
             name="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-          <label htmlFor="username">Nom d&apos;utilisateur:</label>
-          <input
+          <Input
+            placeholder="Nom d'utilisateur"
             type="text"
             id="username"
             name="username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-          <label htmlFor="password">Mot de passe:</label>
-          <input
+          <Input
+            placeholder="Mot de passe"
             type="password"
             id="password"
-            name="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-          <label htmlFor="confirm-password">Confirmer le mot de passe:</label>
-          <input
+          <Input
+            placeholder="Confirmer le mot de passe"
             type="password"
             id="confirm-password"
             name="confirm-password"
             value={confirmPassword}
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
-          <button type="submit">Créer un compte</button>
-        </form>
-      </div>
-    </div>
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button
+          type="submit"
+          content="Valider"
+          labelPosition="right"
+          icon="checkmark"
+          positive
+          onClick={handleSubmit}
+        />
+      </Modal.Actions>
+    </Modal>
   );
 }
 
 SignupModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  toggleSignupModal: PropTypes.func.isRequired,
+  isShowSignupModal: PropTypes.bool.isRequired,
 };
 
 export default SignupModal;
