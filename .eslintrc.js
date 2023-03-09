@@ -20,5 +20,6 @@ module.exports = {
     camelcase: 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-plusplus': 'off',
+    'unicode-bom': 'off',
   },
 };

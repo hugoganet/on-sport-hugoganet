@@ -38,6 +38,7 @@ function SignupModal({ toggleSignupModal, isShowSignupModal }) {
     });
     // eslint-disable-next-line no-console
     console.log(`SignupModal: ${response}`);
+    toggleSignupModal(false);
   };
 
   return (

@@ -6,11 +6,7 @@ import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 import './style.scss';
 
 function ProfilDetails({ loggedUser }) {
-  const [isShowUpdateProfilModal, toggleShowUpdateProfilDetailsModal] = useState(false);
-
-  const handleUpdateProfilToggle = () => {
-    toggleShowUpdateProfilDetailsModal((state) => !state);
-  };
+  const [isShowUpdateProfilModal, toggleUpdateProfilModal] = useState(false);
 
   function calculateAge(birthdate) {
     // Split the birthdate string into day, month, and year components
@@ -40,13 +36,17 @@ function ProfilDetails({ loggedUser }) {
       <p className="ProfilDetails__age">
         AGE :
         {' '}
-        {/* ci-dessous : optionnal chaining (?.) */}
         {loggedUser?.age && calculateAge(loggedUser.age)}
       </p>
-      <button type="button" className="ProfilDetails__button" onClick={handleUpdateProfilToggle}>Modifier mon profil</button>
+      <button
+        type="button"
+        className="ProfilDetails__button"
+        onClick={() => toggleUpdateProfilModal(true)}
+      >
+        Modifier mon profil
+      </button>
       <UpdateProfilModal
-        handleUpdateProfilToggle={handleUpdateProfilToggle}
-        onClose={handleUpdateProfilToggle}
+        toggleUpdateProfilModal={toggleUpdateProfilModal}
         isShowUpdateProfilModal={isShowUpdateProfilModal}
       />
       <section className="ProfilDetails__bioAndPracticeSports">
