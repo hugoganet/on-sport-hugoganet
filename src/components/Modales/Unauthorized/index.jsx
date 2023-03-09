@@ -43,10 +43,18 @@ function Unauthorized({ open, setOpen }) {
         />
       </Modal.Actions>
       {isShowLoginModal && (
-      <LoginModal />
+      <LoginModal
+        toggleLoginModal={toggleLoginModal}
+        isShowLoginModal={isShowLoginModal}
+      />
 
 )}
-      {isShowSignupModal && <SignupModal />}
+      {isShowSignupModal && (
+        <SignupModal
+          toggleSignupModal={toggleSignupModal}
+          isShowSignupModal={isShowSignupModal}
+        />
+)}
     </Modal>
 
   );

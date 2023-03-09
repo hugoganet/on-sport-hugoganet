@@ -11,7 +11,6 @@ import {
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import lax from 'lax.js';
 
 import './style.scss';
 
