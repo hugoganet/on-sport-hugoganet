@@ -8,8 +8,6 @@ import {
   Form, Button, Comment, Header, Rating,
 } from 'semantic-ui-react';
 import Annotation from './Comment';
-import defaultProfilePicture from '../../../../assets/Tac-raoul-2.png';
-
 
 function Comments({ comments, activityId }) {
   const userId = localStorage.getItem('userId');

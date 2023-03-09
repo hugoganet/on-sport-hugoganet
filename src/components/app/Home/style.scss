@@ -39,71 +39,38 @@ padding-bottom:40px;
     max-width:20vw;
 }
 
-.step1{
-   width:10%;
-    height:10%;
-    margin-left: 10px;
-   
+.num{
+    font-size: 3rem;
+    background-color:#ffffff;
+    border-radius: 20px;
+    color: #f2711c;
+    text-align: center;
 }
-.step1_title{
-    width:350px;
-     height:250px;
-     margin-left: -50px;
-     max-width:10vw;
-    
- }
+.step_title{
+    font-size:2rem;
+    text-align: center;
+}
 
- .step2{
-    width:17%;
-     height:17%;
-     margin-left:-70px;
-     max-width:10vw;
-    
- }
- .step2_title{
-    width:350px;
-     height:250px;
-     margin-left:-100px;
-     max-width:10vw;
-     
-  }
-  
-.step3{
-    width:12%;
-     height:12%;
-     max-width:10vw;
-    
- }
- .step3_title{
-     width:50%;
-      height:50%;
-      max-width:10vw;
-     
-  }
-  
-.step4{
-    width:250px;
-     height:250px;
-     max-width:10vw;
-    
- }
- .step4_title{
-     width:250px;
-      height:250px;
-      max-width:10vw;
-     
-  }
-
+.ui.grid {
+    /* margin-top: -1rem; */
+    // margin-bottom: 7rem;
+    // margin-left: 5rem;
+    margin-right: 5rem;
+}
 .search_form{
 background-color: v.$color-first;
 padding:20px;
 margin-bottom : 10px;
 }
 
+.ui.default.dropdown:not(.button)>.text, .ui.dropdown:not(.button)>.default.text{
+    color : v.$color-grey-dark;
+}
+
 .search_form_title{
 color:#ffffff;
 text-align: center;
-font-size:1rem;
+font-size:0.8rem;
 }
 
 @media (min-width: 768px) and (max-width: 1365px) {
