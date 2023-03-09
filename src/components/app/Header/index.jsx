@@ -27,6 +27,7 @@ function Header() {
 
   const handleLoginClose = () => {
     setShowLoginModal(false);
+    location.reload()
   };
 
   const handleSignupClose = () => {

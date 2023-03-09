@@ -6,11 +6,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import {
-  Form, Image, Grid, Segment, Label,
+  Form,
 } from 'semantic-ui-react';
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import lax from 'lax.js';
 
 import './style.scss';
 
@@ -20,15 +21,27 @@ import Footer from '../Footer';
 import Filtered from '../FilteredActivities';
 
 import bg from '../../../assets/On.gif';
-import Step1 from '../../../assets/step1.gif';
-import Step2 from '../../../assets/step2.gif';
-import Step3 from '../../../assets/step3.gif';
-import Step4 from '../../../assets/step4.gif';
+import Step1 from '../../../assets/step1_img.png';
+import Step2 from '../../../assets/step2_img.png';
+import Step3 from '../../../assets/step3_img.png';
+import Step4 from '../../../assets/step4_img.png';
+import Step1_title from '../../../assets/step1_title.png';
+import Step2_title from '../../../assets/step2_title.png';
+import Step3_title from '../../../assets/step3_title.png';
+import Step4_title from '../../../assets/step4_title.png';
+
 import 'animate.css';
 import sportsList from '../../../datas/sports';
 import FilterActivities from '../../../utils'; // You can also use <link> for styles
 
 function Home() {
+  window.onload = () => {
+    lax.init();
+
+    // Add a driver that we use to control our animations
+    lax.addDriver('scrollY', () => window.scrollY);
+  };
+  window.onload();
   const [ListActivities, setListActivities] = React.useState([]);
   const [UnFilteredList, setUnFilteredList] = React.useState([]);
   const [listLocation, setListLocation] = React.useState([]);
@@ -130,19 +143,23 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
        <div className="steps_container">
          <div className="steps">
            <div className="groupe1">
-             <div className="step1" data-aos="zoom-in">
-               <img src={Step1} />
+             <div className="step1">
+               <img src={Step1} data-aos="zoom-in" data-aos-delay="600" data-aos-offset="300" />
+               <img src={Step1_title} className="step1_title" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500" data-aos-offset="200" />
              </div>
-             <div className="step2" data-aos="zoom-in">
-               <img src={Step2} />
+             <div className="step2">
+               <img src={Step2} data-aos="zoom-in" data-aos-delay="600" data-aos-offset="300" />
+               <img src={Step2_title} className="step2_title" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500" data-aos-offset="400" />
              </div>
            </div>
            <div className="groupe1">
-             <div className="step3" data-aos="zoom-in">
-               <img src={Step3} />
+             <div className="step1">
+               <img src={Step3} data-aos="fade-up-right" data-aos-duration="1000" />
+               <img src={Step3_title} className="step3_title" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500" data-aos-offset="200" />
              </div>
-             <div className="step4" data-aos="zoom-in">
-               <img src={Step4} />
+             <div className="step2">
+               <img src={Step4} data-aos="zoom-in" data-aos-offset="300" />
+               <img src={Step4_title} className="step4_title" data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500" data-aos-offset="400" />
              </div>
            </div>
          </div>
