@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
@@ -6,9 +7,12 @@ import {
 } from 'semantic-ui-react';
 
 function DisconnectionModal({ isShowDisconnectionModal, toggleDisconnectionModal }) {
+  const navigate = useNavigate();
+
   const onConfirm = () => {
     toggleDisconnectionModal(false);
     localStorage.clear();
+    navigate('/');
   };
 
   return (
