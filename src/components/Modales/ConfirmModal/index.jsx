@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -17,18 +17,6 @@ function ConfirmModal({ setShowConfirmModal }) {
   const onCancel = () => {
     setShowConfirmModal(false);
   };
-  const handleOutsideClick = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      onCancel();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      window.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [handleOutsideClick]);
 
   return (
     <div className="ConfirmModal ConfirmModal--show">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import LoginModal from '../../Modales/LoginModal';
 import SignupModal from '../../Modales/SignupModal';
-import ConfirmModal from '../../Modales/ConfirmModal';
+import DisconnectionModal from '../../Modales/DisconnectionModal';
 
 import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
@@ -10,33 +10,14 @@ import './style.scss';
 function Header() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [isShowDisconnectionModal, toggleDisconnectionModal] = useState(false);
+  const [isLogged, toggleIsLogged] = useState(false);
   const userId = localStorage.getItem('userId');
-
-  const handleLogout = () => {
-    setShowConfirmModal(true);
-  };
-
-  const handleLogin = () => {
-    setShowLoginModal(true);
-  };
-
-  const handleSignup = () => {
-    setShowSignupModal(true);
-  };
-
-  const handleLoginClose = () => {
-    setShowLoginModal(false);
-  };
-
-  const handleSignupClose = () => {
-    setShowSignupModal(false);
-  };
 
   return (
     <div className="Header">
       <Link to="/"><img className="Header__logo" src={Logo} alt="logo" /></Link>
-      {userId ? (
+      {isLogged ? (
         <>
           <button className="Header__button" type="button">
             {' '}
@@ -45,29 +26,49 @@ function Header() {
               className="menu-link"
             >
               Mon profil
-              {/* {this.state.UserInfos.userName} */}
             </NavLink>
           </button>
-          <button className="Header__button" type="button" onClick={handleLogout}>Déconnexion</button>
+          <button
+            className="Header__button"
+            type="button"
+            onClick={() => toggleDisconnectionModal(true)}
+          >
+            Déconnexion
+          </button>
         </>
       ) : (
         <>
-          <button className="Header__button" type="button" onClick={handleLogin}>Connexion</button>
-          <button className="Header__button" type="button" onClick={handleSignup}>Créer un compte</button>
+          <button
+            className="Header__button"
+            type="button"
+            onClick={() => setShowLoginModal(true)}
+          >
+            Connexion
+          </button>
+          <button
+            className="Header__button"
+            type="button"
+            onClick={() => setShowSignupModal(true)}
+          >
+            Créer un compte
+          </button>
         </>
       )}
-      {showConfirmModal && (
-      <ConfirmModal setShowConfirmModal={setShowConfirmModal} />
+      {isShowDisconnectionModal && (
+      <DisconnectionModal
+        toggleDisconnectionModal={toggleDisconnectionModal}
+        isShowDisconnectionModal={isShowDisconnectionModal}
+      />
       )}
       {showLoginModal && (
       <LoginModal
-        onClose={handleLoginClose}
+        onClose={() => setShowLoginModal(false)}
         onLogin={() => console.log('tentative de connexion')}
-        onLoginSuccess={() => console.log('connexion réussie')}
+        onLoginSuccess={() => toggleIsLogged(true)}
         userId={userId}
       />
       )}
-      {showSignupModal && <SignupModal onClose={handleSignupClose} />}
+      {showSignupModal && <SignupModal onClose={() => setShowSignupModal(false)} />}
     </div>
   );
 }
