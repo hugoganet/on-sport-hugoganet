@@ -10,11 +10,6 @@ import { Container } from 'semantic-ui-react';
 import Header from '../Header';
 import Footer from '../Footer';
 
-import { Container } from 'semantic-ui-react';
-import Header from '../Header';
-import Footer from '../Footer';
-
-import TeamMemberCards from './TeamMemberCards';
 import TeamMemberCards from './TeamMemberCards';
 
 import './style.scss';
