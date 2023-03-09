@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 import defaultProfilePicture from '../../../../assets/default_profile_picture_icon.jpeg';
 import location from '../../../../assets/location.png';
-import age from '../../../../assets/age.png';
+import age_img from '../../../../assets/age.png';
 
 import './style.scss';
 
@@ -44,8 +43,8 @@ function ProfilDetails({ loggedUser }) {
           {loggedUser.lastname}
         </div>
         <p className="ProfilDetails__location">
-        <div className="icone">
-            <img src={location} />
+          <div className="icone">
+            <img alt="location" src={location} />
           </div>
           {/* 📍 */}
           {loggedUser.locationName}
@@ -56,7 +55,7 @@ function ProfilDetails({ loggedUser }) {
         </p>
         <p className="ProfilDetails__age">
           <div className="icone">
-            <img src={age} />
+            <img alt="age" src={age_img} />
           </div>
           {loggedUser?.age && calculateAge(loggedUser.age)}
           {' '}

@@ -6,29 +6,49 @@ import { NavLink } from 'react-router-dom';
 import DisconnectionModal from '../../../Modales/DisconnectionModal';
 import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 
+import DeleteProfilModal from '../../../Modales/DeleteProfilModal';
+
 import './style.scss';
 
 function ProfilHeader() {
   const [isShowDisconnectionModal, toggleDisconnectionModal] = useState(false);
   const [isShowUpdateProfilModal, toggleUpdateProfilModal] = useState(false);
-  const userId = localStorage.getItem('userId');
+  const [isShowDeleteProfilModal, toggleDeleteProfilModal] = useState(false);
 
   return (
     <header className="ProfilHeader">
       <button type="button" className=" ProfilHeader__button ProfilHeader__button--accueil">
         <NavLink to="/" className="menu-link">Accueil</NavLink>
       </button>
-      <button
-        type="button"
-        className="ProfilDetails__button"
-        onClick={() => toggleUpdateProfilModal(true)}
-      >
-        Modifier mon profil
-      </button>
-      <UpdateProfilModal
-        toggleUpdateProfilModal={toggleUpdateProfilModal}
-        isShowUpdateProfilModal={isShowUpdateProfilModal}
-      />
+
+      <div className="update">
+        <button
+          type="button"
+          className="ProfilDetails__button"
+          onClick={() => toggleUpdateProfilModal(true)}
+        >
+          Modifier mon profil
+        </button>
+        <UpdateProfilModal
+          toggleUpdateProfilModal={toggleUpdateProfilModal}
+          isShowUpdateProfilModal={isShowUpdateProfilModal}
+        />
+        <div>
+          <button
+            onClick={() => toggleDeleteProfilModal(!isShowDeleteProfilModal)}
+            className="ProfilDetails__button"
+            type="submit"
+          >
+            Supprimer mon profil
+          </button>
+        </div>
+        {isShowDeleteProfilModal && (
+        <DeleteProfilModal
+          toggleDeleteProfilModal={toggleDeleteProfilModal}
+          isShowDeleteProfilModal={isShowDeleteProfilModal}
+        />
+        )}
+      </div>
       <div className="ProfilHeader__button--div">
         <button
           type="button"
@@ -44,6 +64,7 @@ function ProfilHeader() {
           isShowDisconnectionModal={isShowDisconnectionModal}
         />
       )}
+
     </header>
   );
 }

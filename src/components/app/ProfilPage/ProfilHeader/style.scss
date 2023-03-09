@@ -133,6 +133,8 @@
       border-radius: 50px;
       color:v.$color-third;
       font-size: 1.2rem;
+      margin-left:10px;
+      margin-right:10px;
     }
     .ProfilDetails__button:hover{
       background-color:v.$color-third;
@@ -142,6 +144,10 @@
       font-size: 1rem;
     }
 
+    .update{
+      display: flex;
+      flex-direction: row;
+    }
   }
 }
 

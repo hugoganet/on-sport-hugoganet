@@ -42,9 +42,10 @@
     &__bioAndPracticeSports{
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      padding-left:50px;
       width: 70%;
-      border: solid #000000;
+      border: solid v.$color-first;
+      border-radius:20px;
     }
 
     &__bio--div{ 
