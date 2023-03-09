@@ -1,38 +1,19 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable linebreak-style */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import './style.scss';
+import {
+  Button, Input, Modal,
+} from 'semantic-ui-react';
 
-function LoginModal(props) {
-  const { onClose, onLogin } = props;
+function LoginModal({ toggleLoginModal, isShowLoginModal }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const modalRef = useRef(null);
-
-  const handleOutsideClick = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      onClose();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      window.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [handleOutsideClick]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    onLogin();
-    onClose();
+    // onLogin();
+    // onClose();
 
     const headers = {
       'Content-Type': 'application/json',
@@ -57,39 +38,51 @@ function LoginModal(props) {
       localStorage.setItem('token', response.data.tokenUser.token);
       localStorage.setItem('userId', response.data.id);
     }
+    toggleLoginModal(false);
   };
 
   return (
-    <div className="LoginModal">
-      <div className="LoginModal__content" ref={modalRef}>
-        <h2 className="LoginModal__title">Connexion</h2>
-        <form className="LoginModal__form" onSubmit={handleSubmit}>
-          <label htmlFor="username">Nom d&apos;utilisateur:</label>
-          <input
+    <Modal
+      onClose={() => toggleLoginModal(false)}
+      onOpen={() => toggleLoginModal(true)}
+      open={isShowLoginModal}
+    >
+      <Modal.Header>Connexion</Modal.Header>
+      <Modal.Content>
+        <Modal.Description>
+          <Input
+            placeholder="Nom d'utilisateur:"
             type="text"
             id="username"
-            name="username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-          <label htmlFor="password">Mot de passe:</label>
-          <input
+          <Input
+            placeholder="Mot de passe"
             type="password"
             id="password"
-            name="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-          <button type="submit">Se connecter</button>
-        </form>
-      </div>
-    </div>
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button
+          type="submit"
+          content="Valider"
+          labelPosition="right"
+          icon="checkmark"
+          positive
+          onClick={handleSubmit}
+        />
+      </Modal.Actions>
+    </Modal>
   );
 }
 
 LoginModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  onLogin: PropTypes.func.isRequired,
+  toggleLoginModal: PropTypes.func.isRequired,
+  isShowLoginModal: PropTypes.bool.isRequired,
 };
 
 export default LoginModal;

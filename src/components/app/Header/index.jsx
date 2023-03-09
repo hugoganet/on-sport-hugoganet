@@ -8,10 +8,9 @@ import Logo from '../../../assets/OnSport_logo.png';
 import './style.scss';
 
 function Header() {
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isShowLoginModal, toggleLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [isShowDisconnectionModal, toggleDisconnectionModal] = useState(false);
-  const [isLogged, toggleIsLogged] = useState(false);
   const userId = localStorage.getItem('userId');
 
   return (
@@ -41,7 +40,7 @@ function Header() {
           <button
             className="Header__button"
             type="button"
-            onClick={() => setShowLoginModal(true)}
+            onClick={() => toggleLoginModal(true)}
           >
             Connexion
           </button>
@@ -60,11 +59,12 @@ function Header() {
         isShowDisconnectionModal={isShowDisconnectionModal}
       />
       )}
-      {showLoginModal && (
+      {isShowLoginModal && (
       <LoginModal
-        onClose={() => setShowLoginModal(false)}
+        toggleLoginModal={toggleLoginModal}
+        isShowLoginModal={isShowLoginModal}
+        onClose={() => toggleLoginModal(false)}
         onLogin={() => console.log('tentative de connexion')}
-        onLoginSuccess={() => toggleIsLogged(true)}
         userId={userId}
       />
       )}
