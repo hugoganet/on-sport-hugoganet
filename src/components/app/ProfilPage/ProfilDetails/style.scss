@@ -1,5 +1,7 @@
 @use 'src/styles/_vars.scss' as v;
 
+
+@media (max-width: 767px) {
 .ProfilDetails{
   display: flex;
   flex-direction: column;
@@ -26,15 +28,22 @@
     min-height: 9rem;    
   }
 }
+}
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .ProfilDetails{
+    margin-top:10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2rem;
+  
 
     &__bioAndPracticeSports{
       margin-top: 30px;
       display: flex;
-      flex-direction: row-reverse;
-      // justify-content: space-around;
+      flex-direction: row;
+      justify-content: space-around;
       width: 95%;
     }
 
@@ -45,5 +54,26 @@
     &__bio--description{
       width: 100%;
     }
+    
+  &__location ,
+  &__age{
+    font-size: 1.5rem;
+    font-weight: 200;
+    margin: 0.2rem;
+  }
+  }
+
+  .profilName{
+    font-size:3rem;
+    display:flex;
+    flex-direction: row;
+    line-height: 1;
+    
+  }
+
+  .ProfilHeader__detail{
+    width:40vw;
   }
 }
+
+

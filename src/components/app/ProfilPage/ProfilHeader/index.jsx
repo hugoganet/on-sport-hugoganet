@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
-import defaultProfilePicture from '../../../../assets/default_profile_picture_icon.jpeg';
+
 import DisconnectionModal from '../../../Modales/DisconnectionModal';
+import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 
 import './style.scss';
 
-function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
+function ProfilHeader() {
   const [isShowDisconnectionModal, toggleDisconnectionModal] = useState(false);
+  const [isShowUpdateProfilModal, toggleUpdateProfilModal] = useState(false);
   const userId = localStorage.getItem('userId');
 
   return (
@@ -16,18 +18,17 @@ function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
       <button type="button" className=" ProfilHeader__button ProfilHeader__button--accueil">
         <NavLink to="/" className="menu-link">Accueil</NavLink>
       </button>
-      <div className="ProfilHeader__img--div">
-        <img
-          className="ProfilHeader__img"
-          src={photo ? `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}/photo/${photo}` : defaultProfilePicture}
-          alt="profilPicture"
-        />
-        <p className="ProfilHeader__name">
-          {firstname}
-          {' '}
-          {lastname}
-        </p>
-      </div>
+      <button
+        type="button"
+        className="ProfilDetails__button"
+        onClick={() => toggleUpdateProfilModal(true)}
+      >
+        Modifier mon profil
+      </button>
+      <UpdateProfilModal
+        toggleUpdateProfilModal={toggleUpdateProfilModal}
+        isShowUpdateProfilModal={isShowUpdateProfilModal}
+      />
       <div className="ProfilHeader__button--div">
         <button
           type="button"
