@@ -3,14 +3,16 @@
 import React, { useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import 'animate.css';
 import {
-  Image, Header as HeaderUi, Rating,
+  Rating, Label, Segment, Grid,
 } from 'semantic-ui-react';
 import Footer from '../Footer';
 import Header from '../Header';
 import Carousel from './Carrousel/index';
 import Comments from './Comments/index';
 
+import defaultProfilePicture from '../../../assets/Tac-raoul-2.png';
 import Filtered from '../FilteredActivities';
 
 import './style.scss';
@@ -22,10 +24,13 @@ function DetailledActivity() {
   const [ListActivities, setListActivities] = useState([]);
   const [ListActivitiesDpt, setListActivitiesDpt] = useState([]);
   const [ListActivitiesSport, setListActivitiesSport] = useState([]);
+  const [user, setUser] = useState([]);
   const activityId = activity.id;
   const location = useLocation();
+
   React.useEffect(
     () => {
+      window.scrollTo(0, 0);
       axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/activity/${activityId}`).then(
         (response) => { setActivityInfo(response.data); },
       ).catch((error) => {
@@ -51,8 +56,6 @@ function DetailledActivity() {
     [location],
   );
 
-  console.log(comments);
-
   React.useEffect(() => {
     const filterDepartment = ListActivities.filter((loc) => loc.locationDepartment === activityInfo.locationDepartment);
     setListActivitiesDpt(filterDepartment);
@@ -60,27 +63,53 @@ function DetailledActivity() {
     setListActivitiesSport(filterSport);
   }, [ListActivities, activityInfo]);
 
+  React.useEffect(() => {
+    axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${activityInfo.user_id}`).then(
+      (response) => { setUser(response.data); },
+    ).catch((error) => {
+      console(error);
+    });
+  }, [activityInfo]);
+
+  const note = Math.round(activityInfo.note);
+
   return (
     <>
       <Header />
       <div className="activity__content">
-        {activityInfo.title}
         {activityInfo.photos ? <Carousel photos={activityInfo.photos} /> : ''}
-        {/* <Carousel activityInfo={activityInfo.photos} /> */}
+
+        <div className="animate__animated animate__fadeIn">
+          <Grid.Column>
+            <Segment raised>
+              <Label as="a" color="blue" ribbon>
+                <Rating icon="star" defaultRating={0} maxRating={5} rating={note} disabled size="large" />
+              </Label>
+              <span className="activity__title">{activityInfo.title}</span>
+
+            </Segment>
+          </Grid.Column>
+        </div>
+        <div />
+
         <div className="activity__author">
-          <Image src="/default-image.png" avatar />
-          <span>Username</span>
+          <span className="proposed">Activité proposée par</span>
+          <img alt="profile" className="photo_profile" width="50" height="50" src={user.photo ? `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${user.id}/photo/${user.photo}` : defaultProfilePicture} />
+          <span className="author">
+            {user.firstname}
+            {' '}
+            {user.lastname}
+          </span>
         </div>
-        <div className="activity__title">
-          <HeaderUi as="h1" textAlign="center">{activityInfo.title}</HeaderUi>
-        </div>
-        <div className="rating">
-          <Rating icon="star" defaultRating={3} maxRating={5} disabled size="massive" />
-        </div>
+
         <div className="activity__description">
-          <p>{activityInfo.description}</p>
+          <div className="activity__description__detail">
+            <p>{activityInfo.description}</p>
+          </div>
+          <div className="activity__description__comments">
+            <Comments comments={comments} activityId={activityId} />
+          </div>
         </div>
-        <Comments comments={comments} activityId={activityId} />
       </div>
 
       <div className="filteredActivities">

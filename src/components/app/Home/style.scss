@@ -12,33 +12,113 @@
 width:100vw;
 //position:absolute;
 z-index:1;
-
-
-
 }
 
 .steps{
 display:flex;
-width:70vw;
+flex-direction: row;
+flex-wrap:nowrap;
+width:500px;
 justify-content: center;
 padding-top:40px;
 padding-bottom:40px;
-margin-left:auto;
-margin-right:auto;
+
 }
 
 .steps_container{
-    // background-color:  v.$color-third;
-    width:100vw;
-    margin-bottom:40px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap:nowrap;
+    justify-content: flex-start;
+    padding-top:40px;
+    padding-bottom:40px;
+    
 }
+
+.steps_container img{
+    max-width:20vw;
+}
+
+.step1{
+   width:10%;
+    height:10%;
+    margin-left: 10px;
+   
+}
+.step1_title{
+    width:350px;
+     height:250px;
+     margin-left: -50px;
+     max-width:10vw;
+    
+ }
+
+ .step2{
+    width:17%;
+     height:17%;
+     margin-left:-70px;
+     max-width:10vw;
+    
+ }
+ .step2_title{
+    width:350px;
+     height:250px;
+     margin-left:-100px;
+     max-width:10vw;
+     
+  }
+  
+.step3{
+    width:12%;
+     height:12%;
+     max-width:10vw;
+    
+ }
+ .step3_title{
+     width:50%;
+      height:50%;
+      max-width:10vw;
+     
+  }
+  
+.step4{
+    width:250px;
+     height:250px;
+     max-width:10vw;
+    
+ }
+ .step4_title{
+     width:250px;
+      height:250px;
+      max-width:10vw;
+     
+  }
 
 .search_form{
 background-color: v.$color-first;
 padding:20px;
+margin-bottom : 10px;
 }
 
 .search_form_title{
 color:#ffffff;
 text-align: center;
+font-size:1rem;
+}
+
+@media (min-width: 768px) and (max-width: 1365px) {
+    .search_form_title{
+        color:#ffffff;
+        text-align: center;
+        font-size:2rem;
+        }
+}
+
+
+@media (min-width: 1366px) {
+    .search_form_title{
+        color:#ffffff;
+        text-align: center;
+        font-size:3rem;
+        }
 }

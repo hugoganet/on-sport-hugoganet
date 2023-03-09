@@ -1,12 +1,20 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/no-unescaped-entities */
+/* eslint-disable max-len */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 
 import { Container } from 'semantic-ui-react';
 import Header from '../Header';
 import Footer from '../Footer';
 
+import { Container } from 'semantic-ui-react';
+import Header from '../Header';
+import Footer from '../Footer';
+
+import TeamMemberCards from './TeamMemberCards';
 import TeamMemberCards from './TeamMemberCards';
 
 import './style.scss';

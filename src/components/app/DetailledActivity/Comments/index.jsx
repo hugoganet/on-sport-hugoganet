@@ -8,6 +8,8 @@ import {
   Form, Button, Comment, Header, Rating,
 } from 'semantic-ui-react';
 import Annotation from './Comment';
+import defaultProfilePicture from '../../../../assets/Tac-raoul-2.png';
+
 
 function Comments({ comments, activityId }) {
   const userId = localStorage.getItem('userId');
@@ -21,10 +23,6 @@ function Comments({ comments, activityId }) {
     const activity_note = parseInt(rate);
     const activity_id = parseInt(activityId);
 
-    // const headers = {
-    //   'Content-Type': 'application/json',
-    //   'Access-Control-Allow-Origin': '*',
-    // };
     try {
       const response = await axios.post(`http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/${activityId}`, {
         content,

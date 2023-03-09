@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable max-len */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -5,9 +6,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import {
-  Form, Image, Grid, Segment, Label,
+  Form, Grid, Image,
 } from 'semantic-ui-react';
 import axios from 'axios';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import lax from 'lax.js';
 
 import './style.scss';
 
@@ -17,20 +21,34 @@ import Footer from '../Footer';
 import Filtered from '../FilteredActivities';
 
 import bg from '../../../assets/On.gif';
-import Step1 from '../../../assets/step1.gif';
-import Step2 from '../../../assets/step2.gif';
-import Step3 from '../../../assets/step3.gif';
+import Step1 from '../../../assets/step1_img.png';
+import Step2 from '../../../assets/step2_img.png';
+import Step3 from '../../../assets/step3_img.png';
+import Step4 from '../../../assets/step4_img.png';
+import Step1_title from '../../../assets/step1_title.png';
+import Step2_title from '../../../assets/step2_title.png';
+import Step3_title from '../../../assets/step3_title.png';
+import Step4_title from '../../../assets/step4_title.png';
+
 import 'animate.css';
 import sportsList from '../../../datas/sports';
 import FilterActivities from '../../../utils'; // You can also use <link> for styles
 
 function Home() {
+  window.onload = () => {
+    lax.init();
+
+    // Add a driver that we use to control our animations
+    lax.addDriver('scrollY', () => window.scrollY);
+  };
+  window.onload();
   const [ListActivities, setListActivities] = React.useState([]);
   const [UnFilteredList, setUnFilteredList] = React.useState([]);
   const [listLocation, setListLocation] = React.useState([]);
   const [filteredSports, setFilteredSports] = React.useState([]);
   const [filteredDepartments, setFilteredDepartments] = React.useState([]);
   const [operator, setOperator] = React.useState('');
+  AOS.init();
   React.useEffect(
 () => {
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
@@ -120,32 +138,35 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
          <img src={bg} alt="background" />
        </div>
 
-       <div className="steps_container">
-         <div className="steps">
-           <Grid columns={3}>
-             <Grid.Row>
-               <Grid.Column>
-                 <Segment padded>
-                   <Label attached="top" color="orange">INSCRIS-TOI</Label>
-                   <Image src={Step1} />
-                 </Segment>
-               </Grid.Column>
-               <Grid.Column>
-                 <Segment padded>
-                   <Label attached="bottom" color="orange">INSPIRE TOI DES EXPERIENCES DES AUTRES UTILISATEURS POUR PRATIQUER TES SPORTS FAVORIS</Label>
-                   <Image src={Step2} />
-                 </Segment>
-               </Grid.Column>
-               <Grid.Column>
-                 <Segment padded>
-                   <Label attached="top right" color="orange">PARTAGE A TON TOUR TES ENTRAINEMENTS</Label>
-                   <Image src={Step3} />
-                 </Segment>
-               </Grid.Column>
-             </Grid.Row>
-           </Grid>
-         </div>
-       </div>
+       <Grid>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step1} data-aos="zoom-in" data-aos-offset="100" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step1_title} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="200" data-delay="500" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step2} data-aos="zoom-in" data-aos-offset="300" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2} color="orange" data-aos="zoom-in" data-aos-offset="400">
+           <p className="num">02</p>
+           <p className="title">RECHERCHE DES IDEES D'ACTIVITES</p>
+           </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+
+           <Image src={Step3} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="500" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2} color="orange">
+           <Image src={Step3_title} data-aos="zoom-in" data-aos-offset="600" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step4} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="700" />
+         </Grid.Column>
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image src={Step4_title} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="800" />
+         </Grid.Column>
+
+       </Grid>
 
        <Form className="search_form">
          <h1 className="search_form_title">RECHERCHER DES ACTIVITÉS</h1>
@@ -156,18 +177,18 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
              fluid
              multiple
              options={sportsList}
-            // eslint-disable-next-line react/jsx-no-bind
+               // eslint-disable-next-line react/jsx-no-bind
              onChange={handleSelectSport.bind(this)}
            />
            <Form.Radio
-             width={1}
+             width={2}
              label="ET"
              value="AND"
              checked={operator === 'AND'}
              onChange={handleChange}
            />
            <Form.Radio
-             width={1}
+             width={2}
              label="OU"
              value="OR"
              checked={operator === 'OR'}
@@ -179,7 +200,7 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
              fluid
              multiple
              options={departmentOptions}
-            // eslint-disable-next-line react/jsx-no-bind
+               // eslint-disable-next-line react/jsx-no-bind
              onChange={handleSelectDepartement.bind(this)}
            />
          </Form.Group>
@@ -187,6 +208,7 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
        <Filtered ListActivities={ListActivities} />
        <Footer />
      </div>
+
    );
 }
 
