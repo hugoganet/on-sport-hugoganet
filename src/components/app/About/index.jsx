@@ -15,7 +15,7 @@ function About() {
   return (
     <>
       <Header />
-      <Container small className="project" textAlign="justified">
+      <Container textAlign="justified">
         <h1 className="project__title">
           Présentation du projet
         </h1>
