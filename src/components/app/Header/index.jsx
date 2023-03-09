@@ -9,7 +9,7 @@ import './style.scss';
 
 function Header() {
   const [isShowLoginModal, toggleLoginModal] = useState(false);
-  const [showSignupModal, setShowSignupModal] = useState(false);
+  const [isShowSignupModal, toggleSignupModal] = useState(false);
   const [isShowDisconnectionModal, toggleDisconnectionModal] = useState(false);
   const userId = localStorage.getItem('userId');
 
@@ -47,7 +47,7 @@ function Header() {
           <button
             className="Header__button"
             type="button"
-            onClick={() => setShowSignupModal(true)}
+            onClick={() => toggleSignupModal(true)}
           >
             Créer un compte
           </button>
@@ -65,7 +65,12 @@ function Header() {
         isShowLoginModal={isShowLoginModal}
       />
       )}
-      {showSignupModal && <SignupModal onClose={() => setShowSignupModal(false)} />}
+      {isShowSignupModal && (
+        <SignupModal
+          toggleSignupModal={toggleSignupModal}
+          isShowSignupModal={isShowSignupModal}
+        />
+      )}
     </div>
   );
 }
