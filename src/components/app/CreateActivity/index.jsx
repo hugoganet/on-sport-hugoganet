@@ -137,7 +137,6 @@ function CreateActivity() {
         className="container"
       >
         <Grid.Column
-          stretched
           className="container__image"
           only="computer tablet"
         >
@@ -150,7 +149,7 @@ function CreateActivity() {
             size="large"
             className="create__activity__form"
             encType="multipart/form-data"
-            method='POST'
+            method="POST"
             onSubmit={handleSubmit}
           >
             <Form.Input
