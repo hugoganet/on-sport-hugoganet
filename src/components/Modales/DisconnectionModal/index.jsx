@@ -21,6 +21,7 @@ function DisconnectionModal({ isShowDisconnectionModal, toggleDisconnectionModal
       onOpen={() => toggleDisconnectionModal(true)}
       open={isShowDisconnectionModal}
     >
+      <Modal.Header>Souhaitez vous vous déconnecter ?</Modal.Header>
       <Modal.Actions>
         <Button color="black" onClick={() => toggleDisconnectionModal(false)}>
           Non
