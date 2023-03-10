@@ -11,10 +11,15 @@ function Annotation({
   activity_note, content, user_id,
 }) {
   const [userComment, setUserComment] = React.useState([]);
+  const token = localStorage.getItem('token');
 
   React.useEffect(
     () => {
-      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${user_id}`).then(
+      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${user_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then(
         (response) => { setUserComment(response.data); },
       ).catch((error) => {
         console(error);

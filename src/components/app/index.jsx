@@ -16,10 +16,6 @@ import About from './About';
 import NotFound from './Errors';
 
 function App() {
-  // React.useEffect(() => {
-  //   localStorage.clear();
-  // }, []);
-
   return (
     <div className="App">
 

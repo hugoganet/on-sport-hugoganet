@@ -13,7 +13,6 @@ function ProfilPage() {
 
   const userId = localStorage.getItem('userId');
   const token = localStorage.getItem('token');
-  console.log(token);
 
   React.useEffect(() => {
     axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`, {

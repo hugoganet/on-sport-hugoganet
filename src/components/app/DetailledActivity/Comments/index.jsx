@@ -12,6 +12,7 @@ import Annotation from './Comment';
 function Comments({ comments, activityId }) {
   const userId = localStorage.getItem('userId');
   const [rate, setRate] = React.useState('');
+  const token = localStorage.getItem('token');
 
   const handleRate = (e, { rating }) => { setRate(rating); };
 
@@ -22,12 +23,20 @@ function Comments({ comments, activityId }) {
     const activity_id = parseInt(activityId);
 
     try {
-      const response = await axios.post(`http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/${activityId}`, {
-        content,
-        user_id,
-        activity_note,
-        activity_id,
-      });
+      const response = await axios.post(
+        `http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/${activityId}`,
+        {
+          content,
+          user_id,
+          activity_note,
+          activity_id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
       console.log(response.data);
     } catch (error) {
       console.log(error);

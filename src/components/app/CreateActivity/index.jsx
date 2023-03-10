@@ -47,7 +47,6 @@ function CreateActivity() {
     description,
     location_id,
   };
-
   const arrayImages = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const elem of image) {
@@ -76,10 +75,13 @@ function CreateActivity() {
         method: 'post',
         url: 'http://ronaldfk-server.eddi.cloud:8080/api/activity',
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         },
         data: form,
       });
+      console.log(response.data);
+      console.log(response.data.id);
       setSuccessMessage("L'activité a été créée avec succès !");
       setOpen(true);
       setErrorMessage('');
@@ -88,7 +90,7 @@ function CreateActivity() {
       setErrorMessage('Une erreur est survenue. Veuillez réessayer');
       setSuccessMessage('');
     }
-    navigate('/profile/{user_id}');
+    navigate(`/profile/${user_id}`);
   };
 
   const getCitiesFromSearch = async () => {
@@ -227,10 +229,6 @@ function CreateActivity() {
             </Button>
             <p className="required__description">(*) Champs obligatoires</p>
           </Form>
-          {/* {successMessage && (
-              <Message attached positive className="create__activity__successMessage">
-                <Message.Item>{successMessage}</Message.Item>
-              </Message> */}
           <Modal
             onOpen={() => setOpen(true)}
             open={open}
