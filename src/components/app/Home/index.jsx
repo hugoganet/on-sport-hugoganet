@@ -132,8 +132,8 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
          </Grid.Column>
 
          <Grid.Column
-           mobile={4}
-           tablet={4}
+           mobile={8}
+           tablet={8}
            computer={2}
            color="grey"
            data-aos="fade-up"
