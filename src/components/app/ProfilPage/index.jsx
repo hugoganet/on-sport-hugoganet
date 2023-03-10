@@ -12,9 +12,15 @@ function ProfilPage() {
   const [UserInfos, setUserInfos] = useState({});
 
   const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
+  console.log(token);
 
   React.useEffect(() => {
-    axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`)
+    axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => setUserInfos(response.data))
       .catch((error) => {
         console(error);

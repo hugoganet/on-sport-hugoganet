@@ -18,30 +18,6 @@ function LoginModal({ toggleLoginModal, isShowLoginModal, setOpen }) {
       'Access-Control-Allow-Origin': '*',
     };
 
-    // const response = await axios({
-    //   method: 'post',
-    //   url: 'http://ronaldfk-server.eddi.cloud:8080/api/auth/signin',
-    //   headers: {
-    //     headers,
-    //   },
-    //   data: {
-    //     login: username,
-    //     password,
-    //   },
-
-    // });
-
-    // // eslint-disable-next-line no-console
-    // if (response.status === 200) {
-    // eslint-disable-next-line max-len
-    //   console.log(`connexion réussie - token enregistré : ${response.data.tokenUser.token}- userId enregistré : ${response.data.id}`);
-    //   localStorage.setItem('token', response.data.tokenUser.token);
-    //   localStorage.setItem('userId', response.data.id);
-    // }
-    //   toggleLoginModal(false);
-    //   setOpen(false);
-    // };
-
     const fetchData = async () => {
       try {
         const response = await axios({
@@ -59,11 +35,10 @@ function LoginModal({ toggleLoginModal, isShowLoginModal, setOpen }) {
         console.log(`connexion réussie - token enregistré : ${response.data.tokenUser.token}- userId enregistré : ${response.data.id}`);
         localStorage.setItem('token', response.data.tokenUser.token);
         localStorage.setItem('userId', response.data.id);
+        window.location.reload();
         toggleLoginModal(false);
         setOpen(false);
-        window.location.reload();
       } catch (error) {
-      // console.error(error);
         setErrorMessage('Login ou mot de passe incorrect');
       }
     };

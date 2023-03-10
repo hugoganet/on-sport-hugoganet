@@ -27,17 +27,26 @@ function DetailledActivity() {
   const [user, setUser] = useState([]);
   const activityId = activity.id;
   const location = useLocation();
+  const token = localStorage.getItem('token');
 
   React.useEffect(
     () => {
       window.scrollTo(0, 0);
-      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/activity/${activityId}`).then(
+      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/activity/${activityId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then(
         (response) => { setActivityInfo(response.data); },
       ).catch((error) => {
         console(error);
       });
 
-      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/${activityId}`).then(
+      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/${activityId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then(
         (response) => setComments(response.data),
       ).catch((error) => {
         console(error);
@@ -46,6 +55,7 @@ function DetailledActivity() {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
+          Authorization: `Bearer ${token}`,
         },
       }).then(
         (response) => { setListActivities(response.data); },
@@ -64,7 +74,11 @@ function DetailledActivity() {
   }, [ListActivities, activityInfo]);
 
   React.useEffect(() => {
-    axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${activityInfo.user_id}`).then(
+    axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${activityInfo.user_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(
       (response) => { setUser(response.data); },
     ).catch((error) => {
       console(error);

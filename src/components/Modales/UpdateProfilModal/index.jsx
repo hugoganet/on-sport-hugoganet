@@ -18,6 +18,7 @@ function UpdateProfilModal({ toggleUpdateProfilModal, isShowUpdateProfilModal })
   const [image, setImage] = useState(null);
   const [citySearch, setCitySearch] = useState(null);
   const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +69,7 @@ function UpdateProfilModal({ toggleUpdateProfilModal, isShowUpdateProfilModal })
         url: `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`,
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
         },
         data: form,
       });

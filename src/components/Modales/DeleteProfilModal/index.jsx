@@ -10,9 +10,14 @@ import {
 function DeleteProfilModal({ isShowDeleteProfilModal, toggleDeleteProfilModal }) {
   const navigate = useNavigate();
   const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
 
   const onConfirm = () => {
-    axios.delete(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`);
+    axios.delete(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     toggleDeleteProfilModal(false);
     localStorage.clear();
     navigate('/');

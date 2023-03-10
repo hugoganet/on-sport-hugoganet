@@ -37,20 +37,7 @@ function CreateActivity() {
   const [open, setOpen] = useState(false);
   const user_id = parseInt(localStorage.getItem('userId'), 10);
   const navigate = useNavigate();
-
-  // React.useEffect(
-  //   () => {
-  //     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/')
-  //       .then((response) => {
-  //         setListLocation(response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-
-  //   },
-  //   [],
-  // );
+  const token = localStorage.getItem('token');
 
   const user = {
     title,
@@ -76,7 +63,6 @@ function CreateActivity() {
   };
 
   const handleSubmit = async (e) => {
-    console.log(arrayImages);
     e.preventDefault();
 
     const form = new FormData();
@@ -94,8 +80,6 @@ function CreateActivity() {
         },
         data: form,
       });
-      console.log(response.data);
-      console.log(response.data.id);
       setSuccessMessage("L'activité a été créée avec succès !");
       setOpen(true);
       setErrorMessage('');
@@ -105,17 +89,16 @@ function CreateActivity() {
       setSuccessMessage('');
     }
     navigate('/profile/{user_id}');
-    // setTimeout(() => {
-    //   setErrorMessage("");
-    //   setSuccessMessage("");
-    // }, 3000);
   };
 
   const getCitiesFromSearch = async () => {
     if (citySearch.length < 3) return;
     try {
-      const response = await axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/location/name/${citySearch}`);
-      console.log('response api back autocomplete', response.data);
+      const response = await axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/location/name/${citySearch}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setListLocation(response.data);
     } catch (error) {
       // console.error(error);
