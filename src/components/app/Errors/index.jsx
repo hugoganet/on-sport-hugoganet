@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable react/react-in-jsx-scope */
 import './style.scss';
 
 import { Image } from 'semantic-ui-react';
