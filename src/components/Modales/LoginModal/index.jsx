@@ -6,7 +6,7 @@ import {
   Button, Input, Modal,
 } from 'semantic-ui-react';
 
-function LoginModal({ toggleLoginModal, isShowLoginModal }) {
+function LoginModal({ toggleLoginModal, isShowLoginModal, setOpen }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -36,6 +36,7 @@ function LoginModal({ toggleLoginModal, isShowLoginModal }) {
       localStorage.setItem('userId', response.data.id);
     }
     toggleLoginModal(false);
+    setOpen(false);
   };
 
   return (
@@ -80,6 +81,7 @@ function LoginModal({ toggleLoginModal, isShowLoginModal }) {
 LoginModal.propTypes = {
   toggleLoginModal: PropTypes.func.isRequired,
   isShowLoginModal: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default LoginModal;

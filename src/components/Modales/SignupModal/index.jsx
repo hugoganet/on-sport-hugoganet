@@ -6,7 +6,7 @@ import {
   Button, Input, Modal,
 } from 'semantic-ui-react';
 
-function SignupModal({ toggleSignupModal, isShowSignupModal }) {
+function SignupModal({ toggleSignupModal, isShowSignupModal, setOpen }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -39,6 +39,7 @@ function SignupModal({ toggleSignupModal, isShowSignupModal }) {
     // eslint-disable-next-line no-console
     console.log(`SignupModal: ${response}`);
     toggleSignupModal(false);
+    setOpen(false);
   };
 
   return (
@@ -116,6 +117,7 @@ function SignupModal({ toggleSignupModal, isShowSignupModal }) {
 SignupModal.propTypes = {
   toggleSignupModal: PropTypes.func.isRequired,
   isShowSignupModal: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default SignupModal;

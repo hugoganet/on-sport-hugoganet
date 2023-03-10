@@ -16,6 +16,15 @@ function Unauthorized({ open, setOpen }) {
   const [isShowLoginModal, toggleLoginModal] = React.useState(false);
   const [isShowSignupModal, toggleSignupModal] = React.useState(false);
 
+  const handleClickCreateAccount = () => {
+    console.log('open SignupModal');
+    toggleSignupModal(true);
+    console.log(isShowSignupModal);
+    console.log('close Unauthorized');
+    // setOpen(false);
+    console.log(isShowSignupModal);
+  };
+
   return (
     <Modal
       onClose={() => setOpen(false)}
@@ -31,7 +40,7 @@ function Unauthorized({ open, setOpen }) {
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button color="orange" onClick={() => toggleSignupModal(true)}>
+        <Button color="orange" onClick={handleClickCreateAccount}>
           Je crée mon compte
         </Button>
         <Button
@@ -46,6 +55,7 @@ function Unauthorized({ open, setOpen }) {
       <LoginModal
         toggleLoginModal={toggleLoginModal}
         isShowLoginModal={isShowLoginModal}
+        setOpen={setOpen}
       />
 
 )}
@@ -53,6 +63,7 @@ function Unauthorized({ open, setOpen }) {
         <SignupModal
           toggleSignupModal={toggleSignupModal}
           isShowSignupModal={isShowSignupModal}
+          setOpen={setOpen}
         />
 )}
     </Modal>
