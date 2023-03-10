@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
+import defaultProfilePicture from '../../../../assets/default_profile_picture_icon.jpeg';
+import location from '../../../../assets/location.png';
+import age_img from '../../../../assets/age.png';
 
 import './style.scss';
 
 function ProfilDetails({ loggedUser }) {
-  const [isShowUpdateProfilModal, toggleUpdateProfilModal] = useState(false);
-
+  const userId = localStorage.getItem('userId');
   function calculateAge(birthdate) {
     // Split the birthdate string into day, month, and year components
     const [year, month, day] = birthdate.split('-');
@@ -24,34 +25,47 @@ function ProfilDetails({ loggedUser }) {
   }
 
   return (
+
     <div className="ProfilDetails">
-      <p className="ProfilDetails__location">
-        📍
-        {loggedUser.locationName}
-        {' '}
-        -
-        {' '}
-        {loggedUser.locationDepartment}
-      </p>
-      <p className="ProfilDetails__age">
-        AGE :
-        {' '}
-        {loggedUser?.age && calculateAge(loggedUser.age)}
-      </p>
-      <button
-        type="button"
-        className="ProfilDetails__button"
-        onClick={() => toggleUpdateProfilModal(true)}
-      >
-        Modifier mon profil
-      </button>
-      <UpdateProfilModal
-        toggleUpdateProfilModal={toggleUpdateProfilModal}
-        isShowUpdateProfilModal={isShowUpdateProfilModal}
-      />
+
+      <div className="ProfilHeader__img--div">
+        <img
+          className="ProfilHeader__img"
+          src={loggedUser.photo ? `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}/photo/${loggedUser.photo}` : defaultProfilePicture}
+          alt="profilPicture"
+        />
+      </div>
+
+      <div className="ProfilHeader__detail">
+        <div className="profilName">
+          {loggedUser.firstname}
+          {' '}
+          {loggedUser.lastname}
+        </div>
+        <p className="ProfilDetails__location">
+          <div className="icone">
+            <img alt="location" src={location} />
+          </div>
+          {/* 📍 */}
+          {loggedUser.locationName}
+          {' '}
+          -
+          {' '}
+          {loggedUser.locationDepartment}
+        </p>
+        <p className="ProfilDetails__age">
+          <div className="icone">
+            <img alt="age" src={age_img} />
+          </div>
+          {loggedUser?.age && calculateAge(loggedUser.age)}
+          {' '}
+          ans
+        </p>
+      </div>
+
       <section className="ProfilDetails__bioAndPracticeSports">
         <div className="ProfilDetails__bio--div">
-          <h2 className="ProfilDetails__bio--title">Bio</h2>
+          <h2 className="ProfilDetails__bio--title">A propos de moi...</h2>
           <p className="ProfilDetails__bio--description">
             {loggedUser.bio}
           </p>
@@ -68,6 +82,7 @@ ProfilDetails.propTypes = {
       PropTypes.oneOf([undefined]),
     ]),
     age: PropTypes.string,
+    photo: PropTypes.string,
     bio: PropTypes.string,
     email: PropTypes.string,
     firstname: PropTypes.string,

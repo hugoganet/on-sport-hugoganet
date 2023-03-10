@@ -2,31 +2,52 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
-import defaultProfilePicture from '../../../../assets/default_profile_picture_icon.jpeg';
+
 import DisconnectionModal from '../../../Modales/DisconnectionModal';
+import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
+
+import DeleteProfilModal from '../../../Modales/DeleteProfilModal';
 
 import './style.scss';
 
-function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
+function ProfilHeader() {
   const [isShowDisconnectionModal, toggleDisconnectionModal] = useState(false);
-  const userId = localStorage.getItem('userId');
+  const [isShowUpdateProfilModal, toggleUpdateProfilModal] = useState(false);
+  const [isShowDeleteProfilModal, toggleDeleteProfilModal] = useState(false);
 
   return (
     <header className="ProfilHeader">
       <button type="button" className=" ProfilHeader__button ProfilHeader__button--accueil">
         <NavLink to="/" className="menu-link">Accueil</NavLink>
       </button>
-      <div className="ProfilHeader__img--div">
-        <img
-          className="ProfilHeader__img"
-          src={photo ? `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}/photo/${photo}` : defaultProfilePicture}
-          alt="profilPicture"
+
+      <div className="update">
+        <button
+          type="button"
+          className="ProfilDetails__button"
+          onClick={() => toggleUpdateProfilModal(true)}
+        >
+          Modifier mon profil
+        </button>
+        <UpdateProfilModal
+          toggleUpdateProfilModal={toggleUpdateProfilModal}
+          isShowUpdateProfilModal={isShowUpdateProfilModal}
         />
-        <p className="ProfilHeader__name">
-          {firstname}
-          {' '}
-          {lastname}
-        </p>
+        <div>
+          <button
+            onClick={() => toggleDeleteProfilModal(!isShowDeleteProfilModal)}
+            className="ProfilDetails__button"
+            type="submit"
+          >
+            Supprimer mon profil
+          </button>
+        </div>
+        {isShowDeleteProfilModal && (
+        <DeleteProfilModal
+          toggleDeleteProfilModal={toggleDeleteProfilModal}
+          isShowDeleteProfilModal={isShowDeleteProfilModal}
+        />
+        )}
       </div>
       <div className="ProfilHeader__button--div">
         <button
@@ -43,6 +64,7 @@ function ProfilHeader({ loggedUser: { firstname, lastname, photo } }) {
           isShowDisconnectionModal={isShowDisconnectionModal}
         />
       )}
+
     </header>
   );
 }

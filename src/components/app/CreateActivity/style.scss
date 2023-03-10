@@ -10,11 +10,11 @@
     &__image {
         background-color: v.$color-white;
         border-radius: 1rem;
-        background-size: cover;
+        // background-size: cover;
     };
     &__form {
     background-color: v.$color-first;
-    width: 100%;
+    width: 70vw;
     border-radius: 1rem;
     };
 }

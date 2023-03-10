@@ -23,7 +23,7 @@ function ProfilPage() {
 
   return (
     <div className="ProfilPage">
-      <ProfilHeader loggedUser={UserInfos} />
+      <ProfilHeader />
       <ProfilDetails loggedUser={UserInfos} />
       <ActivitiesList loggedUser={UserInfos} />
       <Footer />

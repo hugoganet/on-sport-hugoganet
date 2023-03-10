@@ -137,7 +137,6 @@ function CreateActivity() {
         className="container"
       >
         <Grid.Column
-          stretched
           className="container__image"
           only="computer tablet"
         >

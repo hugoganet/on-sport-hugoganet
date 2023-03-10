@@ -1,11 +1,11 @@
 @use 'src/styles/_vars.scss' as v;
 
+
 .ProfilHeader{
   height: 8rem;
-  background-color: #f5f5f5;
+  background-color: v.$color-third;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   padding: 0 8px;
 
@@ -40,8 +40,8 @@
   &__img{
     margin: 8px;
     margin-bottom: 2px;
-    width: 5rem;
-    height: 5rem;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
     border: 4px solid ;
     background-color: #f5f5f5;
@@ -71,6 +71,80 @@
   color:#ffffff;
 }
 
+.ProfilDetails__button{
+  background-color: #ffffff;
+  border:solid #ffffff;
+  border-radius: 50px;
+  color:v.$color-third;
+  font-size: 0.8rem;
+  margin-left:10px;
+  margin-right:10px;
+}
+.ProfilDetails__button:hover{
+  background-color:v.$color-third;
+  border:solid #ffffff;
+  border-radius: 50px;
+  color:#ffffff;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 767px) {
+
+  
+.ProfilHeader{
+ 
+  background-color: v.$color-third;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+ 
+
+
+  &__button{
+    font-size: 1.2rem;
+    border: none;
+    border-radius: .3rem;
+    background-color: v.$color-third;
+    color: v.$color-white;
+    margin-top: 1.2rem;
+
+    &--div {
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+    }
+
+    &--accueil {
+      align-self: center;
+    }
+
+    &--deconnexion {
+      align-self: center;
+      margin-top: 0.5rem;      
+    }
+
+    &--monProfil {
+      align-self: center;
+    }
+   }
+}
+.ProfilDetails__button {
+  background-color: #ffffff;
+  border: solid #ffffff;
+  border-radius: 50px;
+  color: #0D8BBB;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
+ 
+}
+.profilDetails{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+}
 
 @media screen and (min-width: 768px) {
   .ProfilHeader{
@@ -102,17 +176,18 @@
 
     &__img{
       order: 1;
-      width: 8rem;
-      height: 8rem;
-      background-color: #f5f5f5;
+      width: 15rem;
+      height: 15rem;
+      margin-left:100px;
       
       
       &--div {
         position: relative;
-        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
+        margin-left:3rem;
+        margin-right: 3rem;
 
       }
     }
@@ -125,6 +200,28 @@
       font-weight: 600;
       margin-top: 2rem;
       order: 2;
+    }
+
+    .ProfilDetails__button{
+      background-color: #ffffff;
+      border:solid #ffffff;
+      border-radius: 50px;
+      color:v.$color-third;
+      font-size: 1.2rem;
+      margin-left:10px;
+      margin-right:10px;
+    }
+    .ProfilDetails__button:hover{
+      background-color:v.$color-third;
+      border:solid #ffffff;
+      border-radius: 50px;
+      color:#ffffff;
+      font-size: 1rem;
+    }
+
+    .update{
+      display: flex;
+      flex-direction: row;
     }
   }
 }
