@@ -49,7 +49,7 @@ function LoginModal({ toggleLoginModal, isShowLoginModal, setOpen }) {
       <Modal.Content>
         <Modal.Description>
           <Input
-            placeholder="Nom d'utilisateur:"
+            placeholder="Nom d'utilisateur"
             type="text"
             id="username"
             value={username}

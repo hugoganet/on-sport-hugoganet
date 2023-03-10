@@ -24,10 +24,6 @@ import Step1 from '../../../assets/step1_img.png';
 import Step2 from '../../../assets/step2_img.png';
 import Step3 from '../../../assets/step3_img.png';
 import Step4 from '../../../assets/step4_img.png';
-import Step1_title from '../../../assets/step1_title.png';
-import Step2_title from '../../../assets/step2_title.png';
-import Step3_title from '../../../assets/step3_title.png';
-import Step4_title from '../../../assets/step4_title.png';
 
 import 'animate.css';
 import sportsList from '../../../datas/sports';
@@ -132,29 +128,82 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
 
        <Grid>
          <Grid.Column mobile={8} tablet={8} computer={2}>
-           <Image src={Step1} data-aos="zoom-in" data-aos-offset="100" />
+           <Image src={Step1} data-aos="zoom-in" data-aos-duration="1000" data-aos-offset="400" />
          </Grid.Column>
-         <Grid.Column mobile={8} tablet={8} computer={2}>
-           <Image src={Step1_title} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="200" data-delay="500" />
-         </Grid.Column>
-         <Grid.Column mobile={8} tablet={8} computer={2}>
-           <Image src={Step2} data-aos="zoom-in" data-aos-offset="300" />
-         </Grid.Column>
-         <Grid.Column mobile={8} tablet={8} computer={2} data-aos="zoom-in" data-aos-offset="400">
-           <Image src={Step2_title} data-aos="zoom-in" data-aos-offset="600" />
-         </Grid.Column>
-         <Grid.Column mobile={8} tablet={8} computer={2}>
 
-           <Image src={Step3} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="500" />
+         <Grid.Column
+           mobile={4}
+           tablet={4}
+           computer={2}
+           color="grey"
+           data-aos="fade-up"
+           data-aos-duration="1000"
+           data-aos-easing="linear"
+           data-aos-offset="400"
+           data-delay="500"
+         >
+           <p className="num">01</p>
+           <p className="step_title">INSCRIS-TOI</p>
          </Grid.Column>
+
          <Grid.Column mobile={8} tablet={8} computer={2}>
-           <Image src={Step3_title} data-aos="zoom-in" data-aos-offset="600" />
+           <Image src={Step2} data-aos="zoom-in" data-delay="500" data-aos-duration="1000" data-aos-offset="510" />
          </Grid.Column>
-         <Grid.Column mobile={8} tablet={8} computer={2}>
-           <Image src={Step4} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="700" />
+
+         <Grid.Column
+           mobile={8}
+           tablet={8}
+           computer={2}
+           data-aos="fade-up"
+           data-aos-duration="1000"
+           data-aos-easing="linear"
+           data-aos-offset="510"
+           data-delay="500"
+           color="grey"
+         >
+           <p className="num">02</p>
+           <p className="step_title">RECHERCHE DES ID&Eacute;ES D&apos;ACTIVIT&Eacute;S</p>
          </Grid.Column>
+
          <Grid.Column mobile={8} tablet={8} computer={2}>
-           <Image src={Step4_title} data-aos="zoom-in" data-aos-easing="linear" data-aos-offset="800" />
+           <Image src={Step3} data-aos="zoom-in" data-delay="500" data-aos-duration="1000" data-aos-offset="620" />
+         </Grid.Column>
+
+         <Grid.Column
+           mobile={8}
+           tablet={8}
+           computer={2}
+           color="grey"
+           data-aos="fade-up"
+           data-aos-duration="1000"
+           data-aos-easing="linear"
+           data-aos-offset="620"
+         >
+           <p className="num">03</p>
+           <p className="step_title">PARTAGE &Agrave; TON TOUR TES SORTIES SPORTIVES</p>
+         </Grid.Column>
+
+         <Grid.Column mobile={8} tablet={8} computer={2}>
+           <Image
+             src={Step4}
+             data-aos="zoom-in"
+             data-delay="500"
+             data-aos-duration="1000"
+             data-aos-offset="730"
+           />
+         </Grid.Column>
+         <Grid.Column
+           mobile={8}
+           tablet={8}
+           computer={2}
+           color="grey"
+           data-aos="fade-up"
+           data-aos-duration="1000"
+           data-aos-easing="linear"
+           data-aos-offset="730"
+         >
+           <p className="num">04</p>
+           <p className="step_title">COMMENTE LES ACTIVIT&Eacute;S QUE TU AS TEST&Eacute;ES</p>
          </Grid.Column>
 
        </Grid>
@@ -168,7 +217,7 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
              fluid
              multiple
              options={sportsList}
-               // eslint-disable-next-line react/jsx-no-bind
+             // eslint-disable-next-line react/jsx-no-bind
              onChange={handleSelectSport.bind(this)}
            />
            <Form.Radio
@@ -191,11 +240,12 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
              fluid
              multiple
              options={departmentOptions}
-               // eslint-disable-next-line react/jsx-no-bind
+             // eslint-disable-next-line react/jsx-no-bind
              onChange={handleSelectDepartement.bind(this)}
            />
          </Form.Group>
        </Form>
+
        <Filtered ListActivities={ListActivities} />
        <Footer />
      </div>

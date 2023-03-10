@@ -43,5 +43,3 @@ function TeamMemberCards() {
 }
 
 export default TeamMemberCards;
-
-// export default TeamMemberCards;
