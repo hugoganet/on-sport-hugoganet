@@ -6,7 +6,7 @@ import UpdateProfilModal from '../../../Modales/UpdateProfilModal';
 import './style.scss';
 
 function ProfilDetails({ loggedUser }) {
-  const [isShowUpdateProfilModal, toggleUpdateProfilModal] = useState(false);
+  const [isShowUpdateProfilModal, toggleUpdateProfilModal] = useState(true);
 
   function calculateAge(birthdate) {
     // Split the birthdate string into day, month, and year components

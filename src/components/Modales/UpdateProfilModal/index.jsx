@@ -4,8 +4,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import './style.scss';
+
 import {
-  Button, Input, Modal, TextArea, Form,
+  Button, Input, Modal, Form,
 } from 'semantic-ui-react';
 
 function UpdateProfilModal({ toggleUpdateProfilModal, isShowUpdateProfilModal }) {
@@ -83,12 +85,12 @@ function UpdateProfilModal({ toggleUpdateProfilModal, isShowUpdateProfilModal })
       onOpen={() => toggleUpdateProfilModal(true)}
       open={isShowUpdateProfilModal}
     >
-      <Modal.Header>Modifier les informations de mon profil</Modal.Header>
-      <Modal.Content>
+      <Modal.Header className="UpdateProfilModal__title">Modifier les informations de mon profil</Modal.Header>
+      <Modal.Content className="UpdateProfilModal__content">
         <Modal.Description>
-          <TextArea
+          <Input
             placeholder="Ajouter une bio"
-            className="UpdateProfilModal__form--input"
+            className="UpdateProfilModal__form--input--bio"
             type="text"
             id="bio"
             name="bio"
@@ -105,8 +107,7 @@ function UpdateProfilModal({ toggleUpdateProfilModal, isShowUpdateProfilModal })
             onChange={(event) => setAge(event.target.value)}
           />
           <Form.Input
-            label="Entrer une ville"
-            placeholder="Ville"
+            placeholder="Entrer une ville"
             type="search"
             icon="search"
             onKeyUp={getCitiesFromSearch}
