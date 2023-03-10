@@ -1,6 +1,7 @@
 .ui.input>input{
   margin: 1rem;
   max-width: 95%;
+  color : #000000;
 }
 
 .ui.modal>.content>.description {
@@ -14,4 +15,10 @@
   width: 90%;
   height: 10rem;
   margin: 1rem;
+  color : #000000;
+}
+
+
+.ui.default.dropdown:not(.button)>.text, .ui.dropdown:not(.button)>.default.text{
+  color : #000000;
 }

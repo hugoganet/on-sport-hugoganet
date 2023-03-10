@@ -39,6 +39,7 @@ function Home() {
   AOS.init();
   React.useEffect(
 () => {
+  window.scrollTo(0, 0);
     axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
       headers: {
         'Content-Type': 'application/json',
@@ -126,7 +127,7 @@ if (value.length === 0 && filteredDepartments.length !== 0) {
          <img src={bg} alt="background" />
        </div>
 
-       <Grid>
+       <Grid className="grid">
          <Grid.Column mobile={8} tablet={8} computer={2}>
            <Image src={Step1} data-aos="zoom-in" data-aos-duration="1000" data-aos-offset="400" />
          </Grid.Column>

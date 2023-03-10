@@ -172,3 +172,56 @@ padding:20px;
 .ui.raised.segment, .ui.raised.segments{
     background-color: v.$color-first ;
 }
+
+
+@media (max-width: 767px){
+    
+
+.filteredActivities__title__dpt {
+    display: flex;
+    justify-content: center;
+    background-color: v.$color-first;
+    color:#ffffff;
+    font-size: 1.2rem;
+    padding:20px;
+    align-items: center;
+
+}
+
+.filteredActivities__title__dpt:before {
+    content: url(../../../assets/map.png);
+    margin-right : 20px;
+    }
+
+
+    .filteredActivities__title__sport {
+        display: flex;
+        justify-content: center;
+        background-color: v.$color-first;
+        color:#ffffff;
+        font-size: 1.2rem;
+        padding:20px;
+        align-items: center;
+    
+    }
+    
+    .filteredActivities__title__sport:before {
+        content: url(../../../assets/sport.png);
+        margin-right : 20px;
+        }
+
+        
+    .activity__title{
+        margin-top: 20px;
+        font-size: 1.6rem;
+        color: #ffffff;
+        width:70vw;
+        padding:10px;
+        border-radius:10px;
+        margin-left:auto;
+        margin-right :auto;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    
+}

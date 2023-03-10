@@ -119,7 +119,7 @@ function CreateActivity() {
       setListLocation(response.data);
     } catch (error) {
       // console.error(error);
-      setErrorMessage('Une erreur est survenue. Veuillez réessyer');
+      setErrorMessage('Une erreur est survenue. Veuillez réessayer');
     }
     console.log('search > 3');
     // appel API

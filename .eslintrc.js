@@ -21,5 +21,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'no-plusplus': 'off',
     'unicode-bom': 'off',
+    "linebreak-style": 0,
+    
   },
 };
