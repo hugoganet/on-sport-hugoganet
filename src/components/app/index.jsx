@@ -13,6 +13,7 @@ import CreateActivity from './CreateActivity';
 import DetailledActivity from './DetailledActivity';
 import Contact from './Contact';
 import About from './About';
+import NotFound from './Errors';
 
 function App() {
   // React.useEffect(() => {
@@ -30,7 +31,7 @@ function App() {
         <Route path="/activity/:id" element={<DetailledActivity />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="*" element={<NotFound />} isZen={isZen} /> */}
+        <Route path="*" element={<NotFound />} />
 
       </Routes>
 
