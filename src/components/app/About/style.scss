@@ -47,4 +47,22 @@
 .ui.card, .ui.cards>.card {
     width: 220px;
 }
+
+span.projet__description{
+    font-size: 1.4rem;
+    color:#ffffff;
+   
+}
   
+.ui.raised.segment, .ui.raised.segments {
+    background-color: #FF8F3F;
+}
+
+.ui.ribbon.label {
+    left: calc(-1rem - 1.2em);
+    margin-right: -1.2em;
+    padding-left: calc(1rem + 1.2em);
+    padding-right: 1.2em;
+    background-color: #ffffff;
+    font-size:2rem;
+}

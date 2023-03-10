@@ -6,7 +6,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 
-import { Container } from 'semantic-ui-react';
+import {
+  Container, Grid, Segment, Label,
+} from 'semantic-ui-react';
 import Header from '../Header';
 import Footer from '../Footer';
 
@@ -18,6 +20,26 @@ function About() {
   return (
     <>
       <Header />
+      <Grid.Column>
+        <Segment raised>
+          <Label size="massive" as="a" ribbon>
+            Présentation du projet
+          </Label>
+          <span className="projet__description">
+            {' '}
+            Notre application est un site communautaire permettant le partage d'expériences
+            sportives. Notre site met en relation des sportifs du monde entier pour partager
+            leurs bonnes adresses et leurs bons plans lorsqu'ils voyagent en France.
+            Nous souhaitons répondre au besoin du sportif qui part en vacances et qui
+            souhaite continuer à pratiquer des activités sportives. L'application permettra à
+            un utilisateur de découvrir des activités dans la zone géographique où il se
+            rendra grâce au partage d'expériences des autres utilisateurs.
+
+          </span>
+
+        </Segment>
+      </Grid.Column>
+
       <Container textAlign="justified">
         <h1 className="project__title">
           Présentation du projet

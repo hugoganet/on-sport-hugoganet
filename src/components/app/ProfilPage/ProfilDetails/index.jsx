@@ -65,7 +65,7 @@ function ProfilDetails({ loggedUser }) {
 
       <section className="ProfilDetails__bioAndPracticeSports">
         <div className="ProfilDetails__bio--div">
-          <h2 className="ProfilDetails__bio--title">Bio</h2>
+          <h2 className="ProfilDetails__bio--title">A propos de moi...</h2>
           <p className="ProfilDetails__bio--description">
             {loggedUser.bio}
           </p>
