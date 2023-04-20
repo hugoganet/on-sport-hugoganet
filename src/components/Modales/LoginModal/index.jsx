@@ -22,7 +22,7 @@ function LoginModal({ toggleLoginModal, isShowLoginModal, setOpen }) {
       try {
         const response = await axios({
           method: 'post',
-          url: 'http://ronaldfk-server.eddi.cloud:8080/api/auth/signin',
+          url: 'https://secure-sands-23222.herokuapp.com/',
           headers: {
             headers,
           },
