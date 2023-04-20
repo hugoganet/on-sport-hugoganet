@@ -32,7 +32,7 @@ function DetailledActivity() {
   React.useEffect(
     () => {
       window.scrollTo(0, 0);
-      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/activity/${activityId}`, {
+      axios.get(`http://localhost:3100/api/activity/${activityId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +42,7 @@ function DetailledActivity() {
         console(error);
       });
 
-      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/${activityId}`, {
+      axios.get(`http://localhost:3100/api/comment/activity/${activityId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,7 +51,7 @@ function DetailledActivity() {
       ).catch((error) => {
         console(error);
       });
-      axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
+      axios.get('http://localhost:3100/api/activity', {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
@@ -74,7 +74,7 @@ function DetailledActivity() {
   }, [ListActivities, activityInfo]);
 
   React.useEffect(() => {
-    axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${activityInfo.user_id}`, {
+    axios.get(`http://localhost:3100/api/user/profil/${activityInfo.user_id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -108,7 +108,7 @@ function DetailledActivity() {
 
         <div className="activity__author">
           <span className="proposed">Activité proposée par</span>
-          <img alt="profile" className="photo_profile" width="50" height="50" src={user.photo ? `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${user.id}/photo/${user.photo}` : defaultProfilePicture} />
+          <img alt="profile" className="photo_profile" width="50" height="50" src={user.photo ? `http://localhost:3100/api/user/profil/${user.id}/photo/${user.photo}` : defaultProfilePicture} />
           <span className="author">
             {user.firstname}
             {' '}

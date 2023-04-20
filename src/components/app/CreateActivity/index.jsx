@@ -73,7 +73,7 @@ function CreateActivity() {
     try {
       const response = await axios({
         method: 'post',
-        url: 'http://ronaldfk-server.eddi.cloud:8080/api/activity',
+        url: 'http://localhost:3100/api/activity',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -96,7 +96,7 @@ function CreateActivity() {
   const getCitiesFromSearch = async () => {
     if (citySearch.length < 3) return;
     try {
-      const response = await axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/location/name/${citySearch}`, {
+      const response = await axios.get(`http://localhost:3100/api/location/name/${citySearch}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -24,7 +24,7 @@ function Comments({ comments, activityId }) {
 
     try {
       const response = await axios.post(
-        `http://ronaldfk-server.eddi.cloud:8080/api/comment/activity/${activityId}`,
+        `http://localhost:3100/api/comment/activity/${activityId}`,
         {
           content,
           user_id,

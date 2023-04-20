@@ -22,7 +22,7 @@ function LoginModal({ toggleLoginModal, isShowLoginModal, setOpen }) {
       try {
         const response = await axios({
           method: 'post',
-          url: 'http://ronaldfk-server.eddi.cloud:8080/api/auth/signin',
+          url: 'http://localhost:3100/api/auth/signin',
           headers: {
             headers,
           },

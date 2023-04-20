@@ -40,7 +40,7 @@ function Home() {
   React.useEffect(
 () => {
   window.scrollTo(0, 0);
-    axios.get('http://ronaldfk-server.eddi.cloud:8080/api/activity', {
+    axios.get('http://localhost:3100/api/activity', {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -51,7 +51,7 @@ function Home() {
       console(error);
     });
 
-  axios.get('http://ronaldfk-server.eddi.cloud:8080/api/location/getall').then(
+  axios.get('http://localhost:3100/api/location/getall').then(
     (response) => setListLocation(response.data),
     ).catch((error) => {
         console(error);

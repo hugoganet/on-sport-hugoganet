@@ -15,7 +15,7 @@ function Annotation({
 
   React.useEffect(
     () => {
-      axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${user_id}`, {
+      axios.get(`http://localhost:3100/api/user/profil/${user_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -29,7 +29,7 @@ function Annotation({
   );
   return (
     <Comment>
-      <Comment.Avatar src={userComment.photo ? `http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${user_id}/photo/${userComment.photo}` : defaultProfilePicture} />
+      <Comment.Avatar src={userComment.photo ? `http://localhost:3100/api/user/profil/${user_id}/photo/${userComment.photo}` : defaultProfilePicture} />
       <Comment.Content>
         <Comment.Author as="a">
           {userComment.firstname}

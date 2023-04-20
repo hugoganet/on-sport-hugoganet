@@ -15,7 +15,7 @@ function ProfilPage() {
   const token = localStorage.getItem('token');
 
   React.useEffect(() => {
-    axios.get(`http://ronaldfk-server.eddi.cloud:8080/api/user/profil/${userId}`, {
+    axios.get(`http://localhost:3100/api/user/profil/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
