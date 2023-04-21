@@ -32,6 +32,7 @@ function LoginModal({ toggleLoginModal, isShowLoginModal, setOpen }) {
           },
         });
 
+        // eslint-disable-next-line no-console
         console.log(`connexion réussie - token enregistré : ${response.data.tokenUser.token}- userId enregistré : ${response.data.id}`);
         localStorage.setItem('token', response.data.tokenUser.token);
         localStorage.setItem('userId', response.data.id);
