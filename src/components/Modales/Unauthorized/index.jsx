@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable indent */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable linebreak-style */

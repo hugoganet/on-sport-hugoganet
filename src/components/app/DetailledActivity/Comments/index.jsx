@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable radix */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-undef */
